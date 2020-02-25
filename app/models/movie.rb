@@ -1,7 +1,7 @@
 class Movie < ApplicationRecord
+  include SimpleRecommender::Recommendable
   has_many :interactions
   has_many :users, through: :interactions
 
-  include SimpleRecommender::Recommendable
   similar_by :users
 end
