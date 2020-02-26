@@ -7,40 +7,40 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <%
-=begin %>
 <% if user_signed_in? %>
         <li class="nav-item">
-          <%= link_to "", root_path, class: "nav-link fas fa-bell #{'white-item-navbar' if params[:action] == "home"}" %>
+          <%= link_to "", root_path, class: "nav-link fas fa-bell action-btn #{'white-item-navbar' if params[:action] == "home"}" %>
         </li>
         <li class="nav-item">
-          <%= link_to "", root_path, class: "nav-link fas fa-users #{'white-item-navbar' if params[:action] == "home"}" %>
+          <%= link_to "", root_path, class: "nav-link fas fa-users action-btn #{'white-item-navbar' if params[:action] == "home"}" %>
         </li>
         <li class="nav-item">
-          <%= link_to "#{current_user.first_name}", profil_path(current_user), class: "nav-link #{'white-item-navbar' if params[:action] == "home"}" %>
+          <%= link_to "#{current_user.email}", root_path, class: "nav-link #{'white-item-navbar' if params[:action] == "home"}" %>
         </li>
         <li class="nav-item">
-          <% if !current_user.photo.attachment.nil? %>
+<%
+=begin %>
+<% if !current_user.photo.attachment.nil? %>
             <%= cl_image_tag current_user.photo.key, class: "avatar-bordered #{'white-item-navbar' if params[:action] == "home"}", alt: "avatar-bordered", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
           <% else %>
-            <%= link_to root_path do %>
-              <%= image_tag "", class:"fas fa-user-tie #{'white-item-navbar' if params[:action] == "home"}" %>
-            <% end %>
-          <% end %>
-        </li>
-      <% else %>
 <%
 =end %>
 
+            <%= link_to root_path do %>
+              <%= image_tag "", class:"fas fa-user-tie #{'white-item-navbar' if params[:action] == "home"}" %>
+            <% end %>
+        </li>
+      <% else %>
         <li class="nav-item active">
           <%= link_to "Home", root_path, class:"nav-link #{'white-item-navbar' if params[:action] == "home"}" %>
         </li>
-        <li class="nav-item">
-          <%= link_to "Sign in", root_path , class:"nav-link #{'white-item-navbar' if params[:action] == "home"}" %>
+        <li class="nav-item active">
+          <%= link_to "Sign in", new_user_session_path , class:"nav-link #{'white-item-navbar' if params[:action] == "home"}" %>
         </li>
         <li class="nav-item ninja">
-          <%= link_to "", root_path, class:"fas fa-user-ninja avatar-navbar #{'white-item-navbar' if params[:action] == "home"}" %>
+          <%= link_to "", new_user_session_path, class:"fas fa-user-ninja avatar-navbar #{'white-item-navbar' if params[:action] == "home"}" %>
         </li>
+      <% end %>
     </ul>
   </div>
 </div>
