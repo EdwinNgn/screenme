@@ -35,6 +35,7 @@ CSV.foreach(csv_file, csv_options) do |row|
   else
     p user.dislike(movie)
   end
+end
 
 
 User.create(email:"rose.moulan@gmail.com", password:"azerty", admin: true)
