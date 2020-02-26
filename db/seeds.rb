@@ -12,21 +12,21 @@ require 'faker'
 
 csv_options = {headers: :first_row}
 
-50.times {User.create(email: Faker::Internet.email, password: "azerty")}
+# 50.times {User.create(email: Faker::Internet.email, password: "azerty")}
 
-movies_id = []
+# movies_id = []
+# CSV.foreach("/Users/edwinnguyen/code/EdwinNgn/screenme/db/interactions_screenme.csv", csv_options) do |row|
+#   movies_id << row[3].to_i
+# end
+# unique_ids = movies_id.uniq
+
+# unique_ids.each do |id|
+#   movie = Movie.new(tmdb_id: id)
+#   movie.save
+# end
+
 CSV.foreach("/Users/edwinnguyen/code/EdwinNgn/screenme/db/interactions_screenme.csv", csv_options) do |row|
-  movies_id << row[3].to_i
-end
-unique_ids = movies_id.uniq
-
-unique_ids.each do |id|
-  movie = Movie.new(tmdb_id: id)
-  movie.save
-end
-
-CSV.foreach("/Users/edwinnguyen/code/EdwinNgn/screenme/db/interactions_screenme.csv", csv_options) do |row|
-  interaction = Interaction.new
+  interaction = Interaction.new(like: 1, tmdb_id: row[3])
   interaction.movie = Movie.find_by(tmdb_id: row[3])
   p Movie.find_by(tmdb_id: row[3])
   interaction.user = User.find(row[1])
