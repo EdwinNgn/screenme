@@ -1,8 +1,10 @@
 <div class="banner">
     <div id="cover">
-      <form method="get" action="">
+      <form method="get" id="search-form" action="" >
         <div class="tb">
-          <div class="td"><input type="text" placeholder="Search" required></div>
+          <div class="td">
+            <input type="text" class="form-control" autocomplete="off" placeholder="Find movie" id="search-input" required>
+          </div>
           <div class="td" id="s-cover">
             <button type="submit">
               <div id="s-circle"></div>
@@ -10,6 +12,8 @@
             </button>
           </div>
         </div>
+        <ul id="results" class="list-search list-inline"></ul>
       </form>
     </div>
   </div>
+
