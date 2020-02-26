@@ -7,7 +7,7 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-<% if user_signed_in? %>
+      <% if user_signed_in? %>
         <li class="nav-item">
           <%= link_to "", root_path, class: "nav-link fas fa-bell action-btn #{'white-item-navbar' if params[:action] == "home"}" %>
         </li>
@@ -15,7 +15,7 @@
           <%= link_to "", root_path, class: "nav-link fas fa-users action-btn #{'white-item-navbar' if params[:action] == "home"}" %>
         </li>
         <li class="nav-item">
-          <%= link_to "#{current_user.email}", root_path, class: "nav-link #{'white-item-navbar' if params[:action] == "home"}" %>
+          <%= link_to "#{current_user.email}", root_path, class: "nav-link name #{'white-item-navbar' if params[:action] == "home"}" %>
         </li>
         <li class="nav-item">
 <%
