@@ -10,9 +10,10 @@ require "csv"
 require 'faker'
 
 
+
 csv_options = {headers: :first_row}
 
-# 50.times {User.create(email: Faker::Internet.email, password: "azerty")}
+50.times {User.create(email: Faker::Internet.email, password: "azerty")}
 
 movies_id = []
 CSV.foreach("/Users/edwinnguyen/code/EdwinNgn/screenme/db/likes_dislikes_screenme.csv", csv_options) do |row|
@@ -34,15 +35,9 @@ CSV.foreach("/Users/edwinnguyen/code/EdwinNgn/screenme/db/likes_dislikes_screenm
     p user.dislike(movie)
   end
 
-  # interaction = Interaction.new("1": 1, tmdb_id: row[3])
-  # interaction.user = User.find(row[1])
-  # p User.find(row[1])
-  # p interaction
-  # interaction.save
 end
 
-
-# User.create(email:"rose.moulan@gmail.com", password:"azerty", admin: true)
-# User.create(email:"paul.chapeau@edhec.com", password:"azerty", admin: true)
-# User.create(email:"tom.cizerom@edhec.com", password:"azerty", admin: true)
-# User.create(email:"edwin.nguyen@edhec.com", password:"azerty", admin: true)
+User.create(email:"rose.moulan@gmail.com", password:"azerty", admin: true)
+User.create(email:"paul.chapeau@edhec.com", password:"azerty", admin: true)
+User.create(email:"tom.cizerom@edhec.com", password:"azerty", admin: true)
+User.create(email:"edwin.nguyen@edhec.com", password:"azerty", admin: true)
