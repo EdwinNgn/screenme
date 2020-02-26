@@ -13,7 +13,9 @@ function showTab(n) {
     document.getElementById("prevBtn").style.display = "inline";
   }
   if (n == (x.length - 1)) {
+    console.log(document.getElementById("nextBtn"));
     document.getElementById("nextBtn").innerHTML = "Submit";
+    // document.getElementById("nextBtn").type = "submit";
   } else {
     document.getElementById("nextBtn").innerHTML = "Next";
   }
@@ -33,7 +35,8 @@ function nextPrev(n) {
   // if you have reached the end of the form... :
   if (currentTab >= x.length) {
     //...the form gets submitted:
-    document.getElementById("regForm").submit();
+    // document.getElementById("regForm").submit();
+    document.getElementById("nextBtn").type = "submit"
     return false;
   }
   // Otherwise, display the correct tab:

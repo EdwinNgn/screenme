@@ -39,34 +39,39 @@
 
 <!--  -->
 
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { id: :regForm }) do |f| %>
+<%= simple_form_for(resource, as: resource_name, url: step_one_path, html: { id: :regForm }) do |f| %>
   <%= f.error_notification %>
 
+    <div class="form-inputs">
+      <div class="tab">Info:
+        <p><%= f.input :first_name %></p>
+        <p><%= f.input :last_name%></p>
+      </div>
 
-    <div class="tab">Info:
-      <p><%= f.input :first_name %></p>
-      <p><%= f.input :last_name%></p>
-    </div>
+      <div class="tab">Birthday
+        <p><%= f.input :birth_day%></p>
+        <p><%= f.input :birth_month%></p>
+        <p><%= f.input :birth_year%></p>
+      </div>
 
-    <div class="tab">Birthday
-      <p><%= f.input :birth_day%></p>
-      <p><%= f.input :birth_month%></p>
-      <p><%= f.input :birth_year%></p>
-    </div>
+      <div class="tab">Account Info:
+        <p><%= f.input :email,
+                  required: true,
+                  autofocus: true,
+                  input_html: { autocomplete: "email" } %></p>
+        <p><%= f.input :password,
+                  required: true,
+                  hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
+                  input_html: { autocomplete: "new-password" }%></p>
+        <p><%= f.input :password_confirmation,
+                  required: true,
+                  input_html: { autocomplete: "new-password" } %>
+        </p>
+      </div>
 
-    <div class="tab">Info:
-      <p><%= f.input :email,
-                required: true,
-                autofocus: true,
-                input_html: { autocomplete: "email" } %></p>
-      <p><%= f.input :password,
-                required: true,
-                hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
-                input_html: { autocomplete: "new-password" }%></p>
-      <p><%= f.input :password_confirmation,
-                required: true,
-                input_html: { autocomplete: "new-password" } %>
-      </p>
+      <div class="tab">Profile picture:
+        <p><%= f.input :avatar, as: :file %></p>
+      </div>
     </div>
 
 
@@ -74,10 +79,10 @@
       <div style="float:right;">
         <button type="button" id="prevBtn">Previous</button>
         <button type="button" id="nextBtn">Next</button>
-      </div>
     </div>
 
   <div style="text-align:center;margin-top:40px;">
+    <span class="step"></span>
     <span class="step"></span>
     <span class="step"></span>
     <span class="step"></span>

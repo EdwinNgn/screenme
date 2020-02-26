@@ -8,6 +8,7 @@
   end
 
   get "/step_one", to: "forms#step_one"
+  post "/step_one", to: "forms#step_one"
   get "/step_two", to: "forms#step_two"
   get "/step_three", to: "forms#step_three"
 end
