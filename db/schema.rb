@@ -10,18 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_25_162610) do
+ActiveRecord::Schema.define(version: 2020_02_26_101836) do
 
   # These are extensions that must be enabled in order to support this database
-  enable_extension "intarray"
   enable_extension "plpgsql"
 
   create_table "interactions", force: :cascade do |t|
     t.bigint "user_id"
-    t.bigint "movie_id"
+    t.integer "1"
+    t.integer "tmdb_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["movie_id"], name: "index_interactions_on_movie_id"
     t.index ["user_id"], name: "index_interactions_on_user_id"
   end
 
@@ -39,10 +38,10 @@ ActiveRecord::Schema.define(version: 2020_02_25_162610) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "admin", default: false, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "interactions", "movies"
   add_foreign_key "interactions", "users"
 end
