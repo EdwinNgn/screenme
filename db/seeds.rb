@@ -26,10 +26,9 @@ csv_options = {headers: :first_row}
 # end
 
 CSV.foreach("/Users/edwinnguyen/code/EdwinNgn/screenme/db/interactions_screenme.csv", csv_options) do |row|
-  interaction = Interaction.new(like: 1, tmdb_id: row[3])
-  interaction.movie = Movie.find_by(tmdb_id: row[3])
-  p Movie.find_by(tmdb_id: row[3])
+  interaction = Interaction.new("1": 1, tmdb_id: row[3])
   interaction.user = User.find(row[1])
   p User.find(row[1])
+  p interaction
   interaction.save
 end
