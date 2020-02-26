@@ -1,25 +1,88 @@
-<h2>Sign up</h2>
+<!--  -->
+<!--  <form id="regForm" action="/">
 
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+<h1>Register:</h1> -->
+
+<!-- One "tab" for each step in the form: -->
+<!-- <div class="tab">Name:
+  <p><input placeholder="First name..." oninput="this.className = ''"></p>
+  <p><input placeholder="Last name..." oninput="this.className = ''"></p>
+</div>
+
+
+<div class="tab">Birthday:
+  <p><input placeholder="dd" oninput="this.className = ''"></p>
+  <p><input placeholder="mm" oninput="this.className = ''"></p>
+  <p><input placeholder="yyyy" oninput="this.className = ''"></p>
+</div>
+
+<div class="tab">Login Info:
+  <p><input placeholder="E-mail..." oninput="this.className = ''"></p>
+  <p><input placeholder="Password..." oninput="this.className = ''"></p>
+</div>
+
+<div style="overflow:auto;">
+  <div style="float:right;">
+    <button type="button" id="prevBtn">Previous</button>
+    <button type="button" id="nextBtn">Next</button>
+  </div>
+</div> -->
+
+<!-- Circles which indicates the steps of the form: -->
+<!-- <div style="text-align:center;margin-top:40px;">
+  <span class="step"></span>
+  <span class="step"></span>
+  <span class="step"></span>
+</div>
+
+</form> -->
+
+<!--  -->
+
+<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { id: :regForm }) do |f| %>
   <%= f.error_notification %>
 
-  <div class="form-inputs">
-    <%= f.input :email,
+
+    <div class="tab">Info:
+      <p><%= f.input :first_name %></p>
+      <p><%= f.input :last_name%></p>
+    </div>
+
+    <div class="tab">Birthday
+      <p><%= f.input :birth_day%></p>
+      <p><%= f.input :birth_month%></p>
+      <p><%= f.input :birth_year%></p>
+    </div>
+
+    <div class="tab">Info:
+      <p><%= f.input :email,
                 required: true,
                 autofocus: true,
-                input_html: { autocomplete: "email" }%>
-    <%= f.input :password,
+                input_html: { autocomplete: "email" } %></p>
+      <p><%= f.input :password,
                 required: true,
                 hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
-                input_html: { autocomplete: "new-password" } %>
-    <%= f.input :password_confirmation,
+                input_html: { autocomplete: "new-password" }%></p>
+      <p><%= f.input :password_confirmation,
                 required: true,
                 input_html: { autocomplete: "new-password" } %>
+      </p>
+    </div>
+
+
+    <div style="overflow:auto;">
+      <div style="float:right;">
+        <button type="button" id="prevBtn">Previous</button>
+        <button type="button" id="nextBtn">Next</button>
+      </div>
+    </div>
+
+  <div style="text-align:center;margin-top:40px;">
+    <span class="step"></span>
+    <span class="step"></span>
+    <span class="step"></span>
   </div>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Sign up" %>
-  </div>
 <% end %>
 
-<%= render "devise/shared/links" %>
+
