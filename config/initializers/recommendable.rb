@@ -39,4 +39,6 @@ Recommendable.configure do |config|
   #
   # Default: 100
   config.recommendations_to_store = 100
+
+  config.orm = :active_record
 end
