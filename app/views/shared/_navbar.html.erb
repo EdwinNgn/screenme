@@ -17,7 +17,14 @@
         <li class="nav-item">
           <%= link_to "#{current_user.email}", root_path, class: "nav-link name #{'white-item-navbar' if params[:action] == "home"}" %>
         </li>
-        <li class="nav-item">
+        <li class="nav-item dropdown">
+          <%= image_tag "", class:"fas fa-user-tie #{'white-item-navbar' if params[:action] == "home"}", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+            <%= link_to "View my profile", root_path, class: "dropdown-item" %>
+            <%= link_to "Edit My profile", root_path , class: "dropdown-item" %>
+            <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+          </div>
+        </li>
 <%
 =begin %>
 <% if !current_user.photo.attachment.nil? %>
@@ -26,16 +33,13 @@
 <%
 =end %>
 
-            <%= link_to root_path do %>
-              <%= image_tag "", class:"fas fa-user-tie #{'white-item-navbar' if params[:action] == "home"}" %>
-            <% end %>
-        </li>
+
       <% else %>
         <li class="nav-item active">
-          <%= link_to "Home", root_path, class:"nav-link #{'white-item-navbar' if params[:action] == "home"}" %>
+          <%= link_to "Home", root_path, class:"nav-link name #{'white-item-navbar' if params[:action] == "home"}" %>
         </li>
         <li class="nav-item active">
-          <%= link_to "Sign in", new_user_session_path , class:"nav-link #{'white-item-navbar' if params[:action] == "home"}" %>
+          <%= link_to "Sign in", new_user_session_path , class:"nav-link name #{'white-item-navbar' if params[:action] == "home"}" %>
         </li>
         <li class="nav-item ninja">
           <%= link_to "", new_user_session_path, class:"fas fa-user-ninja avatar-navbar #{'white-item-navbar' if params[:action] == "home"}" %>
