@@ -1,0 +1,72 @@
+<div class='moviecard d-flex flex-row'>
+  <div class='moviecard_left'>
+    <img src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/343086/h8fnwL1.png'>
+  </div>
+  <div class='moviecard_right'>
+    <div class='card_right__action pt-1'>
+      <i class="far fa-thumbs-up"></i>
+      <i class="far fa-thumbs-down"></i>
+      <i class="far fa-bookmark"></i>
+      <i class="fas fa-minus-circle"></i>
+    </div>
+    <div class="moviecard_right__text">
+      <h4>KILL  BILL:  VOL.  1</h4>
+      <div class='moviecard_right__details'>
+        <span>2003</span>
+        <span>111 min</span>
+        <span>Action</span>
+      </div>
+      <!-- $ -->
+
+      <div class='moviecard_right__review mt-2'>
+        <p>The lead character, called 'The Bride,' was a member <br/> of the Deadly Viper Assassination Squad, led by her <br/> lover 'Bill.' Upon realizing she was pregnant with Bill's<br/> child, 'The Bride' decided to escape her life as a killer.<br/> She fled to Texas, met a young man, who, on the day<br/> of their wedding rehearsal was gunned down by....</p>
+      </div>
+    </div>
+  </div>
+  <div class='moviecard_chevron' data-toggle="collapse" href="#collapse-movie-<%= 1 %>" role="button" aria-expanded="false" aria-controls="collapseExample">
+      <i class="fas fa-chevron-down"></i>
+  </div>
+</div>
+
+<div class="collapse pt-3 pb-3" id="collapse-movie-<%= 1 %>">
+  <div class="collaspe_header d-flex flex-row justify-content-around mb-3">
+    <h2>KILL  BILL:  VOL.  1</h2>
+    <div class="collapse_header_action d-flex">
+      <div class="action_col d-flex flex-column ml-3">
+        <i class="far fa-thumbs-up"></i>
+        <span>like</span>
+      </div>
+      <div class="action_col d-flex flex-column ml-3">
+        <i class="far fa-thumbs-down"></i>
+        <span>dislike</span>
+      </div>
+      <div class="action_col d-flex flex-column ml-3">
+        <i class="far fa-bookmark"></i>
+        <span>Add</span>
+      </div>
+      <div class="action_col d-flex flex-column ml-3">
+        <i class="fas fa-minus-circle"></i>
+        <span>block</span>
+      </div>
+    </div>
+  </div>
+  <div class="d-flex flex-row justify-content-around">
+    <div class="collaspe_left">
+      <div class='collaspe_left__details d-flex justify-content-around'>
+            <span>Date : 2003</span>
+            <span>Duration: 111 min</span>
+            <span>Genre: Action</span>
+      </div>
+      <div class='collaspe_left__review mt-2'>
+        <p>The lead character, called 'The Bride,' was a member <br/> of the Deadly Viper Assassination Squad, led by her <br/> lover 'Bill.' Upon realizing she was pregnant with Bill's<br/> child, 'The Bride' decided to escape her life as a killer.<br/> She fled to Texas, met a young man, who, on the day<br/> of their wedding rehearsal was gunned down by....</p>
+      </div>
+      <div>
+        <p>Director: Paul Chapeau</p>
+        <p>Casting: Paul Chapeau, Rose Moulan, Tom Cizeron</p>
+      </div>
+    </div>
+    <div class="collaspe_right">
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/7kSuas6mRpk?controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+  </div>
+</div>

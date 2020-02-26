@@ -22,7 +22,7 @@
   width:60%;
   padding-left: 10px;
   font-size : 0.55rem;
-  h1, .h1 {
+  h4 {
     font-size: 1.5rem;
   }
   .card_right__action{
@@ -35,6 +35,9 @@
     .fas{
       margin-left: 2%;
     }
+  }
+  .moviecard_right__text{
+    margin-top:5%;
   }
   .moviecard_right__details{
     display: flex;
@@ -59,6 +62,34 @@ ul {
 .moviecard_chevron{
   height: 5%;
   position:absolute;
-  bottom: 5%;
+  bottom: 7%;
   right: 50%;
+  &:hover {
+    color: yellow;
+  }
+
+}
+
+.collapse{
+  background:#002642 ;
+  color: white;
+  .collaspe_header{
+    .collapse_header_action{
+      font-size : 2.5rem;
+    }
+    .action_col{
+      span{
+      font-size:10px;
+      text-align:center;
+      }
+    }
+  }
+}
+
+.far:hover{
+  color:yellow;
+}
+
+.fas:hover{
+  color:yellow;
 }
