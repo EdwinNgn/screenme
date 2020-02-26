@@ -1,0 +1,46 @@
+<div class="navbar navbar-expand-sm navbar-light navbar-lewagon d-flex justify-content-between <%= 'navbar-transparent' if params[:action] == "home"  %>">
+  <div class="d-flex justify-content-center align-items-center logo">
+    <%= link_to root_path do %>
+      <%= image_tag "ScreenMe1.png", alt: "alttext", class: "logo-navbar" %>
+    <% end %>
+  </div>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+<% if user_signed_in? %>
+        <li class="nav-item">
+          <%= link_to "", root_path, class: "nav-link fas fa-bell action-btn #{'white-item-navbar' if params[:action] == "home"}" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "", root_path, class: "nav-link fas fa-users action-btn #{'white-item-navbar' if params[:action] == "home"}" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "#{current_user.email}", root_path, class: "nav-link #{'white-item-navbar' if params[:action] == "home"}" %>
+        </li>
+        <li class="nav-item">
+<%
+=begin %>
+<% if !current_user.photo.attachment.nil? %>
+            <%= cl_image_tag current_user.photo.key, class: "avatar-bordered #{'white-item-navbar' if params[:action] == "home"}", alt: "avatar-bordered", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+          <% else %>
+<%
+=end %>
+
+            <%= link_to root_path do %>
+              <%= image_tag "", class:"fas fa-user-tie #{'white-item-navbar' if params[:action] == "home"}" %>
+            <% end %>
+        </li>
+      <% else %>
+        <li class="nav-item active">
+          <%= link_to "Home", root_path, class:"nav-link #{'white-item-navbar' if params[:action] == "home"}" %>
+        </li>
+        <li class="nav-item active">
+          <%= link_to "Sign in", new_user_session_path , class:"nav-link #{'white-item-navbar' if params[:action] == "home"}" %>
+        </li>
+        <li class="nav-item ninja">
+          <%= link_to "", new_user_session_path, class:"fas fa-user-ninja avatar-navbar #{'white-item-navbar' if params[:action] == "home"}" %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
