@@ -9,6 +9,8 @@
 @import "font-awesome-sprockets";
 @import "font-awesome";
 
+
+
 // Your CSS partials
 @import "components/index";
 @import "components/moviecard";
@@ -16,4 +18,4 @@
 @import "pages/index";
 @import "devise/index";
 
-
+@import "components/primary_btn"

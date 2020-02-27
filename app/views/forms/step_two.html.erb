@@ -1,12 +1,12 @@
 <div class = "d-flex inline-block m-2">
 <h1>What do you think about those movies?</h1>
 <h2 class="btn btn-primary m-2">
-  <%= link_to "next", step_two_path%>
+  <%= link_to "next", profile_path(current_user)%>
 </h2>
 </div>
 
 <div class="row justify-content-center align-text">
-  <% Movie.top(6).each do |movie| %>
+  <% Movie.top(12).drop(6).each do |movie| %>
     <% movie_details = movie.get_details %>
     <div class="col-4 m-3">
       <div class="center">
