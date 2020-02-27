@@ -1,11 +1,7 @@
-<% require "open-uri" %>
-<% id = "0"*(7 - omdb_id.to_s.length) + omdb_id.to_s %>
-<% url = "http://www.omdbapi.com/?i=tt#{id}&apikey=adf1f2d7"%>
-<% movie = JSON.parse(open(url).read) %>
 
 <div class='moviecard d-flex flex-row'>
   <div class='moviecard_left'>
-    <img src=<%= movie['Poster'] %>>
+    <img src=<%= movie_details['Poster'] %>>
   </div>
   <div class='moviecard_right'>
     <div class='card_right__action pt-1'>
@@ -15,20 +11,21 @@
       <i class="fas fa-minus-circle"></i>
     </div>
     <div class="moviecard_right__text">
-      <h4><%= movie['Title'] %></h4>
+      <h4><%= movie_details['Title'] %></h4>
       <div class='moviecard_right__details'>
-        <span><%= movie['Year'] %></span>
-        <span><%= movie['Runtime'] %></span>
-        <span><%= movie['Genre'] %></span>
+        <span><%= movie_details['Year'] %></span>
+        <span><%= movie_details['Runtime'] %></span>
+        <span><%= movie_details['Genre'] %></span>
       </div>
       <!-- $ -->
 
       <div class='moviecard_right__review mt-2'>
-        <p><%= movie['Plot'] %></p>
+        <p><%= movie_details['Plot'] %></p>
       </div>
     </div>
   </div>
-  <div class='moviecard_chevron' data-toggle="collapse" href="#collapse-movie-<%= movie['imdbID'] %>" role="button" aria-expanded="false" aria-controls="collapseExample">
+  <div class='moviecard_chevron' data-toggle="collapse" href="#collapse-movie-<%= movie_details['imdbID'] %>" role="button" aria-expanded="false" aria-controls="collapseExample">
       <i class="fas fa-chevron-down"></i>
   </div>
 </div>
+

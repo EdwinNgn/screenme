@@ -1,11 +1,7 @@
-<% require "open-uri" %>
-<% url = "http://www.omdbapi.com/?i=tt00#{omdb_id}&apikey=adf1f2d7"%>
-<% movie = JSON.parse(open(url).read) %>
 
-
-<div class="collapse collapse-card mt-3 pt-3 pb-3  pr-5 pl-5" id="collapse-movie-<%= movie['imdbID'] %>">
+<div class="collapse collapse-card mt-3 pt-3 pb-3  pr-5 pl-5" id="collapse-movie-<%= movie_details['imdbID'] %>">
   <div class="collaspe_header d-flex flex-row justify-content-between mb-3">
-    <h2><%= movie['Title'] %></h2>
+    <h2><%= movie_details['Title'] %></h2>
     <div class="collapse_header_action d-flex">
       <div class="action_col d-flex flex-column ml-3">
         <i class="far fa-thumbs-up"></i>
@@ -28,19 +24,25 @@
   <div class="d-flex flex-row justify-content-between">
     <div class="collaspe_left">
       <div class='collaspe_left__details d-flex justify-content-around'>
-            <span><strong>Date: </strong><%= movie['Year'] %></span>
-            <span><strong>Duration: </strong><%= movie['Runtime'] %>min</span>
-            <span><strong>Genre: </strong><%= movie['Genre'] %></span>
+            <span><strong>Date: </strong><%= movie_details['Year'] %></span>
+            <span><strong>Duration: </strong><%= movie_details['Runtime'] %>min</span>
+            <span><strong>Genre: </strong><%= movie_details['Genre'] %></span>
       </div>
       <div class='collaspe_left__review mt-2'>
-        <p><%= movie['Plot'] %></p>
+        <p><%= movie_details['Plot'] %></p>
       </div>
       <div>
-        <p><strong>Director: </strong><%= movie['Director'] %></p>
-        <p><strong>Casting: </strong><%= movie['Actors'] %></p>
+        <p><strong>Director: </strong><%= movie_details['Director'] %></p>
+        <p><strong>Casting: </strong><%= movie_details['Actors'] %></p>
       </div>
     </div>
     <div class="collaspe_right">
+
+
+    <%# url = "https://www.googleapis.com/youtube/v3/search?part=snippet&q=#{movie_details["Title"]} trailer&key=AIzaSyA0NRQKW1AJCn_TvKHW90PeCryYn3iRLpY" %>
+    <%# trailer = JSON.parse(open(url).read) %>
+
+
       <iframe width="560" height="315" src="https://www.youtube.com/embed/7kSuas6mRpk?controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
   </div>
