@@ -1,5 +1,6 @@
 <% require "open-uri" %>
-<% url = "http://www.omdbapi.com/?i=tt00#{omdb_id}&apikey=adf1f2d7"%>
+<% id = "0" * (7 - omdb_id.to_s.length) + omdb_id.to_s %>
+<% url = "http://www.omdbapi.com/?i=tt#{id}&apikey=adf1f2d7"%>
 <% movie = JSON.parse(open(url).read) %>
 
 

@@ -16,8 +16,10 @@ csv_options = {headers: :first_row}
 50.times {User.create(email: Faker::Internet.email, password: "azerty")}
 
 movies_id = []
+
 CSV.foreach(csv_file, csv_options) do |row|
   movies_id << [row[3].to_i, row[4].to_i]
+
 end
 unique_ids = movies_id.uniq
 
@@ -26,7 +28,9 @@ unique_ids.each do |ids|
   movie.save
 end
 
+
 CSV.foreach(csv_file, csv_options) do |row|
+
   p movie = Movie.find_by(tmdb_id: row[3])
   p user = User.find(row[1])
   if row[2] == "like"
