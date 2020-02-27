@@ -1,0 +1,61 @@
+.profile{
+  background: rgba(255, 255, 255, 0.5);
+  min-height: 200vh;
+}
+
+.profile-card {
+  overflow: hidden;
+  height: 200px;
+  display: flex;
+  align-items: top;
+  padding: 20px;
+
+
+}
+
+.profile-card img {
+  height: 150px;
+  width: 150px;
+  object-fit: cover;
+  border-radius: 50%;
+
+}
+
+.profile-card h2 {
+  font-size: 30px;
+  font-weight: bold;
+  margin: 0;
+
+}
+
+.profile-card p {
+  font-size: 20px;
+  line-height: 1.4;
+  opacity: .7;
+  margin-bottom: 0;
+  margin-top: 8px;
+}
+
+.profile-card .profile-card-infos {
+  padding: 16px;
+}
+
+.background-profile {
+  background-image: linear-gradient(rgba(245,255,250,0.75), rgba(245,255,250,0.75)), url('https://trello-backgrounds.s3.amazonaws.com/SharedBackground/original/5b8c23cfb4d4773db6bdd8f7a9f444bc/photo-1581838158684-b0cb031d5d8c');
+  background-position: 100%;
+  background-size: cover;
+  // background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100% 100%;
+}
+
+.nav-link-profile {
+  font-size:25px;
+}
+
+.nav-item-profile {
+  width:20%;
+}
+
+
+
