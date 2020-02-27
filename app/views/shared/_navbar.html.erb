@@ -18,20 +18,21 @@
           <%= link_to "#{current_user.email}", root_path, class: "nav-link name #{'white-item-navbar' if params[:action] == "home"}" %>
         </li>
         <li class="nav-item dropdown">
-          <%= image_tag "", class:"fas fa-user-tie #{'white-item-navbar' if params[:action] == "home"}", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+          <% if !current_user.avatar.attachment.nil? %>
+            <%= cl_image_tag current_user.avatar.key, class: "avatar-bordered #{'white-item-navbar' if params[:action] == "home"}", alt: "avatar-bordered", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+          <% else %>
+            <%= image_tag "", class:"fas fa-user-tie #{'white-item-navbar' if params[:action] == "home"}", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+          <% end %>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
             <%= link_to "View my profile", root_path, class: "dropdown-item" %>
             <%= link_to "Edit My profile", root_path , class: "dropdown-item" %>
             <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
           </div>
         </li>
-<%
-=begin %>
-<% if !current_user.photo.attachment.nil? %>
-            <%= cl_image_tag current_user.photo.key, class: "avatar-bordered #{'white-item-navbar' if params[:action] == "home"}", alt: "avatar-bordered", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-          <% else %>
-<%
-=end %>
+
+
+
+
 
 
       <% else %>
