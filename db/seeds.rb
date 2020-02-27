@@ -43,4 +43,3 @@ User.create(email:"tom.cizerom@edhec.com", password:"azerty", admin: true)
 User.create(email:"edwin.nguyen@edhec.com", password:"azerty", admin: true)
 
 
-
