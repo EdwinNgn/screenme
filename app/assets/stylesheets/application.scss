@@ -1,6 +1,7 @@
 // Graphical variables
 @import "config/fonts";
 @import "config/colors";
+@import "config/general";
 @import "config/bootstrap_variables";
 
 // External libraries
@@ -10,5 +11,6 @@
 
 // Your CSS partials
 @import "components/index";
+@import "components/moviecard";
 @import "pages/index";
 @import "devise/index";

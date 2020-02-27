@@ -1,1 +1,7 @@
-<h1>hello</h1>
+<div class="container">
+  <h1>What do you think about those movies?</h1>
+  <% Movie.top(5).each do |movie| %>
+    <%= movie %>
+  <% end %>
+</div>
+

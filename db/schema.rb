@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 2020_02_26_162509) do
     t.integer "tmdb_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "omdb_id"
   end
 
   create_table "users", force: :cascade do |t|
