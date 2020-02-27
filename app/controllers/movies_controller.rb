@@ -7,15 +7,10 @@ class MoviesController < ApplicationController
     omdb_id = params[:omdb_id]
     url     = "http://www.omdbapi.com/?i=#{omdb_id}&apikey=adf1f2d7"
     @movie  = JSON.parse(open(url).read)
-  end
 
-
-  def contentlike
-    omdb_id = params[:omdb_id].delete('t')
-    @movie = Movie.find_by(omdb_id: omdb_id)
-    @user = User.find(2)
+    @user = current_user
     similar_user = @user.similar_raters #get the similar audiences to the user
-    audiences = @movie.liked_by #get the audience that likes this movies
+    audiences = Movie.find_by(omdb_id: omdb_id.delete('t')).liked_by #get the audience that likes this movies
     # if possible, get only people that appears in the similar audiences of the user and that
     # already watch the movie. If not, just take the audiences that already watches the movies.
     audiences = audiences & similar_user if !((audiences & similar_user).blank?)
