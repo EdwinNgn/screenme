@@ -9,5 +9,6 @@ Rails.application.routes.draw do
   end
   resources :movies, only: [:index]
   get "/movies/:omdb_id", to: "movies#show"
+  # get "/movies/:omdb_id", to: "movies#contentlike"
   resources :profiles, only: [:show]
 end

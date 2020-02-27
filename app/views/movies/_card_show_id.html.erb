@@ -1,0 +1,35 @@
+<% require "open-uri" %>
+<% id = "0"*(7 - omdb_id.to_s.length) + omdb_id.to_s %>
+<% url = "http://www.omdbapi.com/?i=tt#{id}&apikey=adf1f2d7"%>
+<% movie = JSON.parse(open(url).read) %>
+<div class="container">
+  <div class='moviecard_show d-flex flex-row'>
+    <div class='moviecard_show_left'>
+      <img src=<%= movie['Poster'] %>>
+    </div>
+    <div class='moviecard_show_right'>
+      <div class='card_right__action pt-1'>
+        <i class="far fa-thumbs-up"></i>
+        <i class="far fa-thumbs-down"></i>
+        <i class="far fa-bookmark"></i>
+        <i class="fas fa-minus-circle"></i>
+      </div>
+      <div class="moviecard_show_right__text">
+        <h4><%= movie['Title'] %></h4>
+        <div class='moviecard_show_right__details'>
+          <span><%= movie['Year'] %></span>
+          <span><%= movie['Runtime'] %></span>
+          <span><%= movie['Genre'] %></span>
+        </div>
+        <!-- $ -->
+
+        <div class='moviecard_show_right__review mt-2'>
+          <p><%= movie['Plot'] %></p>
+        </div>
+      </div>
+    </div>
+    <div class='moviecard_show_chevron' data-toggle="collapse" href="#collapse-movie-<%= movie['imdbID'] %>" role="button" aria-expanded="false" aria-controls="collapseExample">
+        <i class="fas fa-chevron-down"></i>
+    </div>
+  </div>
+</div>
