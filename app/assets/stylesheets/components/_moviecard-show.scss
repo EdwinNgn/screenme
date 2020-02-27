@@ -41,18 +41,20 @@
     border-bottom: 1px solid white;
   }
 }
-
-ul {
-  list-style-type:none;
-  padding:0 0 0 40px;
-  margin:10px 0 0 0;
-  li {
-    display:inline;
-    font-weight:400;
-    font-size : 0.7rem;
-    padding:0 20px 0 0;
+.moviecard_show {
+  ul {
+    list-style-type:none;
+    padding:0 0 0 40px;
+    margin:10px 0 0 0;
+    li {
+      display:inline;
+      font-weight:400;
+      font-size : 0.7rem;
+      padding:0 20px 0 0;
+    }
   }
 }
+
 
 .moviecard_show_chevron{
   height: 5%;
@@ -80,11 +82,13 @@ ul {
     }
   }
 }
-
-.far:hover{
+.card_right__action{
+  .far:hover{
   color:yellow;
+  }
+  .fas:hover{
+    color:yellow;
+  }
+
 }
 
-.fas:hover{
-  color:yellow;
-}
