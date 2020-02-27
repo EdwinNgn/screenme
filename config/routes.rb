@@ -7,8 +7,6 @@
   authenticate :user, lambda { |u| u.admin } do
     mount Sidekiq::Web => '/sidekiq'
   end
-
-
   get "/step_one", to: "forms#step_one"
   post "/step_one", to: "forms#step_one"
   get "/step_two", to: "forms#step_two"
@@ -20,7 +18,9 @@
   post "movies/:imdbID/save", to: "recommendables#save", as: "saving_movie"
   post "movies/:imdbID/blacklist", to: "recommendables#blacklist", as: "blacklisting_movie"
 
-  resources :movies, only: [:show, :index]
+  resources :movies, only: [:index]
+  get "/movies/:omdb_id", to: "movies#show"
+  # get "/movies/:omdb_id", to: "movies#contentlike"
   resources :profiles, only: [:show]
 
 end

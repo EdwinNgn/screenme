@@ -9,7 +9,6 @@
 require "csv"
 require 'faker'
 
-
 csv_file   = File.join(__dir__, 'likes_dislikes_screenme.csv')
 csv_options = {headers: :first_row}
 
@@ -45,5 +44,3 @@ User.create(email:"rose.moulan@gmail.com", password:"azerty", admin: true)
 User.create(email:"paul.chapeau@edhec.com", password:"azerty", admin: true)
 User.create(email:"tom.cizerom@edhec.com", password:"azerty", admin: true)
 User.create(email:"edwin.nguyen@edhec.com", password:"azerty", admin: true)
-
-

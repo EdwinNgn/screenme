@@ -4,8 +4,8 @@
 }
 
 .td {
-    display: table-cell;
-    vertical-align: middle;
+  display:        table-cell;
+  vertical-align: top;
 }
 
 
@@ -141,5 +141,30 @@
     right: -6px;
     width: 40px;
     background-color: #852532;
+}
+
+
+.list-search{
+  background-color: white;
+  img{
+    border-radius: 10px 0 0 10px;
+    height:        90px;
+    width:         60px;
+    margin-right:  10px;
+  }
+}
+
+.autocomplete-movies{
+  img{
+    margin-left: 0;
+  }
+  &:hover{
+  background-color: grey;
+  color: white;
+  }
+  span{
+    font-size: 24px;
+    color:     black;
+  }
 }
 
