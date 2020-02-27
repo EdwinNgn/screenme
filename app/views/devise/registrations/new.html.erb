@@ -1,7 +1,9 @@
-
+<div class="signup-bg" style = "background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://images.unsplash.com/photo-1559146820-a75deba24b58?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80);">
 
 <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { id: :regForm }) do |f| %>
   <%= f.error_notification %>
+
+  <h2 style = "color:white; margin-bottom:50px;">Sign Up </h2>
 
     <div class="form-inputs">
       <div class="tab">
@@ -15,7 +17,7 @@
         <p ><%= f.input :birth_year, input_html: { class: 'form-input' }%></p>
       </div>
 
-      <div class="tab">Account Info:
+      <div class="tab">
         <p ><%= f.input :email,
                   required: true,
                   autofocus: true,
@@ -30,7 +32,7 @@
         </p>
       </div>
 
-      <div class="tab">Profile picture:
+      <div class="tab">
         <p ><%= f.input :avatar, as: :file, input_html: { class: 'form-input' } %></p>
       </div>
     </div>
@@ -52,4 +54,5 @@
 
 <% end %>
 
+</div>
 
