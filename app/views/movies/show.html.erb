@@ -1,4 +1,4 @@
-<div class="container-show-movie">
+<div class="container">
   <div class="movie-infos">
     <div class="movie-infos-top">
       <div class="poster">
@@ -38,12 +38,9 @@
         </div>
       </div>
     </div>
-    <div class="movie-trailer">
-      <iframe src="https://www.youtube.com/embed/7kSuas6mRpk?controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-    </div>
   </div>
   <div class="movie-liked-like">
-    <h2 class="similar-to">Similar to :</h2>
+    <h2 class="similar-to">Movie like : <strong><%= @movie['Title'] %></strong></h2>
     <div class="wrapper">
       <ul class="stage">
         <li class="scene">
