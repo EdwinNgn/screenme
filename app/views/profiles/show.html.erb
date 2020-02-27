@@ -16,14 +16,16 @@
 
 
   <!--  -->
-  <h3 class="mt-3">Recommendations</h3>
+  <h3 class="mt-3 text-align-center">Recommendations</h3>
   <div class="recommendation d-flex">
     <div class="row">
       <% @user.recommended_movies.first(3).each do |movie| %>
         <div class="col-4 mt-3">
-          <%= render partial: "movies/card_id.html.erb", locals: {omdb_id: movie.omdb_id} %>
+          <!-- Pour éviter de faire 2 call API -->
+          <% movie_details = movie.get_details %>
+          <%= render "movies/card_id", movie_details: movie_details, movie: movie %>
         </div>
-          <%= render partial: "movies/card_collapse.html.erb", locals: {omdb_id: movie.omdb_id} %>
+          <%= render "movies/card_collapse", movie_details: movie_details, movie: movie %>
       <% end %>
     </div>
   </div>
@@ -39,8 +41,11 @@
         <a class="nav-link nav-link-profile" id="pills-to-watch-tab" data-toggle="pill" href="#pills-to-watch" role="tab" aria-controls="pills-to-watch" aria-selected="true">To watch</a>
       </li>
       <li class="nav-item nav-item-profile">
-        <a class="nav-link nav-link-profile" id="pills-liked-tab" data-toggle="pill" href="#pills-liked" role="tab" aria-controls="pills-liked" aria-selected="false">Liked Movies</a>
+        <a class="nav-link nav-link-profile" id="pills-liked-2-tab" data-toggle="pill" href="#pills-liked-2" role="tab" aria-controls="pills-liked-2" aria-selected="false">Liked Movies</a>
       </li>
+<!--       <li class="nav-item nav-item-profile">
+        <a class="nav-link nav-link-profile" id="pills-liked-tab" data-toggle="pill" href="#pills-liked" role="tab" aria-controls="pills-liked" aria-selected="false">Liked Movies</a>
+      </li> -->
       <li class="nav-item nav-item-profile">
         <a class="nav-link nav-link-profile" id="pills-disliked-tab" data-toggle="pill" href="#pills-disliked" role="tab" aria-controls="pills-disliked" aria-selected="false">Disliked Movies</a>
       </li>
@@ -60,15 +65,51 @@
       To watch
     </div>
 
+
+    <div class="tab-pane fade" id="pills-liked-2" role="tabpanel" aria-labelledby="pills-liked-2-tab">
+      <div class="ia-container">
+      <figure>
+        <% omdb_id = @user.liked_movies.first.omdb_id %>
+        <% id = "0"*(7 - omdb_id.to_s.length) + omdb_id.to_s %>
+        <% url = "http://www.omdbapi.com/?i=tt#{id}&apikey=adf1f2d7"%>
+        <% movie_api = JSON.parse(open(url).read) %>
+        <img src=<%= movie_api['Poster'] %>>
+        <input type="radio" name="radio-set" checked="checked" />
+        <figcaption><span><%= movie_api['Title'] %></span></figcaption>
+        <% @user.liked_movies[1..15].each do |movie| %>
+          <figure>
+          <% omdb_id = movie.omdb_id %>
+          <% id = "0"*(7 - omdb_id.to_s.length) + omdb_id.to_s %>
+          <% url = "http://www.omdbapi.com/?i=tt#{id}&apikey=adf1f2d7"%>
+          <% movie_api = JSON.parse(open(url).read) %>
+          <img src=<%= movie_api['Poster'] %>>
+          <input type="radio" name="radio-set" checked="checked" />
+          <figcaption><span><%= movie_api['Title'] %></span></figcaption>
+        <% end %>
+        </figure>
+        </figure>
+        </figure>
+        </figure>
+        </figure>
+        </figure>
+        </figure>
+        </figure>
+        </figure>
+        </figure>
+      </figure>
+      </div>
+    </div>
+
     <div class="tab-pane fade" id="pills-liked" role="tabpanel" aria-labelledby="pills-liked-tab">
       <div class="liked_movies d-flex">
         <div class="row">
           <% @user.liked_movies.first(20).each do |movie| %>
             <div class="col-4 mt-3">
               <%= movie.omdb_id %>
-              <%= render partial: "movies/card_id.html.erb", locals: {omdb_id: movie.omdb_id} %>
+              <% movie_details = movie.get_details %>
+              <%= render "movies/card_id", movie_details: movie_details, movie: movie %>
             </div>
-              <%= render partial: "movies/card_collapse.html.erb", locals: {omdb_id: movie.omdb_id} %>
+              <%= render "movies/card_collapse.html.erb", movie_details: movie_details, movie: movie %>
           <% end %>
         </div>
       </div>
@@ -78,10 +119,11 @@
       <div class="disliked_movies d-flex">
         <div class="row">
           <% @user.disliked_movies.first(20).each do |movie| %>
+            <% movie_details = movie.get_details %>
             <div class="col-4 mt-3">
-              <%= render partial: "movies/card_id.html.erb", locals: {omdb_id: movie.omdb_id} %>
+              <%= render "movies/card_id", movie_details: movie_details, movie: movie %>
             </div>
-              <%= render partial: "movies/card_collapse.html.erb", locals: {omdb_id: movie.omdb_id} %>
+              <%= render "movies/card_collapse.html.erb", movie_details: movie_details, movie: movie %>
           <% end %>
         </div>
       </div>
