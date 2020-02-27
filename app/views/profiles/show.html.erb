@@ -21,10 +21,11 @@
     <div class="row">
       <% @user.recommended_movies.first(3).each do |movie| %>
         <div class="col-4 mt-3">
+          <!-- Pour éviter de faire 2 call API -->
           <% movie_details = movie.get_details %>
-          <%= render "movies/card_id", movie_details: movie_details %>
+          <%= render "movies/card_id", movie_details: movie_details, movie: movie %>
         </div>
-          <%= render "movies/card_collapse", movie_details: movie_details %>
+          <%= render "movies/card_collapse", movie_details: movie_details, movie: movie %>
       <% end %>
     </div>
   </div>
@@ -106,9 +107,9 @@
             <div class="col-4 mt-3">
               <%= movie.omdb_id %>
               <% movie_details = movie.get_details %>
-              <%= render "movies/card_id", movie_details: movie_details %>
+              <%= render "movies/card_id", movie_details: movie_details, movie: movie %>
             </div>
-              <%= render "movies/card_collapse.html.erb", movie_details: movie_details %>
+              <%= render "movies/card_collapse.html.erb", movie_details: movie_details, movie: movie %>
           <% end %>
         </div>
       </div>
@@ -120,9 +121,9 @@
           <% @user.disliked_movies.first(20).each do |movie| %>
             <% movie_details = movie.get_details %>
             <div class="col-4 mt-3">
-              <%= render "movies/card_id", movie_details: movie_details %>
+              <%= render "movies/card_id", movie_details: movie_details, movie: movie %>
             </div>
-              <%= render "movies/card_collapse.html.erb", movie_details: movie_details %>
+              <%= render "movies/card_collapse.html.erb", movie_details: movie_details, movie: movie %>
           <% end %>
         </div>
       </div>

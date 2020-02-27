@@ -1,0 +1,15 @@
+<h1>What do you think about those movies?</h1>
+
+<div class="row justify-content-center align-text">
+  <% Movie.top(6).each do |movie| %>
+    <% movie_details = movie.get_details %>
+    <div class="col-4 m-3">
+      <div class="center">
+        <%= render "movies/card_id", movie_details: movie_details, movie: movie %>
+      </div>
+    </div>
+      <%= render "movies/card_collapse", movie_details: movie_details, movie: movie %>
+  <% end %>
+
+</div>
+<%= console %>

@@ -1,0 +1,17 @@
+<h3 class="mt-3">MovieLike</h3>
+
+<div>
+  <%= render partial: "movies/card_show_id.html.erb", locals: {omdb_id: @movie.omdb_id} %>
+</div>
+
+
+  <div class="recommendation d-flex">
+    <div class="row">
+      <% @recommandations.each do |recommandation| %>
+        <div class="col-4 mt-3">
+          <%= render partial: "movies/card_id.html.erb", locals: {omdb_id: recommandation.omdb_id} %>
+        </div>
+          <%= render partial: "movies/card_collapse.html.erb", locals: {omdb_id: recommandation.omdb_id} %>
+      <% end %>
+    </div>
+  </div>
