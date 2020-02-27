@@ -1,5 +1,5 @@
   Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, controllers: { registrations: 'registrations'}
   root to: 'pages#home'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
@@ -13,6 +13,12 @@
   post "/step_one", to: "forms#step_one"
   get "/step_two", to: "forms#step_two"
   get "/step_three", to: "forms#step_three"
+
+
+  post "movies/:imdbID/like", to: "recommendables#like", as: "liking_movie"
+  post "movies/:imdbID/dislike", to: "recommendables#dislike", as: "disliking_movie"
+  post "movies/:imdbID/save", to: "recommendables#save", as: "saving_movie"
+  post "movies/:imdbID/blacklist", to: "recommendables#blacklist", as: "blacklisting_movie"
 
   resources :movies, only: [:show, :index]
   resources :profiles, only: [:show]

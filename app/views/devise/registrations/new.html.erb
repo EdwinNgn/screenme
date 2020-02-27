@@ -39,7 +39,7 @@
 
 <!--  -->
 
-<%= simple_form_for(resource, as: resource_name, url: step_one_path, html: { id: :regForm }) do |f| %>
+<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { id: :regForm }) do |f| %>
   <%= f.error_notification %>
 
     <div class="form-inputs">

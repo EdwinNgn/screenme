@@ -1,6 +1,9 @@
+const form = document.getElementById("regForm")
+
 var currentTab = 0; // Current tab is set to be the first tab (0)
-console.log(currentTab)
-showTab(currentTab); // Display the current tab
+if (form) {
+  showTab(currentTab); // Display the current tab
+}
 
 function showTab(n) {
   // This function will display the specified tab of the form ...
@@ -80,12 +83,14 @@ function fixStepIndicator(n) {
 // add event listener on click
 // declecnhe nextPrev(1)
 
-const prevBtn = document.getElementById('prevBtn')
-prevBtn.addEventListener("click", (event) => {
-   nextPrev(-1);
- });
+if (form) {
+  const prevBtn = document.getElementById('prevBtn')
+  prevBtn.addEventListener("click", (event) => {
+     nextPrev(-1);
+   });
 
-const nextBtn = document.getElementById('nextBtn')
-nextBtn.addEventListener("click", (event) => {
-   nextPrev(1);
+  const nextBtn = document.getElementById('nextBtn')
+  nextBtn.addEventListener("click", (event) => {
+     nextPrev(1);
  });
+}
