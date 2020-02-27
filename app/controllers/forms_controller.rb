@@ -1,7 +1,7 @@
 class FormsController < ApplicationController
 
-  def setp_one
-    @movies = Movie.top
+  def step_one
+
   end
 
   def step_two

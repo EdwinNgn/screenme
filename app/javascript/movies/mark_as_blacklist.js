@@ -1,7 +1,7 @@
 
 
 const movies = document.querySelectorAll('.moviecard')
-console.log(movies)
+
 
 
 movies.forEach((movie) => {

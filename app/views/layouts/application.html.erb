@@ -13,8 +13,11 @@
   </head>
   <body>
     <%= render 'shared/navbar' %>
+    <div class="footer-position">
+      <%= yield %>
+    </div>
 
-    <%= yield %>
+    <%= render 'shared/footer' %>
 
     <%= javascript_include_tag 'application' %>
 
