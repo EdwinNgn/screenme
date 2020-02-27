@@ -1,15 +1,13 @@
 const list = document.querySelector('#results');
-var huge_list = document.querySelector('#huge_list');
 
 const insertMovies = (data) => {
   var huge_list = [];
-  data.Search.forEach((result) => {
+  data.Search.slice(0,5).forEach((result) => {
     const movie = `<li class="autocomplete-movies d-flex">
       <img src="${result.Poster}" alt="" />
-      <a href="https://www.w3schools.com/html/">${result.Title}</a>
+      <a href="/movies/${result.imdbID}">${result.Title}</a>
     </li>`;
     huge_list.push(result.Title);
-    console.log(huge_list);
     list.insertAdjacentHTML('beforeend', movie);
   });
 };

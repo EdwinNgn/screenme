@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   authenticate :user, lambda { |u| u.admin } do
     mount Sidekiq::Web => '/sidekiq'
   end
-  resources :movies, only: [:show, :index]
+  resources :movies, only: [:index]
+  get "/movies/:omdb_id", to: "movies#show"
   resources :profiles, only: [:show]
 end
