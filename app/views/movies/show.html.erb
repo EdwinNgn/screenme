@@ -1,2 +1,106 @@
-<h1>Movies#show</h1>
-<p>Find me in app/views/movies/show.html.erb</p>
+<div class="container-show-movie">
+  <div class="movie-infos">
+    <div class="movie-infos-top">
+      <div class="poster">
+        <img src=<%= @movie['Poster'] %>>
+      </div>
+      <div class="action-title">
+        <div class="actions">
+          <div class="action-item">
+            <i class="far fa-thumbs-up"></i>
+            <span>Like</span>
+          </div>
+          <div class="action-item">
+            <i class="far fa-thumbs-down"></i>
+            <span>Dislike</span>
+          </div>
+          <div class="action-item">
+            <i class="far fa-bookmark"></i>
+            <span>Later</span>
+          </div>
+          <div class="action-item">
+            <i class="fas fa-minus-circle"></i>
+            <span>Never</span>
+          </div>
+        </div>
+        <div class="movie-description">
+          <h2><%= @movie['Title']%> (<%= @movie['Year']%>) </h2>
+          <div class="infos2">
+            <span><strong><%= @movie['Genre'] %></strong></span>
+            <span><strong><%= @movie['Year'] %></strong></span>
+            <span><strong><%= @movie['Runtime'] %></strong></span>
+          </div>
+          <p><%= @movie['Plot'] %></p>
+          <div>
+            <p><strong>Director: </strong><%= @movie['Director'] %></p>
+            <p><strong>Casting: </strong><%= @movie['Actors'] %></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="movie-trailer">
+      <iframe src="https://www.youtube.com/embed/7kSuas6mRpk?controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+  </div>
+  <div class="movie-liked-like">
+    <h2 class="similar-to">Similar to :</h2>
+    <div class="wrapper">
+      <ul class="stage">
+        <li class="scene">
+          <div class="movie">
+            <div class="poster">
+              <img src=<%= @movie['Poster'] %>>
+            </div>
+            <div class="info">
+              <header>
+                <h1><%= @movie['Title'] %></h1>
+                <span class="genre"><%= @movie['Genre']%></span>
+                <span class="year"><%= @movie['Year']%></span>
+                <span class="duration"><%= @movie['Runtime'] %></span>
+              </header>
+              <p>
+                <%= @movie['Plot'] %>
+              </p>
+            </div>
+          </div>
+        </li>
+        <li class="scene">
+          <div class="movie">
+            <div class="poster">
+              <img src=<%= @movie['Poster'] %>>
+            </div>
+            <div class="info">
+              <header>
+                <h1><%= @movie['Title'] %></h1>
+                <span class="genre"><%= @movie['Genre']%></span>
+                <span class="year"><%= @movie['Year']%></span>
+                <span class="duration"><%= @movie['Runtime'] %></span>
+              </header>
+              <p>
+                <%= @movie['Plot'] %>
+              </p>
+            </div>
+          </div>
+        </li>
+        <li class="scene">
+          <div class="movie">
+            <div class="poster">
+              <img src=<%= @movie['Poster'] %>>
+            </div>
+            <div class="info">
+              <header>
+                <h1><%= @movie['Title'] %></h1>
+                <span class="genre"><%= @movie['Genre']%></span>
+                <span class="year"><%= @movie['Year']%></span>
+                <span class="duration"><%= @movie['Runtime'] %></span>
+              </header>
+              <p>
+                <%= @movie['Plot'] %>
+              </p>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
