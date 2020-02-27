@@ -3,7 +3,7 @@
 <% movie = JSON.parse(open(url).read) %>
 
 
-<div class="collapse mt-3 pt-3 pb-3  pr-5 pl-5" id="collapse-movie-<%= movie['imdbID'] %>">
+<div class="collapse collapse-card mt-3 pt-3 pb-3  pr-5 pl-5" id="collapse-movie-<%= movie['imdbID'] %>">
   <div class="collaspe_header d-flex flex-row justify-content-between mb-3">
     <h2><%= movie['Title'] %></h2>
     <div class="collapse_header_action d-flex">
