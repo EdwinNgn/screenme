@@ -143,3 +143,27 @@
     background-color: #852532;
 }
 
+
+.list-search{
+  background-color: white;
+  img{
+    border-radius:10px 0 0 10px;
+    height: 60px;
+    width: 40px;
+    margin-right: 10px;
+  }
+}
+
+.autocomplete-movies{
+  img{
+    margin-left: 0;
+  }
+  &:hover{
+  background-color: grey;
+  color: white;
+  }
+  a{
+    margin-top: 5px;
+  }
+
+}

@@ -3,5 +3,7 @@ class MoviesController < ApplicationController
   end
 
   def show
+    omdb_id = params[:omdb_id].delete('t')
+    @movie = Movie.find_by(omdb_id: omdb_id)
   end
 end
