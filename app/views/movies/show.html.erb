@@ -1,73 +1,151 @@
-<div class="container-show-movie">
-  <div class="movie-infos">
-    <div class="movie-infos-top">
-      <div class="poster">
-        <img src=<%= @movie['Poster'] %>>
-      </div>
-      <div class="action-title">
-        <div class="actions">
-          <div class="action-item">
-            <i class="far fa-thumbs-up"></i>
-            <span>Like</span>
-          </div>
-          <div class="action-item">
-            <i class="far fa-thumbs-down"></i>
-            <span>Dislike</span>
-          </div>
-          <div class="action-item">
-            <i class="far fa-bookmark"></i>
-            <span>Later</span>
-          </div>
-          <div class="action-item">
-            <i class="fas fa-minus-circle"></i>
-            <span>Never</span>
-          </div>
-        </div>
-        <div class="movie-description">
-          <h2><%= @movie['Title']%> (<%= @movie['Year']%>) </h2>
-          <div class="infos2">
-            <span><strong><%= @movie['Genre'] %></strong></span>
-            <span><strong><%= @movie['Year'] %></strong></span>
-            <span><strong><%= @movie['Runtime'] %></strong></span>
-          </div>
-          <p><%= @movie['Plot'] %></p>
-          <div>
-            <p><strong>Director: </strong><%= @movie['Director'] %></p>
-            <p><strong>Casting: </strong><%= @movie['Actors'] %></p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="movie-trailer">
-      <iframe src="https://imdb-video.media-imdb.com/vi2649726489/1434659607842-pgv4ql-1563444887291.mp4?Expires=1582976002&Signature=KksMOFSD8mvv9J7FZswf3vNfyOBGDehl70ImPQNAfRnB6GqhXznR9Cp8~U3IahfiSbQaOy8feaxP1aa-O~2~GogpimIRklZSuTk-heJCuNn1FB83MO0Eo1BoQg81YCBYfLfIY~NCoWuj005h2NyhSKqApoQtBObLUR5v2hS~hpK5NRDkoimAOm483VWIs3CHKK7OpRIZP5Jc~wT--oyoQf9llowRzk4AIr6pb1XYrQoWrIic1c0W40PNZNNQ-Z0I-RzQBxXDjpyILaqeOVBYvsN6tM-o2eQZ2dDmBMtvGzY6~Ty77oQEvEboUZFOV4lF74W17bZmJl--ZgjC3rn91A__&Key-Pair-Id=APKAIFLZBVQZ24NQH3KA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-    </div>
+<div class="container">
+  <% movie_details = Movie.find_by(omdb_id: @id_integer).get_details %>
+  <div class="banner-trailer">
+    <% url =URI.escape("https://www.googleapis.com/youtube/v3/search?part=snippet&q=#{@movie['Title']} trailer&key=AIzaSyA0NRQKW1AJCn_TvKHW90PeCryYn3iRLpY") %>
+    <% trailer = JSON.parse(open(url).read) %>
+    <% video_id = trailer['items'][0]['id']['videoId'] %>
+    <iframe width="420" height="315"
+      src="https://www.youtube.com/embed/<%= video_id %>"
+      allowfullscreen="allowfullscreen"
+      mozallowfullscreen="mozallowfullscreen"
+      msallowfullscreen="msallowfullscreen"
+      oallowfullscreen="oallowfullscreen"
+      webkitallowfullscreen="webkitallowfullscreen">
+    </iframe>
   </div>
-  <div class="movie-liked-like">
-    <h2 class="similar-to">Content Like :</h2>
-    <div class="wrapper">
-      <ul class="stage">
-        <% @recommandations.each do |recommandation|  %>
-        <% movie = recommandation.get_details %>
-          <li class="scene">
-          <div class="movie">
-            <div class="poster">
-              <img src=<%= movie['Poster'] %>>
+  <div class="container-show-movie" id="on-show-movie">
+    <div class="movie-infos">
+      <div class="movie-infos-top">
+        <div class="poster">
+          <img src=<%= @movie['Poster'] %>>
+        </div>
+        <div class="action-title">
+
+          <div class="actions">
+            <% if current_user != nil %>
+              <%= link_to liking_movie_path(movie_details['imdbID']), method: :post, remote: true do %>
+                <% if current_user.likes?(Movie.find_by(omdb_id: @id_integer)) %>
+                  <i class="fas fa-thumbs-up"></i>
+                  <span>Like</span>
+                <% else %>
+                  <i class="far fa-thumbs-up"></i>
+                  <span>Like</span>
+                <% end %>
+              <% end %>
+              <%= link_to disliking_movie_path(movie_details['imdbID']), method: :post, remote: true do %>
+                <% if current_user.dislikes?(Movie.find_by(omdb_id: @id_integer)) %>
+                  <i class="fas fa-thumbs-down"></i>
+                  <span>Dislike</span>
+                <% else %>
+                  <i class="far fa-thumbs-down"></i>
+                  <span>Dislike</span>
+                <% end %>
+              <% end %>
+              <%= link_to saving_movie_path(movie_details['imdbID']), method: :post, remote: true do %>
+                <% if current_user.bookmarks?(Movie.find_by(omdb_id: @id_integer)) %>
+                  <i class="fas fa-bookmark"></i>
+                  <span>Later</span>
+                <% else %>
+                  <i class="far fa-bookmark"></i>
+                  <span>Later</span>
+                <% end %>
+              <% end %>
+              <%= link_to blacklisting_movie_path(movie_details['imdbID']), method: :post, remote: true do %>
+                <% if current_user.hides?(Movie.find_by(omdb_id: @id_integer)) %>
+                  <i class="fas fa-eye-slash"></i>
+                  <span>Never</span>
+                <% else %>
+                  <i class="far fa-eye-slash"></i>
+                  <span>Never</span>
+                <% end %>
+              <% end %>
+            <% else %>
+              <div class="action-item">
+                <%= link_to new_user_session_path do  %>
+                  <i class="far fa-thumbs-up"></i>
+                  <span>Like</span>
+                <% end %>
+              </div>
+              <div class="action-item">
+                <%= link_to new_user_session_path do  %>
+                  <i class="far fa-thumbs-down"></i>
+                  <span>Dislike</span>
+                <% end %>
+              </div>
+              <div class="action-item">
+                <%= link_to new_user_session_path do  %>
+                  <i class="far fa-bookmark"></i>
+                  <span>Later</span>
+                <% end %>
+              </div>
+              <div class="action-item">
+                <%= link_to new_user_session_path do  %>
+                  <i class="fas fa-minus-circle"></i>
+                  <span>Never</span>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+
+
+          <div class="movie-description">
+            <h2><%= @movie['Title']%> (<%= @movie['Year']%>) </h2>
+            <div class="infos2">
+              <span><strong><%= @movie['Genre'] %></strong></span>
+              <span><strong><%= @movie['Year'] %></strong></span>
+              <span><strong><%= @movie['Runtime'] %></strong></span>
             </div>
-            <div class="info">
-              <header>
-                <h1><%= movie['Title'] %></h1>
-                <span class="genre"><%= movie['Genre']%></span>
-                <span class="year"><%= movie['Year']%></span>
-                <span class="duration"><%= movie['Runtime'] %></span>
-              </header>
-              <p>
-                <%= movie['Plot'] %>
-              </p>
+            <p><%= @movie['Plot'] %></p>
+            <div>
+              <p><strong>Director: </strong><%= @movie['Director'] %></p>
+              <p><strong>Casting: </strong><%= @movie['Actors'] %></p>
             </div>
           </div>
-        </li>
-        <% end %>
-      </ul>
+        </div>
+
+      </div>
+    </div>
+    <div class="movie-liked-like">
+      <h2 class="similar-to">Movie like : <strong><%= @movie['Title'] %></strong></h2>
+      <div class="wrapper">
+        <ul class="stage">
+          <% @recommandations.each do |recommandation|  %>
+          <% movie = recommandation.get_details %>
+            <li class="scene">
+            <div class="movie">
+              <div class="poster">
+                <img src=<%= movie['Poster'] %>>
+              </div>
+              <div class="info">
+                <header>
+                  <h1><%= movie['Title'] %></h1>
+                  <span class="genre"><%= movie['Genre']%> |</span>
+                  <span class="year"><%= movie['Year']%> |</span>
+                  <span class="duration"><%= movie['Runtime'] %></span>
+                  <p class="movie-plot"><%= movie['Plot'] %></p>
+                  <p><strong>Director: </strong><%= @movie['Director'] %></p>
+                  <p><strong>Casting: </strong><%= @movie['Actors'] %></p>
+                </header>
+                <div class="movie-trailer">
+
+                  <% url =URI.escape("https://www.googleapis.com/youtube/v3/search?part=snippet&q=#{movie['Title']} trailer&key=AIzaSyA0NRQKW1AJCn_TvKHW90PeCryYn3iRLpY") %>
+                  <% trailer = JSON.parse(open(url).read) %>
+                  <% video_id = trailer['items'][0]['id']['videoId'] %>
+                  <iframe width="420" height="315"
+                    src="https://www.youtube.com/embed/<%= video_id %>"
+                    allowfullscreen="allowfullscreen"
+                    mozallowfullscreen="mozallowfullscreen"
+                    msallowfullscreen="msallowfullscreen"
+                    oallowfullscreen="oallowfullscreen"
+                    webkitallowfullscreen="webkitallowfullscreen">
+                  </iframe>
+                </div>
+              </div>
+            </div>
+          </li>
+          <% end %>
+        </ul>
+      </div>
     </div>
   </div>
 </div>
