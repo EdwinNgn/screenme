@@ -43,60 +43,27 @@
     <h2 class="similar-to">Movie like : <strong><%= @movie['Title'] %></strong></h2>
     <div class="wrapper">
       <ul class="stage">
-        <li class="scene">
+        <% @recommandations.each do |recommandation|  %>
+        <% movie = recommandation.get_details %>
+          <li class="scene">
           <div class="movie">
             <div class="poster">
-              <img src=<%= @movie['Poster'] %>>
+              <img src=<%= movie['Poster'] %>>
             </div>
             <div class="info">
               <header>
-                <h1><%= @movie['Title'] %></h1>
-                <span class="genre"><%= @movie['Genre']%></span>
-                <span class="year"><%= @movie['Year']%></span>
-                <span class="duration"><%= @movie['Runtime'] %></span>
+                <h1><%= movie['Title'] %></h1>
+                <span class="genre"><%= movie['Genre']%></span>
+                <span class="year"><%= movie['Year']%></span>
+                <span class="duration"><%= movie['Runtime'] %></span>
               </header>
               <p>
-                <%= @movie['Plot'] %>
+                <%= movie['Plot'] %>
               </p>
             </div>
           </div>
         </li>
-        <li class="scene">
-          <div class="movie">
-            <div class="poster">
-              <img src=<%= @movie['Poster'] %>>
-            </div>
-            <div class="info">
-              <header>
-                <h1><%= @movie['Title'] %></h1>
-                <span class="genre"><%= @movie['Genre']%></span>
-                <span class="year"><%= @movie['Year']%></span>
-                <span class="duration"><%= @movie['Runtime'] %></span>
-              </header>
-              <p>
-                <%= @movie['Plot'] %>
-              </p>
-            </div>
-          </div>
-        </li>
-        <li class="scene">
-          <div class="movie">
-            <div class="poster">
-              <img src=<%= @movie['Poster'] %>>
-            </div>
-            <div class="info">
-              <header>
-                <h1><%= @movie['Title'] %></h1>
-                <span class="genre"><%= @movie['Genre']%></span>
-                <span class="year"><%= @movie['Year']%></span>
-                <span class="duration"><%= @movie['Runtime'] %></span>
-              </header>
-              <p>
-                <%= @movie['Plot'] %>
-              </p>
-            </div>
-          </div>
-        </li>
+        <% end %>
       </ul>
     </div>
   </div>
