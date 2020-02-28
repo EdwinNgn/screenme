@@ -12,10 +12,12 @@
 
 
 // Your CSS partials
+@import "components/btn";
 @import "components/index";
 @import "components/moviecard";
 @import "components/moviecard-show";
 @import "pages/index";
 @import "devise/index";
 
-@import "components/primary_btn"
+@import "components/primary_btn";
+@import "profile/profile_page"
