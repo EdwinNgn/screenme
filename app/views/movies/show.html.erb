@@ -53,13 +53,11 @@
             <div class="info">
               <header>
                 <h1><%= movie['Title'] %></h1>
-                <span class="genre"><%= movie['Genre']%></span>
-                <span class="year"><%= movie['Year']%></span>
+                <span class="genre"><%= movie['Genre']%> |</span>
+                <span class="year"><%= movie['Year']%> |</span>
                 <span class="duration"><%= movie['Runtime'] %></span>
+                <p><%= movie['Plot'] %></p>
               </header>
-              <p>
-                <%= movie['Plot'] %>
-              </p>
             </div>
           </div>
         </li>

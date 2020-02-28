@@ -132,7 +132,7 @@
   color: #FFF;
   padding: 7px 10px;
   font-weight: bold;
-  height: 195px;
+  height: 250px;
   background-size: contain;
   background-color: $gray;
   background-repeat: no-repeat;
@@ -148,9 +148,9 @@
   padding: 1.2em 1.4em;
   margin: 2px 0 0;
   font-weight: 700;
-  color: #666;
+  color: $white;
   line-height: 1.4em;
-  border-top: 10px solid #555;
+  border-top: 1px solid $white;
 }
 
 .movie .poster img {
