@@ -76,7 +76,6 @@
           <div class="row">
             <% @user.bookmarked_movies.first(20).each do |movie| %>
               <div class="col-4 mt-3">
-                <%= movie.omdb_id %>
                 <% movie_details = movie.get_details %>
                 <%= render "movies/card_id", movie_details: movie_details, movie: movie %>
               </div>
