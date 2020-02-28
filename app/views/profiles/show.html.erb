@@ -67,29 +67,41 @@
     </div>
 
     <div class="tab-pane fade show" id="pills-to-watch" role="tabpanel" aria-labelledby="pills-to-watch-tab">
-      To watch
+      <div class="bookmarked_movies d-flex">
+        <div class="row">
+          <% @user.bookmarked_movies.first(20).each do |movie| %>
+            <div class="col-4 mt-3">
+              <%= movie.omdb_id %>
+              <% movie_details = movie.get_details %>
+              <%= render "movies/card_id", movie_details: movie_details, movie: movie %>
+            </div>
+            <%= render "movies/card_collapse.html.erb", movie_details: movie_details, movie: movie %>
+          <% end %>
+        </div>
+      </div>
     </div>
 
 
     <div class="tab-pane fade" id="pills-liked-2" role="tabpanel" aria-labelledby="pills-liked-2-tab">
       <div class="ia-container">
       <figure>
-        <% omdb_id = @user.liked_movies.first.omdb_id %>
-        <% id = "0"*(7 - omdb_id.to_s.length) + omdb_id.to_s %>
-        <% url = "http://www.omdbapi.com/?i=tt#{id}&apikey=adf1f2d7"%>
-        <% movie_api = JSON.parse(open(url).read) %>
+        <%# omdb_id = @user.liked_movies.first.omdb_id %>
+        <%# id = "0"*(7 - omdb_id.to_s.length) + omdb_id.to_s %>
+        <%# url = "http://www.omdbapi.com/?i=tt#{id}&apikey=adf1f2d7"%>
+        <%# movie_api = JSON.parse(open(url).read) %>
+
+        <% movie_api = @user.liked_movies.first.get_details %>
         <img src=<%= movie_api['Poster'] %>>
         <input type="radio" name="radio-set" checked="checked" />
         <figcaption><span><%= movie_api['Title'] %></span></figcaption>
+        <% runtime_total = movie_api['Runtime'].delete('min').to_i %>
         <% @user.liked_movies[1..15].each do |movie| %>
           <figure>
-          <% omdb_id = movie.omdb_id %>
-          <% id = "0"*(7 - omdb_id.to_s.length) + omdb_id.to_s %>
-          <% url = "http://www.omdbapi.com/?i=tt#{id}&apikey=adf1f2d7"%>
-          <% movie_api = JSON.parse(open(url).read) %>
+          <% movie_api = movie.get_details %>
           <img src=<%= movie_api['Poster'] %>>
           <input type="radio" name="radio-set" checked="checked" />
           <figcaption><span><%= movie_api['Title'] %></span></figcaption>
+          <% runtime_total += movie_api['Runtime'].delete('min').to_i %>
         <% end %>
         </figure>
         </figure>
@@ -105,32 +117,34 @@
       </div>
     </div>
 
-    <div class="tab-pane fade" id="pills-liked" role="tabpanel" aria-labelledby="pills-liked-tab">
-      <div class="liked_movies d-flex">
-        <div class="row">
-          <% @user.liked_movies.first(20).each do |movie| %>
-            <div class="col-4 mt-3">
-              <%= movie.omdb_id %>
-              <% movie_details = movie.get_details %>
-              <%= render "movies/card_id", movie_details: movie_details, movie: movie %>
-            </div>
-              <%= render "movies/card_collapse.html.erb", movie_details: movie_details, movie: movie %>
-          <% end %>
-        </div>
-      </div>
-    </div>
-
     <div class="tab-pane fade" id="pills-disliked" role="tabpanel" aria-labelledby="pills-disliked-tab">
-      <div class="disliked_movies d-flex">
-        <div class="row">
-          <% @user.disliked_movies.first(20).each do |movie| %>
-            <% movie_details = movie.get_details %>
-            <div class="col-4 mt-3">
-              <%= render "movies/card_id", movie_details: movie_details, movie: movie %>
-            </div>
-              <%= render "movies/card_collapse.html.erb", movie_details: movie_details, movie: movie %>
-          <% end %>
-        </div>
+
+      <div class="ia-container">
+      <figure>
+        <% movie_api = @user.disliked_movies.first.get_details %>
+        <img src=<%= movie_api['Poster'] %>>
+        <input type="radio" name="radio-set" checked="checked" />
+        <figcaption><span><%= movie_api['Title'] %></span></figcaption>
+        <% runtime_total += movie_api['Runtime'].delete('min').to_i %>
+        <% @user.disliked_movies[1..15].each do |movie| %>
+          <figure>
+          <% movie_api = movie.get_details %>
+          <img src=<%= movie_api['Poster'] %>>
+          <input type="radio" name="radio-set" checked="checked" />
+          <figcaption><span><%= movie_api['Title'] %></span></figcaption>
+          <% runtime_total += movie_api['Runtime'].delete('min').to_i %>
+        <% end %>
+        </figure>
+        </figure>
+        </figure>
+        </figure>
+        </figure>
+        </figure>
+        </figure>
+        </figure>
+        </figure>
+        </figure>
+      </figure>
       </div>
     </div>
 
