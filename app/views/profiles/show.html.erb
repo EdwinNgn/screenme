@@ -43,9 +43,9 @@
   </div>
 <!--  -->
 
-  <div class="">
+  <div>
 <!-- NAV -->
-    <ul class="mt-4 nav nav-pills nav-fill bg-white" id="pills-tab" role="tablist">
+    <ul class="my-4 nav nav-pills nav-fill bg-white" id="pills-tab" role="tablist">
       <li class="nav-item nav-item-profile">
         <a class="nav-link nav-link-profile active" id="pills-stats-tab" data-toggle="pill" href="#pills-stats" role="tab" aria-controls="pills-stats" aria-selected="true">Stats</a>
       </li>
@@ -155,12 +155,33 @@
 
 <!--  -->
 
-
-
-
 <!-- STATS -->
     <div class="tab-pane fade show active" id="pills-stats" role="tabpanel" aria-labelledby="pills-stats-tab">
-      Stats
+      <div class="wrapper">
+          <div class="counter col_fourth">
+            <i class="fas fa-star fa-2x"></i>
+            <h2 class="timer count-title count-number" data-to=<%=  @user.likes.count + @user.dislikes.count %> data-speed="1500"></h2>
+             <p class="count-text ">Number of Movies rated</p>
+          </div>
+
+          <div class="counter col_fourth">
+            <i class="fas fa-video fa-2x"></i>
+            <h2 class="timer count-title count-number" data-to=<%= runtime_total %> data-speed="1500"></h2>
+            <p class="count-text ">Minutes spent watching movies</p>
+          </div>
+
+          <div class="counter col_fourth">
+            <i class="fa fa-lightbulb fa-2x"></i>
+            <h2 class="timer count-title count-number" data-to=<%= rand(45..70) * (@user.likes.count + @user.dislikes.count) / 60%> data-speed="1500"></h2>
+            <p class="count-text ">Hours saved using ScreenMe</p>
+          </div>
+
+          <div class="counter col_fourth end">
+            <i class="fas fa-film fa-2x"></i>
+            <h2 class="timer count-title count-number" data-to=<%= @user.bookmarks.count  %> data-speed="1500"></h2>
+            <p class="count-text ">Movies to watch</p>
+          </div>
+      </div>
 
     </div>
 <!--  -->
@@ -170,6 +191,5 @@
       Friends
     </div>
 <!--  -->
-
   </div>
 </div>
