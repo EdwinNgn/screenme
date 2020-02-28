@@ -14,13 +14,13 @@ class MoviesController < ApplicationController
       new_movie.save
     end
     @user = current_user
-    similar_user = @user.similar_raters #get the similar audiences to the user
+    # get the similar audiences to the current user if connected
+    @user.blank? ? similar_user = [] : similar_user = @user.similar_raters
     audiences = Movie.find_by(omdb_id: omdb_id.delete('t')).liked_by #get the audience that likes this movies
     # if possible, get only people that appears in the similar audiences of the user and that
     # already watch the movie. If not, just take the audiences that already watches the movies.
     audiences = audiences & similar_user if !((audiences & similar_user).blank?)
     audiences = similar_user if audiences.blank?
-    #audiences << @user # add the user to the total audiences.
 
     # movies_similar_all = []
     counts = Hash.new 0
@@ -36,7 +36,8 @@ class MoviesController < ApplicationController
     @recommandations = []
     while @recommandations.size < 3 && !counts.blank? do
       movie_with_max_occurence = counts.max_by{|k,v| v}
-      if @user.rated?(movie_with_max_occurence[0])
+      #if a current user is connected, handle if the current user already seen this movie i
+      if !@user.blank? && @user.rated?(movie_with_max_occurence[0])
         counts.delete(movie_with_max_occurence[0])
       else
         @recommandations << movie_with_max_occurence[0]
