@@ -160,7 +160,34 @@
 
 <!-- STATS -->
     <div class="tab-pane fade show active" id="pills-stats" role="tabpanel" aria-labelledby="pills-stats-tab">
-      Stats
+      <h1>JQUERY NUMBER ANIMATION</h1>
+      <h3>jQuery counter to count up to a target number</h3>
+
+      <div class="wrapper">
+          <div class="counter col_fourth">
+            <i class="fas fa-star fa-2x"></i>
+            <h2 class="timer count-title count-number" data-to=<%=  @user.likes.count + @user.dislikes.count %> data-speed="1500"></h2>
+             <p class="count-text ">Number of Movies rated</p>
+          </div>
+
+          <div class="counter col_fourth">
+            <i class="fas fa-video fa-2x"></i>
+            <h2 class="timer count-title count-number" data-to=<%= runtime_total %> data-speed="1500"></h2>
+            <p class="count-text ">Minutes spent watching movies</p>
+          </div>
+
+          <div class="counter col_fourth">
+            <i class="fa fa-lightbulb fa-2x"></i>
+            <h2 class="timer count-title count-number" data-to=<%= rand(45..70) * (@user.likes.count + @user.dislikes.count) / 60%> data-speed="1500"></h2>
+            <p class="count-text ">Hours saved using ScreenMe</p>
+          </div>
+
+          <div class="counter col_fourth end">
+            <i class="fas fa-film fa-2x"></i>
+            <h2 class="timer count-title count-number" data-to=<%= @user.bookmarks.count  %> data-speed="1500"></h2>
+            <p class="count-text ">Movies to watch</p>
+          </div>
+      </div>
 
     </div>
 <!--  -->
