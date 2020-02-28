@@ -18,9 +18,9 @@
       </div>
     </div>
   </div>
-
-
   <!--  -->
+
+  <!-- RECO -->
   <h3 class="mt-3 text-align-center">Recommendations</h3>
   <div class="recommendation d-flex">
     <div class="row">
@@ -34,10 +34,10 @@
       <% end %>
     </div>
   </div>
-
+<!--  -->
 
   <div class="">
-
+<!-- NAV -->
     <ul class="mt-4 nav nav-pills nav-fill bg-white" id="pills-tab" role="tablist">
       <li class="nav-item nav-item-profile">
         <a class="nav-link nav-link-profile active" id="pills-stats-tab" data-toggle="pill" href="#pills-stats" role="tab" aria-controls="pills-stats" aria-selected="true">Stats</a>
@@ -60,12 +60,9 @@
 
     </ul>
   </div>
-
+<!--  -->
   <div class="tab-content" id="pills-tabContent">
-    <div class="tab-pane fade show active" id="pills-stats" role="tabpanel" aria-labelledby="pills-stats-tab">
-      Stats
-    </div>
-
+<!-- TO WATCH / BOOKMARK -->
     <div class="tab-pane fade show" id="pills-to-watch" role="tabpanel" aria-labelledby="pills-to-watch-tab">
       <div class="bookmarked_movies d-flex">
         <% unless @user.bookmarked_movies.first.nil? %>
@@ -82,8 +79,8 @@
         <% end %>
       </div>
     </div>
-
-
+<!--  -->
+<!-- LIKED -->
     <div class="tab-pane fade" id="pills-liked-2" role="tabpanel" aria-labelledby="pills-liked-2-tab">
       <div class="ia-container">
       <% unless @user.liked_movies.first.nil?%>
@@ -115,9 +112,9 @@
       </figure>
       </div>
     </div>
-
+<!--  -->
+<!-- DISLIKED -->
     <div class="tab-pane fade" id="pills-disliked" role="tabpanel" aria-labelledby="pills-disliked-tab">
-
       <div class="ia-container">
       <% unless @user.disliked_movies.first.nil? %>
         <figure>
@@ -149,9 +146,23 @@
       </div>
     </div>
 
+<!--  -->
+
+
+
+
+<!-- STATS -->
+    <div class="tab-pane fade show active" id="pills-stats" role="tabpanel" aria-labelledby="pills-stats-tab">
+      Stats
+
+    </div>
+<!--  -->
+
+<!-- FRIENDS -->
     <div class="tab-pane fade" id="pills-friends" role="tabpanel" aria-labelledby="pills-friends-tab">
       Friends
     </div>
+<!--  -->
 
   </div>
 </div>
