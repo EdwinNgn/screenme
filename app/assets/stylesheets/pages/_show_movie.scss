@@ -144,13 +144,14 @@
   font-size: 3em;
 }
 
-.info p {
+.info .movie-plot {
   padding: 1.2em 1.4em;
   margin: 2px 0 0;
   font-weight: 700;
   color: $white;
-  line-height: 1.4em;
+  // line-height: 1.4em;
   border-top: 1px solid $white;
+  border-bottom: 1px solid $white;
 }
 
 .movie .poster img {
@@ -181,5 +182,10 @@
 .movie:hover .info,
 .movie:hover .info header {
   box-shadow: inset 0px 0px 40px rgba(0,0,0,0);
+}
+
+.movie-trailer iframe {
+  width: 260px;
+  height: 150px;
 }
 
