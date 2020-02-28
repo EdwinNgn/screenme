@@ -22,8 +22,9 @@
 .end { margin-right: 0 !important; }
 /* Column Grids End */
 
-.wrapper { width: 980px;
- margin: 30px auto;
+.wrapper {
+  width: 980px;
+ margin: 0 10px auto;
  position: relative;
 }
 .counter { background-color: #ffffff;
@@ -35,15 +36,17 @@
   margin-top: 10px;
  margin-bottom: 0;
  text-align: center;
+ color:#002642;
  }
 .count-text { font-size: 13px;
  font-weight: normal;
   margin-top: 10px;
  margin-bottom: 0;
  text-align: center;
+ color:#002642;
  }
 .fa-2x { margin: 0 auto;
  float: none;
  display: table;
- color: #4ad1e5;
+ color: #2F4450;
  }
