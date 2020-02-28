@@ -19,7 +19,7 @@
   post "movies/:imdbID/blacklist", to: "recommendables#blacklist", as: "blacklisting_movie"
 
   resources :movies, only: [:index]
-  get "/movies/:omdb_id", to: "movies#show"
+  get "/movies/:omdb_id", to: "movies#show", as: "show_movie"
   # get "/movies/:omdb_id", to: "movies#contentlike"
   resources :profiles, only: [:show]
 
