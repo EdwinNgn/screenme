@@ -9,16 +9,16 @@
     <ul class="navbar-nav mr-auto">
       <% if user_signed_in? %>
         <li class="nav-item">
-          <%= link_to "", root_path, class: "nav-link fas fa-bell action-btn #{'white-item-navbar' if params[:action] == "home"}" %>
+          <%= link_to "", root_path, class: "nav-link nav-link-navbar fas fa-bell action-btn #{'white-item-navbar' if params[:action] == "home"}" %>
         </li>
         <li class="nav-item">
-          <%= link_to "", root_path, class: "nav-link fas fa-users action-btn #{'white-item-navbar' if params[:action] == "home"}" %>
+          <%= link_to "", root_path, class: "nav-link nav-link-navbar fas fa-users action-btn #{'white-item-navbar' if params[:action] == "home"}" %>
         </li>
         <li class="nav-item">
           <% if current_user.first_name %>
-            <%= link_to "#{current_user.first_name}", root_path, class: "nav-link name #{'white-item-navbar' if params[:action] == "home"}" %>
+            <%= link_to "#{current_user.first_name}", profile_path(current_user), class: "nav-link name #{'white-item-navbar' if params[:action] == "home"}" %>
           <% else %>
-            <%= link_to "#{current_user.email}", root_path, class: "nav-link name #{'white-item-navbar' if params[:action] == "home"}" %>
+            <%= link_to "#{current_user.email}", profile_path(current_user), class: "nav-link name #{'white-item-navbar' if params[:action] == "home"}" %>
           <% end %>
         </li>
         <li class="nav-item dropdown">
@@ -41,10 +41,10 @@
 
       <% else %>
         <li class="nav-item active">
-          <%= link_to "Home", root_path, class:"nav-link name #{'white-item-navbar' if params[:action] == "home"}" %>
+          <%= link_to "Home", root_path, class:"nav-link nav-link-navbar name #{'white-item-navbar' if params[:action] == "home"}" %>
         </li>
         <li class="nav-item active">
-          <%= link_to "Sign in", new_user_session_path , class:"nav-link name #{'white-item-navbar' if params[:action] == "home"}" %>
+          <%= link_to "Sign in", new_user_session_path , class:"nav-link nav-link-navbar name #{'white-item-navbar' if params[:action] == "home"}" %>
         </li>
         <li class="nav-item ninja">
           <%= link_to "", new_user_session_path, class:"fas fa-user-ninja avatar-navbar #{'white-item-navbar' if params[:action] == "home"}" %>
