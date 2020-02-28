@@ -18,6 +18,13 @@
       </div>
     </div>
   </div>
+
+  <% if !current_user.blank? && !current_user.recommended_movies(20).blank? %>
+        <% movie_random = current_user.recommended_movies(20).sample %>
+        <%= link_to "Let us find a movie for you", show_movie_path(movie_random.tt_id), class: "btn btn-ghost" %>
+    <% end %>
+
+
   <!--  -->
 
   <!-- RECO -->
