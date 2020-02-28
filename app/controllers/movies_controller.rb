@@ -29,7 +29,7 @@ class MoviesController < ApplicationController
     # get the three first movie.
     # nb : if several movies appears the same number of times, we choose randomly on of this.
     @recommandations = []
-    while @recommandations.size < 3 do
+    while @recommandations.size < 3 && !counts.blank? do
       movie_with_max_occurence = counts.max_by{|k,v| v}
       if @user.rated?(movie_with_max_occurence[0])
         counts.delete(movie_with_max_occurence[0])
