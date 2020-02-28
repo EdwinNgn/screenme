@@ -16,9 +16,9 @@
         </li>
         <li class="nav-item">
           <% if current_user.first_name %>
-            <%= link_to "#{current_user.first_name}", root_path, class: "nav-link nav-link-navbar name #{'white-item-navbar' if params[:action] == "home"}" %>
+            <%= link_to "#{current_user.first_name}", profile_path(current_user), class: "nav-link name #{'white-item-navbar' if params[:action] == "home"}" %>
           <% else %>
-            <%= link_to "#{current_user.email}", root_path, class: "nav-link nav-link-navbar name #{'white-item-navbar' if params[:action] == "home"}" %>
+            <%= link_to "#{current_user.email}", profile_path(current_user), class: "nav-link name #{'white-item-navbar' if params[:action] == "home"}" %>
           <% end %>
         </li>
         <li class="nav-item dropdown">
