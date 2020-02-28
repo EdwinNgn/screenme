@@ -5,6 +5,7 @@ class MoviesController < ApplicationController
 
   def show
     omdb_id = params[:omdb_id]
+    @id_integer = omdb_id.tt_id_to_integer
     url     = "http://www.omdbapi.com/?i=#{omdb_id}&apikey=adf1f2d7"
     @movie  = JSON.parse(open(url).read)
 
