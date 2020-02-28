@@ -1,194 +1,216 @@
+<div class="contaier">
 <div class="profile">
-<!-- Top profile picture and banner -->
-  <div class="background-profile">
-    <div class="profile-card">
-      <% if !current_user.avatar.attachment.nil? %>
-        <img src="<%= cl_image_path @user.avatar.key %>" />
-      <% else %>
-        <i class="fas fa-user-tie profil-picture"></i>
-      <% end %>
-
-      <div class="profile-card-infos">
-        <h2><%= @user.email %></h2>
-        <% if @user == current_user %>
-          <%= link_to edit_user_registration_path(@user), class:"no-decoration" do %>
-            <i class="fas fa-edit"></i>
-          <% end %>
-        <% end %>
-      </div>
-    </div>
-  </div>
-
-  <% if !current_user.blank? && !current_user.recommended_movies(20).blank? %>
-        <% movie_random = current_user.recommended_movies(20).sample %>
-        <%= link_to "Let us find a movie for you", show_movie_path(movie_random.tt_id), class: "btn btn-ghost" %>
-    <% end %>
+  <div class="profile-page">
+    <div class="page-header header-filter" data-parallax="true" style="background-image:url('<%= cl_image_path @user.coverpicture.key%>');"></div>
+    <div class="main main-raised">
+    <div class="profile-content">
 
 
-  <!--  -->
-
-  <!-- RECO -->
-  <h3 class="mt-3 text-align-center">Recommendations</h3>
-  <div class="recommendation d-flex">
-    <div class="row">
-      <% @user.recommended_movies.first(3).each do |movie| %>
-        <div class="col-4 mt-3">
-          <!-- Pour éviter de faire 2 call API -->
-          <% movie_details = movie.get_details %>
-          <%= render "movies/card_id", movie_details: movie_details, movie: movie %>
-        </div>
-          <%= render "movies/card_collapse", movie_details: movie_details, movie: movie %>
-      <% end %>
-    </div>
-  </div>
-<!--  -->
-
-  <div>
-<!-- NAV -->
-    <ul class="my-4 nav nav-pills nav-fill bg-white" id="pills-tab" role="tablist">
-      <li class="nav-item nav-item-profile">
-        <a class="nav-link nav-link-profile active" id="pills-stats-tab" data-toggle="pill" href="#pills-stats" role="tab" aria-controls="pills-stats" aria-selected="true">Stats</a>
-      </li>
-      <li class="nav-item nav-item-profile">
-        <a class="nav-link nav-link-profile" id="pills-to-watch-tab" data-toggle="pill" href="#pills-to-watch" role="tab" aria-controls="pills-to-watch" aria-selected="true">To watch</a>
-      </li>
-      <li class="nav-item nav-item-profile">
-        <a class="nav-link nav-link-profile" id="pills-liked-2-tab" data-toggle="pill" href="#pills-liked-2" role="tab" aria-controls="pills-liked-2" aria-selected="false">Liked Movies</a>
-      </li>
-<!--       <li class="nav-item nav-item-profile">
-        <a class="nav-link nav-link-profile" id="pills-liked-tab" data-toggle="pill" href="#pills-liked" role="tab" aria-controls="pills-liked" aria-selected="false">Liked Movies</a>
-      </li> -->
-      <li class="nav-item nav-item-profile">
-        <a class="nav-link nav-link-profile" id="pills-disliked-tab" data-toggle="pill" href="#pills-disliked" role="tab" aria-controls="pills-disliked" aria-selected="false">Disliked Movies</a>
-      </li>
-      <li class="nav-item nav-item-profile">
-        <a class="nav-link nav-link-profile" id="pills-friends-tab" data-toggle="pill" href="#pills-friends" role="tab" aria-controls="pills-friends" aria-selected="true">Friends</a>
-      </li>
-
-    </ul>
-  </div>
-<!--  -->
-  <div class="tab-content" id="pills-tabContent">
-<!-- TO WATCH / BOOKMARK -->
-    <div class="tab-pane fade show" id="pills-to-watch" role="tabpanel" aria-labelledby="pills-to-watch-tab">
-      <div class="bookmarked_movies d-flex">
-        <% unless @user.bookmarked_movies.first.nil? %>
-          <div class="row">
-            <% @user.bookmarked_movies.first(20).each do |movie| %>
-              <div class="col-4 mt-3">
-                <% movie_details = movie.get_details %>
-                <%= render "movies/card_id", movie_details: movie_details, movie: movie %>
+          <div class="container">
+            <div class="row">
+              <div class="col-md-6 ml-auto mr-auto">
+                 <div class="profile">
+                      <div class="avatar">
+                        <% if !current_user.avatar.attachment.nil? %>
+                          <img src="<%= cl_image_path @user.avatar.key, width: 150, height: 150, crop: :thumb, gravity: :face %>" alt="Circle Image" class="img-raised rounded-circle img-fluid"/>
+                        <% else %>
+                          <i class="fas fa-user-tie profil-picture" alt="Circle Image" class="img-raised rounded-circle img-fluid"></i>
+                        <% end %>
+                      </div>
+                      <div class="name">
+                          <h3 class="title"><%= "#{@user.first_name.capitalize} #{@user.last_name.capitalize}" %> </h3>
+                      </div>
+                  </div>
               </div>
-              <%= render "movies/card_collapse.html.erb", movie_details: movie_details, movie: movie %>
+            </div>
+            <div class="description text-center">
+            <% if !current_user.blank? && !current_user.recommended_movies(20).blank? %>
+                  <% movie_random = current_user.recommended_movies(20).sample %>
+                  <%= link_to "Let us find a movie for you", show_movie_path(movie_random.tt_id), class: "btn btn-ghost" %>
             <% end %>
-          </div>
-        <% end %>
-      </div>
-    </div>
-<!--  -->
-<!-- LIKED -->
-    <div class="tab-pane fade" id="pills-liked-2" role="tabpanel" aria-labelledby="pills-liked-2-tab">
-      <div class="ia-container">
-      <% unless @user.liked_movies.first.nil?%>
-      <figure>
-        <% movie_api = @user.liked_movies.first.get_details %>
-        <img src=<%= movie_api['Poster'] %>>
-        <input type="radio" name="radio-set" checked="checked" />
-        <figcaption><span><%= movie_api['Title'] %></span></figcaption>
-        <% runtime_total = movie_api['Runtime'].delete('min').to_i %>
-        <% @user.liked_movies[1..15].each do |movie| %>
-          <figure>
-          <% movie_api = movie.get_details %>
-          <img src=<%= movie_api['Poster'] %>>
-          <input type="radio" name="radio-set" checked="checked" />
-          <figcaption><span><%= movie_api['Title'] %></span></figcaption>
-          <% runtime_total += movie_api['Runtime'].delete('min').to_i %>
-        <% end %>
-      <% end %>
-        </figure>
-        </figure>
-        </figure>
-        </figure>
-        </figure>
-        </figure>
-        </figure>
-        </figure>
-        </figure>
-        </figure>
-      </figure>
-      </div>
-    </div>
-<!--  -->
-<!-- DISLIKED -->
-    <div class="tab-pane fade" id="pills-disliked" role="tabpanel" aria-labelledby="pills-disliked-tab">
-      <div class="ia-container">
-      <% unless @user.disliked_movies.first.nil? %>
-        <figure>
-        <% movie_api = @user.disliked_movies.first.get_details %>
-        <img src=<%= movie_api['Poster'] %>>
-        <input type="radio" name="radio-set" checked="checked" />
-        <figcaption><span><%= movie_api['Title'] %></span></figcaption>
-        <% runtime_total += movie_api['Runtime'].delete('min').to_i %>
-        <% @user.disliked_movies[1..15].each do |movie| %>
-          <figure>
-          <% movie_api = movie.get_details %>
-          <img src=<%= movie_api['Poster'] %>>
-          <input type="radio" name="radio-set" checked="checked" />
-          <figcaption><span><%= movie_api['Title'] %></span></figcaption>
-          <% runtime_total += movie_api['Runtime'].delete('min').to_i %>
-        <% end %>
-      <% end %>
-        </figure>
-        </figure>
-        </figure>
-        </figure>
-        </figure>
-        </figure>
-        </figure>
-        </figure>
-        </figure>
-        </figure>
-      </figure>
-      </div>
-    </div>
-
-<!--  -->
-
-<!-- STATS -->
-    <div class="tab-pane fade show active" id="pills-stats" role="tabpanel" aria-labelledby="pills-stats-tab">
-      <div class="wrapper">
-          <div class="counter col_fourth">
-            <i class="fas fa-star fa-2x"></i>
-            <h2 class="timer count-title count-number" data-to=<%=  @user.likes.count + @user.dislikes.count %> data-speed="1500"></h2>
-             <p class="count-text ">Number of Movies rated</p>
+            </div>
           </div>
 
-          <div class="counter col_fourth">
-            <i class="fas fa-video fa-2x"></i>
-            <h2 class="timer count-title count-number" data-to=<%= runtime_total %> data-speed="1500"></h2>
-            <p class="count-text ">Minutes spent watching movies</p>
-          </div>
+            <h3 class="mt-3 text-align-center d-flex justify-content-center">Recommendations</h3>
+            <div class="recommendation d-flex justify-content-center">
+              <div class="row">
+                <% @user.recommended_movies.first(3).each do |movie| %>
+                  <div class="col-4 mt-3">
+                    <!-- Pour éviter de faire 2 call API -->
+                    <% movie_details = movie.get_details %>
+                    <%= render "movies/card_id", movie_details: movie_details, movie: movie %>
+                  </div>
+                    <%= render "movies/card_collapse", movie_details: movie_details, movie: movie %>
+                <% end %>
+              </div>
+            </div>
 
-          <div class="counter col_fourth">
-            <i class="fa fa-lightbulb fa-2x"></i>
-            <h2 class="timer count-title count-number" data-to=<%= rand(45..70) * (@user.likes.count + @user.dislikes.count) / 60%> data-speed="1500"></h2>
-            <p class="count-text ">Hours saved using ScreenMe</p>
-          </div>
+            <div class="container">
 
-          <div class="counter col_fourth end">
-            <i class="fas fa-film fa-2x"></i>
-            <h2 class="timer count-title count-number" data-to=<%= @user.bookmarks.count  %> data-speed="1500"></h2>
-            <p class="count-text ">Movies to watch</p>
-          </div>
-      </div>
+              <div class="border-top mb-5 mt-5">
+
+                <ul class="mt-4 nav nav-pills nav-fill " id="pills-tab" role="tablist">
+                  <li class="nav-item nav-item-profile">
+                    <a class="nav-link nav-link-profile active" id="pills-stats-tab" data-toggle="pill" href="#pills-stats" role="tab" aria-controls="pills-stats" aria-selected="true">Stats</a>
+                  </li>
+                  <li class="nav-item nav-item-profile">
+                    <a class="nav-link nav-link-profile" id="pills-to-watch-tab" data-toggle="pill" href="#pills-to-watch" role="tab" aria-controls="pills-to-watch" aria-selected="true">To watch</a>
+                  </li>
+                  <li class="nav-item nav-item-profile">
+                    <a class="nav-link nav-link-profile" id="pills-liked-2-tab" data-toggle="pill" href="#pills-liked-2" role="tab" aria-controls="pills-liked-2" aria-selected="false">Liked Movies</a>
+                  </li>
+            <!--       <li class="nav-item nav-item-profile">
+                    <a class="nav-link nav-link-profile" id="pills-liked-tab" data-toggle="pill" href="#pills-liked" role="tab" aria-controls="pills-liked" aria-selected="false">Liked Movies</a>
+                  </li> -->
+                  <li class="nav-item nav-item-profile">
+                    <a class="nav-link nav-link-profile" id="pills-disliked-tab" data-toggle="pill" href="#pills-disliked" role="tab" aria-controls="pills-disliked" aria-selected="false">Disliked Movies</a>
+                  </li>
+                  <li class="nav-item nav-item-profile">
+                    <a class="nav-link nav-link-profile" id="pills-friends-tab" data-toggle="pill" href="#pills-friends" role="tab" aria-controls="pills-friends" aria-selected="true">Friends</a>
+                  </li>
+
+                </ul>
+              </div>
+
+                <div class="tab-content" id="pills-tabContent">
+              <!-- TO WATCH / BOOKMARK -->
+                  <div class="tab-pane fade show" id="pills-to-watch" role="tabpanel" aria-labelledby="pills-to-watch-tab">
+                    <div class="bookmarked_movies d-flex">
+                      <% unless @user.bookmarked_movies.first.nil? %>
+                        <div class="row">
+                          <% @user.bookmarked_movies.first(20).each do |movie| %>
+                            <div class="col-4 mt-3">
+                              <% movie_details = movie.get_details %>
+                              <%= render "movies/card_id", movie_details: movie_details, movie: movie %>
+                            </div>
+                            <%= render "movies/card_collapse.html.erb", movie_details: movie_details, movie: movie %>
+                          <% end %>
+                        </div>
+                      <% end %>
+                    </div>
+                  </div>
+              <!--  -->
+              <!-- LIKED -->
+                  <div class="tab-pane fade" id="pills-liked-2" role="tabpanel" aria-labelledby="pills-liked-2-tab">
+                    <div class="ia-container">
+                    <% unless @user.liked_movies.first.nil?%>
+                    <figure>
+                      <% movie_api = @user.liked_movies.first.get_details %>
+                      <img src=<%= movie_api['Poster'] %>>
+                      <input type="radio" name="radio-set" checked="checked" />
+                      <figcaption><span><%= movie_api['Title'] %></span></figcaption>
+                      <% runtime_total = movie_api['Runtime'].delete('min').to_i %>
+                      <% @user.liked_movies[1..15].each do |movie| %>
+                        <figure>
+                        <% movie_api = movie.get_details %>
+                        <img src=<%= movie_api['Poster'] %>>
+                        <input type="radio" name="radio-set" checked="checked" />
+                        <figcaption><span><%= movie_api['Title'] %></span></figcaption>
+                        <% runtime_total += movie_api['Runtime'].delete('min').to_i %>
+                      <% end %>
+                    <% end %>
+                      </figure>
+                      </figure>
+                      </figure>
+                      </figure>
+                      </figure>
+                      </figure>
+                      </figure>
+                      </figure>
+                      </figure>
+                      </figure>
+                    </figure>
+                    </div>
+                  </div>
+              <!--  -->
+              <!-- DISLIKED -->
+                  <div class="tab-pane fade" id="pills-disliked" role="tabpanel" aria-labelledby="pills-disliked-tab">
+                    <div class="ia-container">
+                    <% unless @user.disliked_movies.first.nil? %>
+                      <figure>
+                      <% movie_api = @user.disliked_movies.first.get_details %>
+                      <img src=<%= movie_api['Poster'] %>>
+                      <input type="radio" name="radio-set" checked="checked" />
+                      <figcaption><span><%= movie_api['Title'] %></span></figcaption>
+                      <% runtime_total += movie_api['Runtime'].delete('min').to_i %>
+                      <% @user.disliked_movies[1..15].each do |movie| %>
+                        <figure>
+                        <% movie_api = movie.get_details %>
+                        <img src=<%= movie_api['Poster'] %>>
+                        <input type="radio" name="radio-set" checked="checked" />
+                        <figcaption><span><%= movie_api['Title'] %></span></figcaption>
+                        <% runtime_total += movie_api['Runtime'].delete('min').to_i %>
+                      <% end %>
+                    <% end %>
+                      </figure>
+                      </figure>
+                      </figure>
+                      </figure>
+                      </figure>
+                      </figure>
+                      </figure>
+                      </figure>
+                      </figure>
+                      </figure>
+                    </figure>
+                    </div>
+                  </div>
+
+              <!--  -->
+
+              <!-- STATS -->
+                  <div class="tab-pane fade show active" id="pills-stats" role="tabpanel" aria-labelledby="pills-stats-tab">
+                    <div class="wrapper">
+                        <div class="counter col_fourth">
+                          <i class="fas fa-star fa-2x"></i>
+                          <h2 class="timer count-title count-number" data-to=<%=  @user.likes.count + @user.dislikes.count %> data-speed="1500"></h2>
+                           <p class="count-text ">Number of Movies rated</p>
+                        </div>
+
+                        <div class="counter col_fourth">
+                          <i class="fas fa-video fa-2x"></i>
+                          <h2 class="timer count-title count-number" data-to=<%= runtime_total %> data-speed="1500"></h2>
+                          <p class="count-text ">Minutes spent watching movies</p>
+                        </div>
+
+                        <div class="counter col_fourth">
+                          <i class="fa fa-lightbulb fa-2x"></i>
+                          <h2 class="timer count-title count-number" data-to=<%= rand(45..70) * (@user.likes.count + @user.dislikes.count) / 60%> data-speed="1500"></h2>
+                          <p class="count-text ">Hours saved using ScreenMe</p>
+                        </div>
+
+                        <div class="counter col_fourth end">
+                          <i class="fas fa-film fa-2x"></i>
+                          <h2 class="timer count-title count-number" data-to=<%= @user.bookmarks.count  %> data-speed="1500"></h2>
+                          <p class="count-text ">Movies to watch</p>
+                        </div>
+                    </div>
+
+                  </div>
+              <!--  -->
+
+              <!-- FRIENDS -->
+                  <div class="tab-pane fade" id="pills-friends" role="tabpanel" aria-labelledby="pills-friends-tab">
+                    Friends
+                  </div>
+              <!--  -->
+
+                </div>
+
+              </div>
+            </div>
+
 
     </div>
-<!--  -->
 
-<!-- FRIENDS -->
-    <div class="tab-pane fade" id="pills-friends" role="tabpanel" aria-labelledby="pills-friends-tab">
-      Friends
-    </div>
-<!--  -->
-  </div>
+
+
 </div>
+
+
+
+
+
+
+
+
