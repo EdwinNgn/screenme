@@ -3,6 +3,15 @@
     <%= link_to root_path do %>
       <%= image_tag "ScreenMe1.png", alt: "alttext", class: "logo-navbar" %>
     <% end %>
+    <div id="search-bar"  class="cntr ml-3">
+      <div class="cntr-innr">
+        <label class="search" for="inpt_search">
+          <form method="get" action="/movies">
+            <input id="inpt_search" name="search" type="text" autocomplete="off" type="text" />
+          </form>
+        </label>
+      </div>
+    </div>
   </div>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">

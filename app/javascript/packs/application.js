@@ -1,5 +1,6 @@
 import "bootstrap";
 import "devise/sign_up";
+import "../components/navbar";
 import "../components/search";
 import "../components/stats";
 import "movies/mark_as_like";
