@@ -1,0 +1,58 @@
+
+/* CONTAINER */
+
+.cardSlider .wrapper-slider {
+    position: relative;
+}
+
+.cards_container {
+    box-sizing: border-box;
+    width: 80%;
+    height: 300px;
+    margin: 0 auto;
+}
+
+.cards_container .item {
+    height: 300px;
+    display:none;
+}
+.cards_container .item.active {
+    display: block;
+    padding: 20px;
+}
+
+/* BTNS */
+
+.action_btns {
+    position: absolute;
+    top: 100%;
+    width: 100%;
+    display:flex;
+    justify-content: center;
+}
+
+.action_btns .btn {
+    width: 50px;
+    height: 50px;
+    padding: 0px;
+    font-size: 50px;
+    color: #002642;
+
+}
+
+.action_btns .btn.btn_prev {
+  margin-right: 200px;
+    float: left;
+}
+
+.action_btns .btn.btn_next {
+  margin-left: 200px;
+    float: right;
+}
+
+.background-tinder {
+  background-color: #EAF2EF;
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+}
