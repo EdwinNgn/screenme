@@ -3,22 +3,33 @@
     <%= link_to root_path do %>
       <%= image_tag "ScreenMe1.png", alt: "alttext", class: "logo-navbar" %>
     <% end %>
+    <% if params[:action] != "home" %>
+      <div id="search-bar"  class="cntr ml-3">
+        <div class="cntr-innr">
+          <label class="search" for="inpt_search">
+            <form method="get" action="/movies">
+              <input id="inpt_search" name="search" type="text" autocomplete="off" type="text" />
+            </form>
+          </label>
+        </div>
+      </div>
+    <% end %>
   </div>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <% if user_signed_in? %>
         <li class="nav-item">
-          <%= link_to "", root_path, class: "nav-link nav-link-navbar fas fa-bell action-btn #{'white-item-navbar' if params[:action] == "home"}" %>
+          <%= link_to "", root_path, class: "mt-0 nav-link nav-link-navbar fas fa-bell action-btn #{'white-item-navbar' if params[:action] == "home"}" %>
         </li>
         <li class="nav-item">
-          <%= link_to "", root_path, class: "nav-link nav-link-navbar fas fa-users action-btn #{'white-item-navbar' if params[:action] == "home"}" %>
+          <%= link_to "", root_path, class: "mt-0 nav-link nav-link-navbar fas fa-users action-btn #{'white-item-navbar' if params[:action] == "home"}" %>
         </li>
         <li class="nav-item">
           <% if current_user.first_name %>
-            <%= link_to "#{current_user.first_name}", profile_path(current_user), class: "nav-link nav-link-navbar name #{'white-item-navbar' if params[:action] == "home"}" %>
+            <%= link_to "#{current_user.first_name}", profile_path(current_user), class: "mt-0 nav-link name #{'white-item-navbar' if params[:action] == "home"}" %>
           <% else %>
-            <%= link_to "#{current_user.email}", profile_path(current_user), class: "nav-link nav-link-navbar name #{'white-item-navbar' if params[:action] == "home"}" %>
+            <%= link_to "#{current_user.email}", profile_path(current_user), class: "mt-0 nav-link name #{'white-item-navbar' if params[:action] == "home"}" %>
           <% end %>
         </li>
         <li class="nav-item dropdown">

@@ -5,3 +5,101 @@
   background-position: center;
   height: 100vh;
 }
+
+
+.openBtn {
+  background: #09243D;
+  border: none;
+  padding: 10px 15px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.openBtn:hover {
+  background: #09243D;
+}
+
+.overlay {
+  height: 100%;
+  width: 100%;
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0,0,0, 0.9);
+  justify-content:center;
+}
+
+.overlay-content {
+  display: inline-block;
+  vertical-align: middle;
+  width: 100%;
+  margin: auto;
+  margin-top: 10px;
+}
+
+#search-input{
+  position: relative;
+  font-size: 3.75rem;
+  font-weight: 900;
+  background: 0 0;
+  border: none;
+  outline: 0;
+  padding: 0;
+}
+
+.overlay .closebtn {
+  position: absolute;
+  top: 20px;
+  right: 45px;
+  font-size: 60px;
+  cursor: pointer;
+  color: white;
+}
+
+.overlay .closebtn:hover {
+  color: #ccc;
+}
+
+.overlay input[type=text] {
+  padding: 15px;
+  font-size: 17px;
+  border: none;
+  float: left;
+  width: 80%;
+  background: white;
+}
+
+.overlay input[type=text]:hover {
+  background: #f1f1f1;
+}
+
+#search-input{
+  width:100%;
+}
+
+.results_list{
+  width:90%;
+}
+.autocomplete-modal{
+  img{
+    height:        300px;
+    width:         200px;
+  }
+  p{
+    color:white;
+    font-size: 15px;
+  }
+}
+
+#btn-overlay{
+  display: none;
+  color: #4A4A4A;
+  border: 1px solid #4A4A4A;
+  padding: 8px 24px;
+  border-radius: 50px;
+  font-weight: lighter;
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
+  margin: 15px auto 0px;
+}
