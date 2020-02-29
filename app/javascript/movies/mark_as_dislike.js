@@ -1,4 +1,4 @@
-const movies = document.querySelectorAll('.moviecard')
+const movies = document.querySelectorAll('.moviecard, .card-index')
 
 
 if (movies) {

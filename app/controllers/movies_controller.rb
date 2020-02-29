@@ -1,6 +1,21 @@
 require "open-uri"
+require 'json'
 class MoviesController < ApplicationController
+
   def index
+    if params[:search].present?
+      url = "https://www.omdbapi.com/?s=#{params[:search]}&apikey=adf1f2d7"
+      movies_serialized = open(url).read
+      @movies = JSON.parse(movies_serialized)["Search"]
+    else
+      @movies = nil
+    end
+  end
+
+  def create_new_movie(omdb_id)
+    new_movie = Movie.new
+    new_movie.omdb_id = omdb_id.delete('t').to_i
+    new_movie.save
   end
 
   def show
@@ -9,11 +24,8 @@ class MoviesController < ApplicationController
     url     = "http://www.omdbapi.com/?i=#{omdb_id}&apikey=adf1f2d7"
     @movie  = JSON.parse(open(url).read)
 
-    if Movie.find_by(omdb_id: omdb_id.delete('t')).blank?
-      new_movie = Movie.new
-      new_movie.omdb_id = omdb_id.delete('t').to_i
-      new_movie.save
-    end
+    create_new_movie(omdb_id) if Movie.find_by(omdb_id: omdb_id.delete('t')).blank?
+
     @user = current_user
     # get the similar audiences to the current user if connected
     @user.blank? ? similar_user = [] : similar_user = @user.similar_raters

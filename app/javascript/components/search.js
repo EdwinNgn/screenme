@@ -1,19 +1,30 @@
 const list = document.querySelector('#results');
 
-
 // If list afficher
 if (list) {
+  const form = document.querySelector('#search-form');
+  form.addEventListener("click", (event) => {
+    event.preventDefault();
+    const modal = document.getElementById("myOverlay");
+    modal.style.display = "block"
+  });
+  const closing = document.querySelector('.closebtn')
+  closing.addEventListener("click", (event) => {
+    event.preventDefault();
+    const modal = document.getElementById("myOverlay");
+    modal.style.display = "none"
+  });
+  const input = document.querySelector('#search-input');
+  input.focus();
+
   const insertMovies = (data) => {
-    var huge_list = [];
     data.Search.slice(0,5).forEach((result) => {
       const movie = `
       <a href="/movies/${result.imdbID}" class="link-without-style">
-        <li class="autocomplete-movies d-flex align-items-center">
+        <li class="autocomplete-modal">
           <img src="${result.Poster}" alt="" />
-          <span>${result.Title} </span>
         </li>
       </a>`;
-      huge_list.push(result.Title);
       list.insertAdjacentHTML('beforeend', movie);
     });
   };
@@ -25,12 +36,13 @@ if (list) {
 
   fetchMovies(''); // on 1st page load
 
-  const form = document.querySelector('#search-form');
-  form.addEventListener('keyup', (event) => {
+  const request = document.querySelector('#search-form2');
+  const btn = document.querySelector('#btn-overlay');
+  request.addEventListener('keyup', (event) => {
     event.preventDefault();
     list.innerHTML = '';
     const input = document.querySelector('#search-input');
     fetchMovies(input.value);
+    btn.style.display = "block"
   });
 }
-

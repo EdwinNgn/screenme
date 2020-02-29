@@ -1,14 +1,14 @@
 
 <div class="banner">
     <div id="cover">
-      <form method="get" id="search-form" action="test">
+      <form id="search-form" method="get" action="/movies" class="openBtn">
         <div class="tb">
           <div class="td">
-            <input type="text" class="form-control" autocomplete="off" placeholder="Find movie" id="search-input" required>
-            <ul id="results" class="list-search list-inline"></ul>
+            <input  name="search" class="form-control" type="text" autocomplete="off" placeholder="Find movie" required>
+            <!-- <ul id="results" class="list-search list-inline"></ul> -->
           </div>
           <div class="td" id="s-cover">
-            <button type="submit">
+            <button type="submit" value="Search">
               <div id="s-circle"></div>
               <span></span>
             </button>
@@ -18,3 +18,19 @@
     </div>
   </div>
 
+<div id="myOverlay" class="overlay">
+  <span class="closebtn" title="Close Overlay">×</span>
+  <div class="overlay-content">
+    <form id="search-form2" class = "justify-content-between" action="/movies">
+      <div class="container">
+          <input id="search-input" name="search" class="form-control mb-5" type="text" autocomplete="off" placeholder="Search a movie" required>
+      </div>
+      <div class="results_list">
+          <ul id="results" class="list-search d-flex justify-content-between"></ul>
+      </div>
+      <button id="btn-overlay" type="submit" value="Search">
+        <span>Get more results</span>
+      </button>
+    </form>
+  </div>
+</div>
