@@ -23,4 +23,6 @@
   # get "/movies/:omdb_id", to: "movies#contentlike"
   resources :profiles, only: [:show]
 
+  resources :friendships
+
 end
