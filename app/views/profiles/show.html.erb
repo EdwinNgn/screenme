@@ -1,5 +1,4 @@
 <div class="contaier">
-  <%= console %>
 <div class="profile">
   <div class="profile-page">
     <% if @user.coverpicture.attachment != nil %>
@@ -40,12 +39,12 @@
 
             <h3 class="mt-3 text-align-center d-flex justify-content-center">Recommendations</h3>
             <div class="recommendation d-flex justify-content-center">
-              <div class="row">
+              <div class="row recommendation-row">
                 <% @user.recommended_movies.first(3).each do |movie| %>
                   <div class="col-4 mt-3">
                     <!-- Pour éviter de faire 2 call API -->
                     <% movie_details = movie.get_details %>
-                    <%= render "movies/card_id", movie_details: movie_details, movie: movie %>
+                    <%= render "movies/new_movie_card", movie_details: movie_details, movie: movie %>
                   </div>
                     <%= render "movies/card_collapse", movie_details: movie_details, movie: movie %>
                 <% end %>
@@ -82,13 +81,13 @@
                 <div class="tab-content" id="pills-tabContent">
               <!-- TO WATCH / BOOKMARK -->
                   <div class="tab-pane fade show" id="pills-to-watch" role="tabpanel" aria-labelledby="pills-to-watch-tab">
-                    <div class="bookmarked_movies d-flex">
+                    <div class="bookmarked_movies">
                       <% unless @user.bookmarked_movies.first.nil? %>
                         <div class="row">
                           <% @user.bookmarked_movies.first(20).each do |movie| %>
                             <div class="col-4 mt-3">
                               <% movie_details = movie.get_details %>
-                              <%= render "movies/card_id", movie_details: movie_details, movie: movie %>
+                              <%= render "movies/new_movie_card", movie_details: movie_details, movie: movie %>
                             </div>
                             <%= render "movies/card_collapse.html.erb", movie_details: movie_details, movie: movie %>
                           <% end %>
