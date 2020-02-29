@@ -1,7 +1,19 @@
 require "open-uri"
 class MoviesController < ApplicationController
+  require 'json'
+  require 'open-uri'
+
+
   def index
+    if params[:search].present?
+      url = "https://www.omdbapi.com/?s=#{params[:search]}&apikey=adf1f2d7"
+      movies_serialized = open(url).read
+      @movies = JSON.parse(movies_serialized)["Search"]
+    else
+      @movies = nil
+    end
   end
+
 
   def show
     omdb_id = params[:omdb_id]

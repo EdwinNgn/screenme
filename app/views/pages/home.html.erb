@@ -1,14 +1,14 @@
 
 <div class="banner">
     <div id="cover">
-      <form method="get" id="search-form" action="test">
+      <form id="search-form" class = "myOverlay" method="get" action="/movies">
         <div class="tb">
           <div class="td">
-            <input type="text" class="form-control" autocomplete="off" placeholder="Find movie" id="search-input" required>
+            <input id="search-input" name="search" class="form-control" type="text" autocomplete="off" placeholder="Find movie" required>
             <ul id="results" class="list-search list-inline"></ul>
           </div>
           <div class="td" id="s-cover">
-            <button type="submit">
+            <button type="submit" value="Search">
               <div id="s-circle"></div>
               <span></span>
             </button>
@@ -17,4 +17,3 @@
       </form>
     </div>
   </div>
-
