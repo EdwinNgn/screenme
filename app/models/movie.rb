@@ -8,4 +8,5 @@ class Movie < ApplicationRecord
   def tt_id
     "tt" + "0"*(7 - self.omdb_id.to_s.length) + self.omdb_id.to_s
   end
+
 end

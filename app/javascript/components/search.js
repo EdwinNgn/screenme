@@ -9,7 +9,7 @@ if (list) {
       <a href="/movies/${result.imdbID}" class="link-without-style">
         <li class="autocomplete-movies d-flex align-items-center">
           <img src="${result.Poster}" alt="" />
-          <span>${result.Title} </span>
+          <span>${result.Title} (${result.Year})</span>
         </li>
       </a>`;
       list.insertAdjacentHTML('beforeend', movie);

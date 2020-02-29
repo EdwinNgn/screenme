@@ -43,10 +43,12 @@
     height: 96px;
     font-size: 60px;
     line-height: 1;
+    background-color: #0A253E;
+    color: white;
   }
 
   input[type="text"]::placeholder {
-    color: #C0C6C9;
+    color: white;
   }
 
   button {
