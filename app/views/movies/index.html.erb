@@ -7,7 +7,7 @@
       <% @movies.each do |movie|  %>
         <div class="card-index">
           <img src="<%= movie["Poster"] %>" />
-          <div class="card-index-infos">
+          <div class="ml-3 card-index-infos">
             <h2><%= link_to movie["Title"],"/movies/#{movie['imdbID']}" %></h2>
             <div class='card_right__action pt-1'>
               <% Movie.create(:omdb_id => movie['imdbID'].delete('t').to_i) if Movie.find_by(omdb_id: movie['imdbID'].delete('t')).blank? %>

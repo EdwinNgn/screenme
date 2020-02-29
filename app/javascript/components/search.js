@@ -1,28 +1,32 @@
 const list = document.querySelector('#results');
-// const overlay = document.querySelector('.myOverlay')
 
 // If list afficher
 if (list) {
+  const form = document.querySelector('#search-form');
+  form.addEventListener("click", (event) => {
+    event.preventDefault();
+    const modal = document.getElementById("myOverlay");
+    modal.style.display = "block"
+  });
+  const closing = document.querySelector('.closebtn')
+  closing.addEventListener("click", (event) => {
+    event.preventDefault();
+    const modal = document.getElementById("myOverlay");
+    modal.style.display = "none"
+  });
+  const input = document.querySelector('#search-input');
+  input.focus();
+
   const insertMovies = (data) => {
     data.Search.slice(0,5).forEach((result) => {
       const movie = `
       <a href="/movies/${result.imdbID}" class="link-without-style">
-        <li class="autocomplete-movies d-flex align-items-center">
+        <li class="autocomplete-modal">
           <img src="${result.Poster}" alt="" />
-          <span>${result.Title} (${result.Year})</span>
         </li>
       </a>`;
       list.insertAdjacentHTML('beforeend', movie);
     });
-    const seemore = `
-      <a class ="d-flex justify-content-center link-without-style">
-        <li class=" autocomplete-movies autocomplete-btn d-flex align-items-center ">
-          <button type="submit" value="Search">
-            <p>Get more for ${form[0].value}</p>
-          </button>
-        </li>
-      </a>`;
-    list.insertAdjacentHTML('beforeend', seemore);
   };
   const fetchMovies = (query) => {
     fetch(`https://www.omdbapi.com/?s=${query}&apikey=adf1f2d7`)
@@ -32,29 +36,13 @@ if (list) {
 
   fetchMovies(''); // on 1st page load
 
-  const form = document.querySelector('#search-form');
-  form.addEventListener('keyup', (event) => {
+  const request = document.querySelector('#search-form2');
+  const btn = document.querySelector('#btn-overlay');
+  request.addEventListener('keyup', (event) => {
     event.preventDefault();
     list.innerHTML = '';
     const input = document.querySelector('#search-input');
     fetchMovies(input.value);
+    btn.style.display = "block"
   });
 }
-
-
-
-
-// if (overlay) {
-  // overlay.addEventListener('keyup', (event) => {
-    // console.log("je suis la")
-  // });
-// }
-//Open the full screen search box
-// function openSearch() {
-  // overlay.style.display = "block";
-// }
-//
-//Close the full screen search box
-// function closeSearch() {
-  // overlay.style.display = "none";
-// }
