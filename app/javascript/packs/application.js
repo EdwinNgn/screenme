@@ -8,3 +8,4 @@ import "movies/mark_as_dislike";
 import "movies/mark_as_save";
 import "movies/mark_as_blacklist";
 import "components/step_two"
+import "components/spinwheel"
