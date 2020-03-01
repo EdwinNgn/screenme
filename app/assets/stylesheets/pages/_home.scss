@@ -82,9 +82,16 @@
   width:90%;
 }
 .autocomplete-modal{
+  li{
+    list-style: none;
+  }
   img{
     height:        300px;
     width:         200px;
+  }
+  img:hover{
+    height:        330px;
+    width:         22g0px;
   }
   p{
     color:white;
@@ -101,5 +108,5 @@
   font-weight: lighter;
   opacity: 0.6;
   transition: opacity 0.3s ease;
-  margin: 15px auto 0px;
+  margin: 30px auto 0px;
 }
