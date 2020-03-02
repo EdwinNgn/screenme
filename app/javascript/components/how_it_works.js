@@ -1,11 +1,14 @@
-document.querySelector('.fa-question-circle').addEventListener("mouseover", mouseOver);
-document.querySelector('.fa-question-circle').addEventListener("mouseout", mouseOut);
+const question = document.getElementById("how-it-works")
+if (question) {
+  document.querySelector('.fa-question-circle').addEventListener("mouseover", mouseOver);
+  document.querySelector('.fa-question-circle').addEventListener("mouseout", mouseOut);
 
-function mouseOver() {
-  document.getElementById("how-it-works").style.visibility = "visible";
-}
+  function mouseOver() {
+    question.style.visibility = "visible";
+  }
 
-function mouseOut() {
-  document.getElementById("how-it-works").style.visibility = "hidden";
+  function mouseOut() {
+    question.style.visibility = "hidden";
+  }
 }
 
