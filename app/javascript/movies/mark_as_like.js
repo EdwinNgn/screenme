@@ -10,7 +10,7 @@ if (movies) {
   })
 }
 
-const showMovie = document.getElementById('on-show-movie')
+const showMovie = document.querySelector('.actions')
 
 if (showMovie) {
   const thumb = showMovie.querySelector('.fa-thumbs-up')
@@ -19,3 +19,4 @@ if (showMovie) {
     event.currentTarget.classList.toggle("fas");
   })
 }
+

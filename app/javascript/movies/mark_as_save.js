@@ -12,7 +12,7 @@ if (movies) {
   })
 }
 
-const showMovie = document.getElementById('on-show-movie')
+const showMovie = document.querySelector('.actions')
 
 if (showMovie) {
   console.log('hello')
