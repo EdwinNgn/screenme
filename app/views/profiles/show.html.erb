@@ -60,14 +60,16 @@
               </div>
             </div>
             <div class="recommendation d-flex justify-content-center">
-              <div class="row recommendation-row">
+              <div class="row recommendation-row" id="movies">
                 <% @user.recommended_movies.first(3).each do |movie| %>
                   <div class="col-4 mt-3">
                     <!-- Pour éviter de faire 2 call API -->
                     <% movie_details = movie.get_details %>
-                    <%= render "movies/new_movie_card", movie_details: movie_details, movie: movie %>
+                    <%= render "movies/new_movie_card", movie_details:  movie.get_details, movie: movie %>
                   </div>
-                    <%= render "movies/card_collapse", movie_details: movie_details, movie: movie %>
+                <% end %>
+                <% @user.recommended_movies.first(3).each do |movie| %>
+                  <%= render "movies/card_collapse", movie_details:  movie.get_details, movie: movie  %>
                 <% end %>
               </div>
             </div>
