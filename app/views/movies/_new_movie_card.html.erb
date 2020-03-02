@@ -53,11 +53,11 @@
                 class='moviecard_chevron'
                 data-toggle="collapse"
                 data-target="#collapse-movie-<%= movie_details['imdbID'] %>"
-                href="#collapse-movie-<%= movie_details['imdbID'] %>"
-                id="collapse-movie-<%= movie_details['imdbID'] %>"
-                role="button"
-                aria-controls="collapseExample">
-                  <i class="fas fa-chevron-down" style ="font-size:24px"></i>
+                aria-expanded="false"
+                aria-controls="collapse-movie-<%= movie_details['imdbID'] %>"
+
+                role="button">
+                  <i class="fas fa-chevron-down button" style ="font-size:24px"></i>
               </div>
               <!-- <i class="fas fa-chevron-down button" style ="font-size:24px"></i> -->
             </div>
