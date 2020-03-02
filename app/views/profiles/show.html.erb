@@ -9,21 +9,62 @@
     <% end %>
     <div class="main main-raised">
     <div class="profile-content">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-6 ml-auto mr-auto">
-             <div class="profile">
-                  <div class="avatar">
-                    <% if @user.avatar.attachment != nil %>
-                      <img src="<%= cl_image_path @user.avatar.key, width: 150, height: 150, crop: :thumb, gravity: :face %>" alt="Circle Image" class="img-raised rounded-circle img-fluid"/>
-                    <% end %>
+
+
+          <div class="container">
+            <div class="row">
+              <div class="col-md-6 ml-auto mr-auto">
+                 <div class="profile">
+                      <div class="avatar">
+                        <% if @user.avatar.attachment != nil %>
+                          <img src="<%= cl_image_path @user.avatar.key, width: 150, height: 150, crop: :thumb, gravity: :face %>" alt="Circle Image" class="img-raised rounded-circle img-fluid"/>
+                        <% end %>
+                      </div>
+                      <div>
+                        <% if @user == current_user %>
+                          <%= link_to edit_user_registration_path(@user), class:"no-decoration" do %>
+                            <i class="fas fa-edit"></i>
+                          <% end %>
+                        <% end %>
+                      </div>
+                      <div class="name">
+                        <% if @user.first_name.nil? && @user.last_name.nil? %>
+                          <h3 class="title">No name</h3>
+                        <% else %>
+                          <h3 class="title"><%= "#{@user.first_name.capitalize} #{@user.last_name.capitalize}" %> </h3>
+                        <% end %>
+                      </div>
                   </div>
-                  <div class="name">
-                    <% if @user.first_name.nil? && @user.last_name.nil? %>
-                      <h3 class="title">No name</h3>
-                    <% else %>
-                      <h3 class="title"><%= "#{@user.first_name.capitalize} #{@user.last_name.capitalize}" %> </h3>
-                    <% end %>
+              </div>
+            </div>
+            <div class="description text-center">
+            <% if !current_user.blank? && !current_user.recommended_movies(20).blank? %>
+              <% movie_random = current_user.recommended_movies(20).sample %>
+              <%= link_to "Let us find a movie for you", show_movie_path(movie_random.tt_id), class: "btn btn-ghost" %>
+            <% end %>
+            <% unless current_user == @user %>
+              <% if !current_user.follow?(@user) %>
+                <%= link_to "Follow", friendships_path(:friend_id => @user), :method => :post, class: "btn btn-outline-success btn-follow" %>
+              <% else %>
+                <%= link_to "Unfollow", friendship_path(:friend_id => @user), :method => :delete, class: "btn btn-outline-danger btn-follow" %>
+              <% end %>
+            <% end %>
+
+            </div>
+          </div>
+            <div class="recommandations-title">
+              <h3 class="mt-3 text-align-center d-flex justify-content-center">Recommendations</h3>
+              <i class="far fa-question-circle"></i>
+              <p id="how-it-works">ScreenMe is running thanks to sophisticated statistical methods as <strong>Machine Learning</strong> and <strong>Artificial Intelligence</strong> to offer you personalized results !</p>
+            </div>
+            <div class="recommendation d-flex justify-content-center">
+              <div class="row recommendation-row">
+                <% @user.recommended_movies.first(3).each do |movie| %>
+                  <div class="col-4 mt-3">
+                    <!-- Pour éviter de faire 2 call API -->
+                    <% movie_details = movie.get_details %>
+                    <%= render "movies/new_movie_card", movie_details: movie_details, movie: movie %>
+
                   </div>
               </div>
           </div>
