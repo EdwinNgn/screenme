@@ -1,0 +1,60 @@
+<div id="<%= movie_details['imdbID'] %>" class='moviecard'>
+
+  <div class="row new-movie-card-row">
+    <div class="example-2 card new-movie-card">
+      <div class="wrapper-new-movie-card" style="background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url('<%= movie_details['Poster'] %>')">
+        <div class="header-new-movie-card">
+          <div class="date">
+           <span class="day"><%= movie_details['Year'] %></span>
+           <span class="month">-</span>
+           <span class="year"><%= movie_details['Runtime'] %></span>
+          </div>
+          <ul class="menu-content">
+
+
+            <%= link_to liking_movie_path(movie_details['imdbID']), method: :post, remote: true do %>
+              <% if current_user.likes?(movie) %>
+                <li><i class="fas fa-thumbs-up actions-buttons-new-movie-card"><span><%= movie.liked_by_count %></span></i></li>
+              <% else %>
+                <li><i class="far fa-thumbs-up actions-buttons-new-movie-card"><span><%= movie.liked_by_count %></span></i></li>
+              <% end %>
+            <% end %>
+            <%= link_to disliking_movie_path(movie_details['imdbID']), method: :post, remote: true do %>
+              <% if current_user.dislikes?(movie) %>
+                <li><i class="fas fa-thumbs-down actions-buttons-new-movie-card"><span><%= movie.disliked_by_count %></span></i></li>
+              <% else %>
+                <li><i class="far fa-thumbs-down actions-buttons-new-movie-card"><span><%= movie.disliked_by_count %></span></i></li>
+              <% end %>
+            <% end %>
+            <%= link_to saving_movie_path(movie_details['imdbID']), method: :post, remote: true do %>
+              <% if current_user.bookmarks?(movie) %>
+                <li><i class="fas fa-bookmark actions-buttons-new-movie-card"></i></li>
+              <% else %>
+                <li><i class="far fa-bookmark actions-buttons-new-movie-card"></i></li>
+              <% end %>
+            <% end %>
+            <%= link_to blacklisting_movie_path(movie_details['imdbID']), method: :post, remote: true do %>
+              <% if current_user.hides?(movie) %>
+                <li><i class="fas fa-eye-slash actions-buttons-new-movie-card"></i></li>
+              <% else %>
+                <li><i class="far fa-eye-slash actions-buttons-new-movie-card"></i></li>
+              <% end %>
+            <% end %>
+
+          </ul>
+        </div>
+        <div class="data-new-mocie-card">
+          <div class="content">
+            <span class="author"><%= movie_details['Genre'] %></span>
+            <h1 class="title"><a href="#"><%= movie_details['Title'] %></a></h1>
+            <p class="text"><%= movie_details['Plot'] %></p>
+            <!-- <div class='moviecard_chevron' data-toggle="collapse" href="#collapse-movie-<%= movie_details['imdbID'] %>" role="button" aria-expanded="false" aria-controls="collapseExample">
+                <i class="fas fa-chevron-down" style ="font-size:24px"></i>
+            </div> -->
+            <i class="fas fa-chevron-down button" style ="font-size:24px"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

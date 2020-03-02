@@ -21,7 +21,7 @@
     height: 100%;
     display: block;
     left: 0;
-    top: 66px;
+    top: 56px;
     content: "";
 }
 
@@ -30,7 +30,7 @@
 }
 
 .main-raised {
-    margin: -60px 30px 0;
+    margin: -200px 30px 0;
     border-radius: 6px;
     box-shadow: 0 16px 24px 2px rgba(0,0,0,.14), 0 6px 30px 5px rgba(0,0,0,.12), 0 8px 10px -5px rgba(0,0,0,.2);
 }
@@ -48,7 +48,7 @@
 .profile-page .profile img {
     max-width: 160px;
     width: 0 auto;
-    margin: 0 200px;
+    margin: 0 190px;
     -webkit-transform: translate3d(0,-50%,0);
     -moz-transform: translate3d(0,-50%,0);
     -o-transform: translate3d(0,-50%,0);
@@ -164,3 +164,6 @@ img.rounded {
   background-color: white;
 }
 
+.recommendation-row{
+  width: 110vh;
+}
