@@ -1,4 +1,6 @@
 $(window).scroll(function() {
+  const profile = document.querySelector('.profile')
+  if (profile) {
     if ($(window).scrollTop()  > $(window).height() / 2)
     {
 
@@ -101,8 +103,9 @@ $(window).scroll(function() {
         }
       });
     }
+};
 });
-Collapse
+
 
 
 
