@@ -10,3 +10,4 @@ import "movies/mark_as_blacklist";
 import "components/step_two";
 import 'select2/dist/css/select2.css';
 import 'components/search-friend';
+import "../components/how_it_works";
