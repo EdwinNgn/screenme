@@ -2,17 +2,20 @@ const list = document.querySelector('#results');
 
 // If list afficher
 if (list) {
-  const form = document.querySelector('#search-form');
+  const form = document.querySelector('#search-button');
   form.addEventListener("click", (event) => {
     event.preventDefault();
     const modal = document.getElementById("myOverlay");
     modal.style.display = "block"
+    document.getElementById("search-input").focus()
+    document.getElementById("text-td").style.display = "none"
   });
   const closing = document.querySelector('.closebtn')
   closing.addEventListener("click", (event) => {
     event.preventDefault();
     const modal = document.getElementById("myOverlay");
     modal.style.display = "none"
+    document.getElementById("text-td").style.display = "block"
   });
   const input = document.querySelector('#search-input');
   input.focus();
@@ -20,10 +23,8 @@ if (list) {
   const insertMovies = (data) => {
     data.Search.slice(0,5).forEach((result) => {
       const movie = `
-      <a href="/movies/${result.imdbID}" class="link-without-style">
-        <li class="autocomplete-modal">
+      <a href="/movies/${result.imdbID}" class="link-without-style autocomplete-modal">
           <img src="${result.Poster}" alt="" />
-        </li>
       </a>`;
       list.insertAdjacentHTML('beforeend', movie);
     });
