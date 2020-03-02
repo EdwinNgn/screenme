@@ -1,12 +1,12 @@
 .movie-infos {
   width: 100%;
+  margin: 10px 0;
 }
 
 .movie-infos-top {
   display: flex;
   height: 468px;
   background-color: $white;
-  margin-bottom: 20px;
 }
 
 .movie-infos-top .poster img {
@@ -21,6 +21,16 @@
   background-color: $white;
   height: 15%;
   border-bottom: solid 1px;
+}
+
+.actions-recommendation {
+  display:flex;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
+  background-color: $white;
+  height: 8%;
+  font-size: 12px;
 }
 
 .action-item {
@@ -128,14 +138,13 @@
 }
 
 .info header {
-  color: #FFF;
+  color: $blue_dark;
   padding: 7px 10px;
   font-weight: bold;
-  height: 250px;
+  height: 215px;
   background-size: contain;
-  background-color: $gray;
+  background-color: $white;
   background-repeat: no-repeat;
-  text-shadow: 0px 1px 1px rgba(0,0,0,1);
 }
 
 .info header h1 {
@@ -147,10 +156,9 @@
   padding: 1.2em 1.4em;
   margin: 2px 0 0;
   font-weight: 700;
-  color: $white;
-  // line-height: 1.4em;
-  border-top: 1px solid $white;
-  border-bottom: 1px solid $white;
+  color: $blue_dark;
+  border-top: 1px solid $blue_dark;
+  border-bottom: 1px solid $blue_dark;
 }
 
 .movie .poster img {

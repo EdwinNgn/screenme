@@ -1,11 +1,11 @@
-<div class="container">
 
+<div class="contaier">
 <div class="profile">
   <div class="profile-page">
     <% if @user.coverpicture.attachment != nil %>
       <div class="page-header header-filter" data-parallax="true" style="background-image:url('<%= cl_image_path @user.coverpicture.key%>');"></div>
     <% else %>
-      <div class="page-header header-filter" data-parallax="true" style="background-image: url('../../assets/home-image.jpg');;"></div>
+      <div class="page-header header-filter" data-parallax="true" style="background-image: url('../../assets/home-image.jpg');"></div>
     <% end %>
     <div class="main main-raised">
     <div class="profile-content">
@@ -35,10 +35,12 @@
               <% movie_random = current_user.recommended_movies(20).sample %>
               <%= link_to "Let us find a movie for you", show_movie_path(movie_random.tt_id), class: "btn btn-ghost" %>
             <% end %>
-            <% if !current_user.follow?(@user) %>
-              <%= link_to "Follow", friendships_path(:friend_id => @user), :method => :post, class: "btn btn-ghost" %>
-            <% else %>
-              <%= link_to "Unfollow", friendship_path(:friend_id => @user), :method => :delete, class: "btn btn-ghost" %>
+            <% unless current_user == @user %>
+              <% if !current_user.follow?(@user) %>
+                <%= link_to "Follow", friendships_path(:friend_id => @user), :method => :post, class: "btn btn-outline-success btn-follow" %>
+              <% else %>
+                <%= link_to "Unfollow", friendship_path(:friend_id => @user), :method => :delete, class: "btn btn-outline-danger btn-follow" %>
+              <% end %>
             <% end %>
 
             </div>
@@ -204,14 +206,16 @@
               <!-- FRIENDS -->
                   <div class="tab-pane fade" id="pills-friends" role="tabpanel" aria-labelledby="pills-friends-tab">
                     <% @user.friends.each do |friend| %>
-                      <div class="friend_card">
-                        <%= cl_image_tag(friend.avatar.key, crop: :thumb, gravity: :face, class: "friend-pic" ) %>
-                        <div class="friend-info">
-                          <div class="d-flex justify-content-between">
-                            <h2 class ="user-name"> <%= "#{friend.first_name} #{friend.last_name}" %> </h2>
+                      <%= link_to profile_path(friend) do  %>
+                        <div class="friend_card">
+                          <%= cl_image_tag(friend.avatar.key, crop: :thumb, gravity: :face, class: "friend-pic" ) %>
+                          <div class="friend-info">
+                            <div class="d-flex justify-content-between">
+                              <h2 class ="user-name"> <%= "#{friend.first_name} #{friend.last_name}" %> </h2>
+                            </div>
                           </div>
                         </div>
-                      </div>
+                      <% end %>
                     <% end %>
                   </div>
 

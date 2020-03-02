@@ -9,11 +9,11 @@
 require "csv"
 require 'faker'
 
-csv_file   = File.join(__dir__, 'likes_dislikes_screenme.csv')
+csv_file   = File.join(__dir__, 'dataset_screenme_small_all.csv')
 csv_options = {headers: :first_row}
 
 
-50.times {User.create(email: Faker::Internet.email, password: "azerty")}
+700.times {User.create(email: Faker::Internet.email, password: "azerty")}
 
 movies_id = []
 
