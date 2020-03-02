@@ -7,4 +7,5 @@ import "movies/mark_as_like";
 import "movies/mark_as_dislike";
 import "movies/mark_as_save";
 import "movies/mark_as_blacklist";
-import "components/step_two"
+import "components/step_two";
+import "../components/how_it_works";
