@@ -49,6 +49,7 @@ h1 {
       }
       a {
         color: $white;
+        font-family: 'Julius Sans One'
       }
       span {
         position: absolute;
@@ -86,7 +87,7 @@ h1 {
     .author {
       font-size: 12px;
     }
-    .title {
+    .title-new-movie-card {
       margin-top: 10px;
     }
     .text {
@@ -149,7 +150,7 @@ h1 {
     color: $white;
     transform: translateY(calc(70px + 4em));
   }
-  .title {
+  .title-new-movie-card {
     a {
       color: $white;
       text-decoration: none;

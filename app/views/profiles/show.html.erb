@@ -41,6 +41,7 @@
             <% if !current_user.blank? && !current_user.recommended_movies(20).blank? %>
               <% movie_random = current_user.recommended_movies(20).sample %>
               <%= link_to "Let us find a movie for you", show_movie_path(movie_random.tt_id), class: "btn btn-ghost" %>
+              <%= link_to "Enhance my collection", step_two_path, class: "btn btn-ghost" %>
             <% end %>
             <% unless current_user == @user %>
               <% if !current_user.follow?(@user) %>
