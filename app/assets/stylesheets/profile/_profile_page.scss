@@ -172,6 +172,9 @@ img.rounded {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.question {
+  position: relative;
   .fa-question-circle {
     margin-left: 10px;
   }
@@ -187,5 +190,8 @@ img.rounded {
   border-radius: 5px;
   box-shadow: 10px 10px 5px 0px rgba(240,235,240,1);
   padding: 10px;
+  position: absolute;
+  bottom: -30px;
+  left: 25px;
   visibility: hidden;
 }
