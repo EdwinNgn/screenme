@@ -14,7 +14,7 @@
                <div class="profile">
                     <div class="avatar">
                       <% if @user.avatar.attachment != nil %>
-                        <img src="<%= cl_image_path @user.avatar.key, width: 150, height: 150, crop: :thumb, gravity: :face %>" alt="Circle Image" class="img-raised rounded-circle img-fluid"/>
+                        <img src="<%= cl_image_path @user.avatar.key, width: 150, height: 150, crop: :thumb %>" alt="Circle Image" class="img-raised rounded-circle img-fluid"/>
                       <% end %>
                     </div>
                     <div>
@@ -47,6 +47,7 @@
           <div class = "mt-3 text-center" id="randommovie">
             <% if @user == current_user %>
               <div class="openBtn btn btn-ghost">Let's spin the wheel!</div>
+              <%= link_to "Enhance my collection", step_two_path, class: "btn btn-ghost"   %>
             <% elsif @user.first_name.blank? %>
               <div class="openBtn btn btn-ghost">Let's find a movie for No name and You!</div>
             <% else %>

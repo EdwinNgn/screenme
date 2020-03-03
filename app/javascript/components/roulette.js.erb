@@ -1,13 +1,13 @@
 
-const movies = JSON.parse(document.getElementById('random-movies').dataset.movies)
+
 const btnOpenModal = document.querySelector('.openBtn')
 const btnAnotherMovie = document.querySelector('.anothermovie')
 const btnCloseModal = document.querySelector('.closerandommovie');
 const modal = document.getElementById("myOverlay");
 
 // If list afficher
-if (btnOpenModal) {
-
+if (btnOpenModal ) {
+  const movies = JSON.parse(document.getElementById('random-movies').dataset.movies)
   btnOpenModal.addEventListener("click", (event) => {
     event.preventDefault();
     const modal = document.getElementById("myOverlay");
