@@ -59,7 +59,12 @@
             <% end %>
           </div>
           <div class="recommandations-title">
-            <h3 class="mt-3 text-align-center d-flex justify-content-center">Recommendations</h3>
+            <% if current_user == @user ||  @user.first_name.blank?%>
+              <h3 class="mt-3 text-align-center d-flex justify-content-center">Recommendations</h3>
+            <% else  %>
+              <h3 class="mt-3 text-align-center d-flex justify-content-center">Recommendations for <%= @user.first_name %></h3>
+            <% end %>
+
             <div class="question">
               <i class="far fa-question-circle"></i>
               <p id="how-it-works">ScreenMe is running thanks to sophisticated statistical methods as <strong>Machine Learning</strong> and <strong>Artificial Intelligence</strong> to offer you personalized results !</p>
