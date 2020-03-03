@@ -20,3 +20,16 @@ if (showMovie) {
   })
 }
 
+
+const collapses = document.querySelectorAll('.collapse-card')
+
+if(collapses){
+  collapses.forEach((collapse) => {
+    const thumb = collapse.querySelector('.fa-thumbs-up')
+    thumb.addEventListener('click', (event) => {
+      console.log(event);
+      event.currentTarget.classList.toggle("far");
+      event.currentTarget.classList.toggle("fas");
+    })
+  })
+}
