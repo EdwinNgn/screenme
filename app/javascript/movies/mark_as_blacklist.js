@@ -13,7 +13,7 @@ if (movies) {
   })
 }
 
-const showMovie = document.getElementById('on-show-movie')
+const showMovie = document.querySelector('.actions')
 
 if (showMovie) {
   const eye = showMovie.querySelector('.fa-eye-slash')

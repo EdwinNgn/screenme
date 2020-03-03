@@ -1,32 +1,33 @@
 
 <div class="banner">
     <div id="cover">
-      <form id="search-form" method="get" action="/movies" class="openBtn">
+      <div id="search-button" class="openBtn">
         <div class="tb">
           <div class="td">
-            <input  name="search" class="form-control" type="text" autocomplete="off" placeholder="Find movie" required>
+            <!-- <input  name="search" class="form-control" type="text" autocomplete="off" placeholder="Find movie" required> -->
             <!-- <ul id="results" class="list-search list-inline"></ul> -->
+            <span id="text-td">Find a movie!</span>
           </div>
           <div class="td" id="s-cover">
             <button type="submit" value="Search">
               <div id="s-circle"></div>
               <span></span>
-            </button>
+           </button>
           </div>
         </div>
-      </form>
+      </div>
     </div>
   </div>
 
 <div id="myOverlay" class="overlay">
-  <span class="closebtn" title="Close Overlay">×</span>
+  <div class="closebtn d-flex justify-content-center align-items-center"><span>×</span></div>
   <div class="overlay-content">
     <form id="search-form2" class = "justify-content-between" action="/movies">
       <div class="container">
           <input id="search-input" name="search" class="form-control mb-5" type="text" autocomplete="off" placeholder="Search a movie" required>
       </div>
-      <div class="results_list">
-          <ul id="results" class="list-search d-flex justify-content-between"></ul>
+      <div class="container results_list">
+          <ul id="results" class="list-search d-flex justify-content-around"></ul>
       </div>
       <button id="btn-overlay" type="submit" value="Search">
         <span>Get more results</span>

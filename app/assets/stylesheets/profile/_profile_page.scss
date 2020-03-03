@@ -75,7 +75,7 @@
     min-height: 32px;
     color: #3C4858;
     font-weight: 700;
-    font-family: "Roboto Slab","Times New Roman",serif;
+    font-family: 'Encode Sans Expanded',"Times New Roman",serif;
 }
 
 .profile-page .description {
@@ -149,7 +149,7 @@
 }
 
 .profile-page .profile .name{
-    margin-top: -80px;
+    margin-top: -90px;
 }
 
 img.rounded {
@@ -162,8 +162,37 @@ img.rounded {
 
 .profile-content {
   background-color: white;
+  padding-bottom: 30px;
 }
 
 .recommendation-row{
   width: 110vh;
+}
+
+.recommandations-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.question {
+  position: relative;
+  .fa-question-circle {
+    margin-left: 10px;
+  }
+}
+
+#how-it-works {
+  width: 150px;
+  font-size: 10px;
+  margin: -20px 0;
+  background-color: $blue_dark;
+  color: $white;
+  border: solid 1px $gray;
+  border-radius: 5px;
+  box-shadow: 10px 10px 5px 0px rgba(240,235,240,1);
+  padding: 10px;
+  position: absolute;
+  bottom: -30px;
+  left: 25px;
+  visibility: hidden;
 }
