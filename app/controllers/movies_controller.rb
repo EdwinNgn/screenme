@@ -35,9 +35,7 @@ class MoviesController < ApplicationController
     audiences = audiences & similar_user if !((audiences & similar_user).blank?)
     audiences = similar_user if audiences.blank?
 
-    # movies_similar_all = []
     counts = Hash.new 0
-    # create an array with all the movies recommandation
     audiences.each do |audience|
       audience.recommended_movies.each do |recommandation|
         counts[recommandation] += 1

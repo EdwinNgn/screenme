@@ -3,6 +3,7 @@ import "devise/sign_up";
 import "../components/navbar";
 import "../components/search";
 import "../components/stats";
+import "../components/roulette.js.erb";
 import "movies/mark_as_like";
 import "movies/mark_as_dislike";
 import "movies/mark_as_save";

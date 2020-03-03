@@ -1,15 +1,14 @@
 
 <div class="contaier">
 <div class="profile">
-  <div class="profile-page">
+  <div class="profile-page" id="profile-page">
     <% if @user.coverpicture.attachment != nil %>
       <div class="page-header header-filter" data-parallax="true" style="background-image:url('<%= cl_image_path @user.coverpicture.key%>');"></div>
     <% else %>
       <div class="page-header header-filter" data-parallax="true" style="background-image: url('../../assets/home-image.jpg');"></div>
     <% end %>
     <div class="main main-raised">
-    <div class="profile-content">
-
+    <div class="profile-content" id="profile-content">
 
           <div class="container">
             <div class="row">
@@ -31,10 +30,6 @@
               </div>
             </div>
             <div class="description text-center">
-            <% if !current_user.blank? && !current_user.recommended_movies(20).blank? %>
-              <% movie_random = current_user.recommended_movies(20).sample %>
-              <%= link_to "Let us find a movie for you", show_movie_path(movie_random.tt_id), class: "btn btn-ghost" %>
-            <% end %>
             <% unless current_user == @user %>
               <% if !current_user.follow?(@user) %>
                 <%= link_to "Follow", friendships_path(:friend_id => @user), :method => :post, class: "btn btn-outline-success btn-follow" %>
@@ -44,8 +39,14 @@
             <% end %>
 
             </div>
+            <div class = "mt-3 text-center" id="randommovie">
+              <% if @user == current_user %>
+                <div class="openBtn btn btn-ghost">Let's spin the wheel!</div>
+              <% else %>
+                <div class="openBtn btn btn-ghost">Let's find a movie for <%= @user.first_name.capitalize %> and You!</div>
+              <% end %>
+            </div>
           </div>
-
             <h3 class="mt-3 text-align-center d-flex justify-content-center">Recommendations</h3>
             <div class="recommendation d-flex justify-content-center">
               <div class="row recommendation-row">
@@ -219,21 +220,51 @@
                       <% end %>
                     <% end %>
                   </div>
-              <!--  -->
-
                 </div>
-
               </div>
             </div>
-
-
+          </div>
+        </div>
+      </div>
     </div>
-
-
-
+  </div>
 </div>
 
+<div id="myOverlay" class="overlay">
+  <div id="stars-group-1"></div>
+  <div id="stars-group-2"></div>
+  <div id="stars-group-3"></div>
+  <div id="stars-group-4"></div>
+  <div id="stars-group-5"></div>
+  <div id="stars-group-6"></div>
 
+  <span class="closerandommovie" title="Close Overlay">×</span>
+  <div id="random-movies" class="overlay-content d-flex flex-column" data-movies="<%= @movies_details.to_json %>">
+    <div class="has-animation animation-rtl" data-delay="1000">
+      <div class="container">
+        <p id="modalTitle" class="bigger d-flex justify-content-center"></p>
+      </div>
+    </div>
+    <div class="has-animation animation-rtl" data-delay="2500">
+      <div class ="d-flex justify-content-center">
+        <a id="modalLink" href="/movies/${result.imdbID}" class="link-without-style">
+            <img id="modalImage"  src="" alt="">
+        </a>
+
+      </div>
+    </div>
+    <div class="has-animation animation-ltr mt-5" data-delay="1500">
+      <div class="container">
+        <p class="text d-flex flex-column justify-content-center">Synopsis : <span id="modalSynopsis"></span></p>
+      </div>
+    </div>
+
+  </div>
+  <div class ="d-flex justify-content-center">
+      <button class="btn btn-ghost anothermovie" title="Close Overlay">Still not ? We start over ! </button>
+  </div>
+
+</div>
 
 
 
