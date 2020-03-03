@@ -196,3 +196,30 @@ img.rounded {
   left: 25px;
   visibility: hidden;
 }
+
+
+.warning-reco{
+  position: relative;
+  .fa-exclamation-triangle {
+    margin-left: 10px;
+    color:#840032;
+  }
+}
+
+#warning-message{
+  width: 150px;
+  font-size: 10px;
+  margin: -20px 0;
+  background-color: $blue_dark;
+  color: $white;
+  border: solid 1px $gray;
+  border-radius: 5px;
+  box-shadow: 10px 10px 5px 0px rgba(240,235,240,1);
+  padding: 10px;
+  position: absolute;
+  bottom: -30px;
+  left: 25px;
+  visibility: hidden;
+}
+
+
