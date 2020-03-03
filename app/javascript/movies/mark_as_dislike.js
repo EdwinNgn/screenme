@@ -18,6 +18,16 @@ if (showMovie) {
   thumb.addEventListener('click', (event) => {
     event.currentTarget.classList.toggle("far");
     event.currentTarget.classList.toggle("fas");
+    if (thumb.classList.value.split(" ").includes('far')) {
+      const likedown = document.querySelector('.like-down');
+      let likedown_number = parseInt(likedown.innerText.replace(/\D+/g, '')) - 1;
+      likedown.innerHTML = `<i class="fas fa-thumbs-down"></i>${likedown_number} likes`;
+    }
+    else {
+      const likedown = document.querySelector('.like-down');
+      let likedown_number = parseInt(likedown.innerText.replace(/\D+/g, '')) + 1;
+      likedown.innerHTML = `<i class="fas fa-thumbs-down"></i>${likedown_number} likes`;
+    }
   })
 }
 
