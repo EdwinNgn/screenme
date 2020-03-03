@@ -4,7 +4,7 @@ class MoviesController < ApplicationController
 
   def index
     if params[:search].present?
-      url = "https://www.omdbapi.com/?s=#{params[:search]}&apikey=adf1f2d7"
+      url = "https://www.omdbapi.com/?s=#{params[:search]}&type=movie&apikey=adf1f2d7"
       movies_serialized = open(url).read
       @movies = JSON.parse(movies_serialized)["Search"]
     else
@@ -35,9 +35,7 @@ class MoviesController < ApplicationController
     audiences = audiences & similar_user if !((audiences & similar_user).blank?)
     audiences = similar_user if audiences.blank?
 
-    # movies_similar_all = []
     counts = Hash.new 0
-    # create an array with all the movies recommandation
     audiences.each do |audience|
       audience.recommended_movies.each do |recommandation|
         counts[recommandation] += 1

@@ -1,0 +1,444 @@
+@import url(https://fonts.googleapis.com/css?family=Lato:400,300,700);
+
+@import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
+
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+
+a {
+  text-decoration: none;
+  color: #2F4550
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.movie-card {
+  font: 14px/22px 'Encode Sans Expanded', Arial, sans-serif;
+
+  padding: 40px 0;
+}
+
+.container-show-movie {
+  margin: 0 auto;
+  // width: 1000px;
+  height: 1500px;
+  background: white;
+  border-radius: 5px;
+  position: relative;
+
+}
+
+.hero {
+  height: 342px;
+  margin:0;
+  position: relative;
+  overflow: hidden;
+  z-index:1;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  // background: url("https://m.media-amazon.com/images/M/MV5BMTYwOTEwNjAzMl5BMl5BanBnXkFtZTcwODc5MTUwMw@@._V1_SX300.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: top;
+
+  transform: skewY(-2.2deg);
+  transform-origin:0 0;
+  -webkit-backface-visibility: hidden;
+
+
+
+
+}
+
+.hero:before {
+  // content:'h';
+  // width:100%; height:100%;
+  // position:absolute;
+  // overflow: hidden;
+  // top:0; left:0;
+  // // background:red;
+  // // background: url("https://m.media-amazon.com/images/M/MV5BMTYwOTEwNjAzMl5BMl5BanBnXkFtZTcwODc5MTUwMw@@._V1_SX300.jpg");
+  // // background-repeat: no-repeat;
+  // // background-size: cover;
+  // // background-position: center;
+  // // z-index:-1;
+
+  // // transform: skewY(-2.2deg);
+  // // transform-origin:0 0;
+
+  // //chrome antialias fix
+  // -webkit-backface-visibility: hidden;
+
+}
+
+.cover {
+  position: absolute;
+  top: 160px;
+  left: 40px;
+  z-index: 2;
+  height:300px;
+}
+
+.details {
+
+  // padding: 190px 0 0 280px;
+  // transform: skewY(2.2deg);
+
+
+  .title1 {
+    color: #002642;
+    font-size: 44px;
+    margin-bottom: 13px;
+    position: relative;
+    line-height: 50px;
+
+    span {
+      position: absolute;
+      top: 3px;
+      margin-left: 12px;
+      background: #C4AF3D;
+      border-radius: 5px;
+      color: #544C21;
+      font-size: 14px;
+      padding: 0px 4px;
+
+    }
+  }
+
+  .title2 {
+    color: #2F4550;
+    font-size: 23px;
+    font-weight: 300;
+    margin-bottom: 15px;
+  }
+
+
+
+
+
+  .likes:before {
+    position: relative;
+    top: 2px;
+    padding-right: 7px;
+  }
+
+}
+
+.description {
+
+  bottom: 0px;
+  height: 40%;
+  font-size: 16px;
+  // line-height: 26px;
+  color: #2F4550;
+
+}
+
+.column1 {
+  padding-left: 50px;
+  padding-top: 120px;
+  width: 220px;
+  float: left;
+  text-align: center;
+}
+
+.tag {
+  background: white;
+  border-radius: 10px;
+  padding: 3px 8px;
+  font-size: 14px;
+  margin-right: 4px;
+  line-height: 35px;
+  cursor: pointer;
+}
+
+.tag:hover {
+  background: #ddd;
+}
+
+.column2 {
+  padding-left: 41px;
+  padding-top: 30px;
+  margin-left: 20px;
+  width: 690px;
+  float: left;
+}
+
+.avatars {
+  margin-top: 23px;
+
+  img {
+    cursor: pointer;
+  }
+
+  img:hover {
+    opacity: 0.6;
+  }
+
+  a:hover {
+    text-decoration: none;
+  }
+}
+
+//star rating stuff via: https://codepen.io/jamesbarnett/pen/vlpkh/
+
+fieldset, label { margin: 0; padding: 0; }
+
+/****** Style Star Rating Widget *****/
+
+.rating {
+  border: none;
+  float: left;
+}
+
+.rating > input { display: none; }
+.rating > label:before {
+  margin: 5px;
+  margin-top: 0;
+  font-size: 1em;
+  font-family: FontAwesome;
+  display: inline-block;
+  content: "\f005";
+}
+
+.rating > .half:before {
+  content: "\f089";
+  position: absolute;
+}
+
+.rating > label {
+  color: #ddd;
+ float: right;
+}
+
+/***** CSS Magic to Highlight Stars on Hover *****/
+
+.rating > input:checked ~ label, /* show gold star when clicked */
+.rating:not(:checked) > label:hover, /* hover current star */
+.rating:not(:checked) > label:hover ~ label { color: #FFD700;  } /* hover previous stars in list */
+
+.rating > input:checked + label:hover, /* hover current star when changing rating */
+.rating > input:checked ~ label:hover,
+.rating > label:hover ~ input:checked ~ label, /* lighten current selection */
+.rating > input:checked ~ label:hover ~ label { color: #FFED85;  }
+
+//tooltip stuff via: https://codepen.io/peiche/pen/JaftA
+
+a[data-tooltip] {
+  position: relative;
+}
+a[data-tooltip]::before,
+a[data-tooltip]::after {
+  position: absolute;
+  display: none;
+  opacity: 0.85;
+}
+a[data-tooltip]::before {
+  /*
+   * using data-tooltip instead of title so we
+   * don't have the real tooltip overlapping
+   */
+  content: attr(data-tooltip);
+  background: #000;
+  color: #fff;
+  font-size: 13px;
+  padding: 5px;
+  border-radius: 5px;
+  /* we don't want the text to wrap */
+  white-space: nowrap;
+  text-decoration: none;
+}
+a[data-tooltip]::after {
+  width: 0;
+  height: 0;
+  border: 6px solid transparent;
+  content: '';
+}
+
+a[data-tooltip]:hover::before,
+a[data-tooltip]:hover::after {
+  display: block;
+}
+
+/** positioning **/
+
+/* top tooltip */
+a[data-tooltip][data-placement="top"]::before {
+  bottom: 100%;
+  left: 0;
+  margin-bottom: 40px;
+}
+a[data-tooltip][data-placement="top"]::after {
+  border-top-color: #000;
+  border-bottom: none;
+  bottom: 50px;
+  left: 20px;
+  margin-bottom: 4px;
+}
+
+.actions {
+  display:flex;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
+  background-color: $white;
+  height: 15%;
+  border-bottom: solid 1px;
+  color:#2F4550;
+}
+
+.action-item {
+  display: flex;
+  flex-direction: column;
+  color:#2F4550;
+}
+
+.actions i:hover {
+  text-decoration: none;
+
+}
+
+
+.similar-to {
+  display: block;
+  width: 100%;
+  text-align: center;
+  border: solid 1px;
+}
+
+.wrapper {
+  margin: 0 auto 100px auto;
+  max-width: 960px;
+  min-height: 360px;
+}
+
+.stage {
+  list-style: none;
+  padding: 0;
+}
+
+.scene {
+  width: 260px;
+  height: 400px;
+  margin: 30px;
+  float: left;
+  perspective: 1000px;
+}
+
+.movie {
+  width: 260px;
+  height: 400px;
+  transform-style: preserve-3d;
+  transform: translateZ(-130px);
+  transition: transform 350ms;
+}
+
+.movie:hover {
+  transform: rotateY(-90deg) translateZ(20px);
+}
+
+.movie .poster,
+.movie .info {
+  position: absolute;
+  width: 260px;
+  height: 400px;
+  background-color: #fff;
+  backface-visibility: hidden;
+}
+
+.movie .poster  {
+  transform: translateZ(130px);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.movie .info {
+  transform: rotateY(90deg) translateZ(130px);
+  border: 1px solid #B8B5B5;
+  font-size: 0.75em;
+}
+
+.movie::after {
+  content: '';
+  width: 260px;
+  height: 260px;
+  position: absolute;
+  bottom: 0;
+  box-shadow: 0 30px 50px rgba(0,0,0,0.3);
+  transform-origin: 100% 100%;
+  transform: rotateX(90deg) translateY(130px);
+  transition: box-shadow 350ms;
+}
+
+.movie:hover::after {
+  box-shadow: 20px -5px 50px rgba(0,0,0,0.3);
+}
+
+.info header {
+  color: $blue_dark;
+  padding: 7px 10px;
+  font-weight: bold;
+  height: 215px;
+  background-size: contain;
+  background-color: $white;
+  background-repeat: no-repeat;
+}
+
+.info header h1 {
+  margin: 0 0 2px;
+  font-size: 3em;
+}
+
+.info .movie-plot {
+  padding: 1.2em 1.4em;
+  margin: 2px 0 0;
+  font-weight: 700;
+  color: $blue_dark;
+  border-top: 1px solid $blue_dark;
+  border-bottom: 1px solid $blue_dark;
+}
+
+.movie .poster img {
+  width: 260px;
+  height: 400px;
+}
+
+
+.movie .poster,
+.movie .info,
+.movie .info header {
+  transition: box-shadow 350ms;
+}
+
+.movie .poster {
+  box-shadow: inset 0px 0px 40px rgba(255,255,255,0);
+}
+
+.movie:hover .poster {
+  box-shadow: inset 300px 0px 40px rgba(255,255,255,0.8);
+}
+
+.movie .info,
+.movie .info header {
+  box-shadow: inset -300px 0px 40px rgba(0,0,0,0.5);
+}
+
+.movie:hover .info,
+.movie:hover .info header {
+  box-shadow: inset 0px 0px 40px rgba(0,0,0,0);
+}
+
+.movie-trailer iframe {
+  width: 260px;
+  height: 150px;
+}
+
+.banner-trailer iframe {
+  width: 100%;
+
+}
+

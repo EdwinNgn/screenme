@@ -1,5 +1,6 @@
 .btn-ghost {
   color: #4A4A4A;
+  background-color: white;
   border: 1px solid #4A4A4A;
   padding: 8px 24px;
   border-radius: 50px;
@@ -8,10 +9,27 @@
   transition: opacity 0.3s ease;
 }
 
+.openBtn {
+  background-color: white;
+}
+
 .btn-ghost:hover {
   opacity: 1;
 }
 
 .btn-follow {
   border-radius: 50px;
+}
+
+.closerandommovie{
+  padding-left: 5px;
+  top: 20px;
+  right: 45px;
+  font-size: 60px;
+  cursor: pointer;
+  color: white;
+}
+
+.closerandommovie:hover {
+  color: #ccc;
 }
