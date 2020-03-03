@@ -14,4 +14,6 @@ import 'select2/dist/css/select2.css';
 import 'components/search-friend';
 import "../components/how_it_works";
 
+import { handleClickOnFriend } from "../components/handleClickOnFriend"
 
+handleClickOnFriend();
