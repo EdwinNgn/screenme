@@ -51,18 +51,27 @@
               <div class="openBtn btn btn-ghost">Let's find a movie for <%= @user.first_name.capitalize %> and You!</div>
             <% end %>
           </div>
-          <h3 class="mt-3 text-align-center d-flex justify-content-center">Recommendations</h3>
-            <div class="recommendation d-flex justify-content-center">
-              <div class="row recommendation-row">
-                <% @user.recommended_movies.first(3).each do |movie| %>
-                  <div class="col-4 mt-3">
-                    <!-- Pour éviter de faire 2 call API -->
-                    <% movie_details = movie.get_details %>
-                    <%= render "movies/new_movie_card", movie_details: movie_details, movie: movie %>
-            <% end %>
-            <% @user.recommended_movies.first(3).each do |movie| %>
-              <%= render "movies/card_collapse", movie_details:  movie.get_details, movie: movie  %>
-            <% end %>
+          <div class="recommandations-title">
+            <h3 class="mt-3 text-align-center d-flex justify-content-center">Recommendations</h3>
+            <div class="question">
+              <i class="far fa-question-circle"></i>
+              <p id="how-it-works">ScreenMe is running thanks to sophisticated statistical methods as <strong>Machine Learning</strong> and <strong>Artificial Intelligence</strong> to offer you personalized results !</p>
+            </div>
+          </div>
+          <div class="recommendation d-flex justify-content-center">
+            <div class="row recommendation-row" id="movies">
+              <% @movies.first(3).each_with_index do |movie, index| %>
+                <div class="col-4 mt-3">
+                  <!-- Pour éviter de faire 2 call API -->
+                  <% movie_details = @movie_details[index] %>
+                  <%= render "movies/new_movie_card", movie_details:  movie.get_details, movie: movie %>
+                </div>
+              <% end %>
+              <% @movies.first(3).each_with_index do |movie, index| %>
+                <% movie_details = @movie_details[index] %>
+                <%= render "movies/card_collapse", movie_details:  movie.get_details, movie: movie  %>
+              <% end %>
+            </div>
           </div>
         </div>
 
@@ -233,9 +242,9 @@
                     </div>
                   <% end %>
                 <% end %>
+              <!--  -->
               </div>
             </div>
-        <!--  -->
           </div>
         </div>
       </div>
@@ -252,7 +261,7 @@
   <div id="stars-group-6"></div>
 
   <span class="closerandommovie" title="Close Overlay">×</span>
-  <div id="random-movies" class="overlay-content d-flex flex-column" data-movies="<%= @movies_details.to_json %>">
+  <div id="random-movies" class="overlay-content d-flex flex-column" data-movies="<%= @movie_details.to_json %>">
     <div class="has-animation animation-rtl" data-delay="1000">
       <div class="container">
         <p id="modalTitle" class="bigger d-flex justify-content-center"></p>
@@ -263,7 +272,6 @@
         <a id="modalLink" href="/movies/${result.imdbID}" class="link-without-style">
             <img id="modalImage"  src="" alt="">
         </a>
-
       </div>
     </div>
     <div class="has-animation animation-ltr mt-5" data-delay="1500">
@@ -271,10 +279,8 @@
         <p class="text d-flex flex-column justify-content-center">Synopsis: <span id="modalSynopsis"></span></p>
       </div>
     </div>
-
   </div>
   <div class ="d-flex justify-content-center">
       <button class="btn btn-ghost anothermovie" title="Close Overlay">Still not ? We start over ! </button>
   </div>
-
 </div>

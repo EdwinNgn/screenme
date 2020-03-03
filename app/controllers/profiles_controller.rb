@@ -2,10 +2,11 @@ class ProfilesController < ApplicationController
   def show
     @user = User.find(params[:id])
     if @user == current_user
-      @movies_details = @user.recommended_movies.map { |movie| movie.get_details }
+      @movies = @user.recommended_movies
     else
-      @movies_details = (@user.recommended_movies & current_user.recommended_movies).map { |movie| movie.get_details }
+      @movies = @user.recommended_movies & current_user.recommended_movies
     end
-    @movies_details = Movie.top(10).map { |movie| movie.get_details } if @movie_details.blank?
+    @movies = Movie.top(10) if @movies.blank?
+    @movie_details = @movies.map { |movie| movie.get_details }
   end
 end
