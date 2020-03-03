@@ -46,14 +46,28 @@
 }
 
 .profile-page .profile img {
-    max-width: 160px;
+    max-width: 220px;
     width: 0 auto;
-    margin: 0 190px;
+    margin: 0 155px;
     -webkit-transform: translate3d(0,-50%,0);
     -moz-transform: translate3d(0,-50%,0);
     -o-transform: translate3d(0,-50%,0);
     -ms-transform: translate3d(0,-50%,0);
     transform: translate3d(0,-50%,0);
+
+}
+
+.white {
+  border: 4mm ridge white;
+}
+.bronze {
+  border: 4mm ridge rgba(205, 127, 50, 1);
+}
+.silver {
+  border: 4mm ridge rgba(158, 158, 158, 1);
+}
+.gold {
+  border: 4mm ridge rgba(230, 206, 106, 1);
 }
 
 .img-raised {
