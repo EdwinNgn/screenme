@@ -3,7 +3,7 @@ $(document).ready(function() {
     var current = 1;
     $('.total_slides').text(itemsLenght);
     window.addEventListener("keyup",function(){
-      if (event.keyCode == '39'){
+      if (event.keyCode == '37'){
         if(current > 1){
             current = current - 1;
             showSlide(current);
@@ -15,7 +15,7 @@ $(document).ready(function() {
     });
 
     window.addEventListener("keyup",function(){
-      if (event.keyCode == '37'){
+      if (event.keyCode == '39'){
 
         if(current !== itemsLenght){
             current = current + 1;
