@@ -14,7 +14,7 @@
                <div class="profile">
                     <div class="avatar">
                       <% if @user.avatar.attachment != nil %>
-                        <img src="<%= cl_image_path @user.avatar.key, width: 150, height: 150, crop: :thumb, gravity: :face %>" alt="Circle Image" class="img-raised rounded-circle img-fluid"/>
+                        <img src="<%= cl_image_path @user.avatar.key, width: 150, height: 150, crop: :thumb %>" alt="Circle Image" class="img-raised rounded-circle img-fluid"/>
                       <% end %>
                     </div>
                     <div>
@@ -52,6 +52,8 @@
               <% else %>
                 <%= link_to "Enhance my collection", step_two_path, class: "btn btn-ghost"   %>
               <% end %>
+            <% elsif @user.first_name.blank? %>
+              <div class="openBtn btn btn-ghost">Let's find a movie for No name and You!</div>
             <% else %>
               <div class="openBtn btn btn-ghost">Let's find a movie for <%= @user.first_name.capitalize %> and You!</div>
             <% end %>
@@ -62,6 +64,12 @@
               <i class="far fa-question-circle"></i>
               <p id="how-it-works">ScreenMe is running thanks to sophisticated statistical methods as <strong>Machine Learning</strong> and <strong>Artificial Intelligence</strong> to offer you personalized results !</p>
             </div>
+            <% if @movies == Movie.top(10) %>
+              <div class="warning-reco">
+                <i class="fas fa-exclamation-triangle"></i>
+                <p id="warning-message">Unfortunately we are not able yet to give you personnalize recommandation. Here are the tops rated from our communities.Don't hesitate to give us more on your tastes ;)</p>
+              </div>
+            <% end %>
           </div>
           <div class="recommendation d-flex justify-content-center">
             <div class="row recommendation-row" id="movies">
