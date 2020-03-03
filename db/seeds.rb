@@ -9,7 +9,7 @@
 require "csv"
 require 'faker'
 
-csv_file   = File.join(__dir__, 'dataset_screenme_small_all.csv')
+csv_file   = File.join(__dir__, 'dataset_screenme_last_50.csv')
 csv_options = {headers: :first_row}
 
 
