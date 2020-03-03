@@ -1,5 +1,9 @@
 class ProfilesController < ApplicationController
   def show
+
+    @click_on_friend = params[:friend]
+
+
     @user = User.find(params[:id])
     if @user == current_user
       @movies = @user.recommended_movies.to_a
