@@ -152,7 +152,9 @@
               </div>
               <div class="info">
                 <header>
-                  <h1><%= movie['Title'] %></h1>
+                  <%= link_to show_movie_path(recommandation.tt_id) do %>
+                    <h1><%= movie['Title'] %></h1>
+                  <% end %>
                   <span class="genre"><%= movie['Genre']%> |</span>
                   <span class="year"><%= movie['Year']%> |</span>
                   <span class="duration"><%= movie['Runtime'] %></span>
