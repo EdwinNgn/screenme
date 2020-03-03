@@ -7,6 +7,7 @@
   authenticate :user, lambda { |u| u.admin } do
     mount Sidekiq::Web => '/sidekiq'
   end
+
   get "/step_one", to: "forms#step_one"
   post "/step_one", to: "forms#step_one"
   get "/step_two", to: "forms#step_two"
