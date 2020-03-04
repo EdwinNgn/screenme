@@ -8,4 +8,8 @@ class ApplicationController < ActionController::Base
 
     # For additional in app/views/devise/registrations/edit.html.erb
   end
+
+  def default_url_options
+    { host: ENV["www.screenme.xyz"] || "localhost:3000" }
+  end
 end
