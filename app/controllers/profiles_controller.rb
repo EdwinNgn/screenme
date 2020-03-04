@@ -13,7 +13,7 @@ class ProfilesController < ApplicationController
     end
     Movie.top(100).each do |movie|
       break if @movies.size == 10
-      next if  @movies.include?(movie) || @user.rated?(movie)
+      next if  (@movies.include?(movie) || @user.rated?(movie))
       @movies << movie
     end
     @movie_details = @movies.map { |movie| movie.get_details }
