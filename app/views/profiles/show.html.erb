@@ -154,13 +154,18 @@
             <div class="tab-pane fade show" id="pills-to-watch" role="tabpanel" aria-labelledby="pills-to-watch-tab">
               <div class="bookmarked_movies">
                 <% unless @user.bookmarked_movies.first.nil? %>
-                  <div class="row">
-                    <% @user.bookmarked_movies.first(20).each do |movie| %>
+                  <div class="row" id="movies">
+
+                    <% @user.bookmarked_movies.first(3).each_with_index do |movie, index| %>
                       <div class="col-4 mt-3">
-                        <% movie_details = movie.get_details %>
-                        <%= render "movies/new_movie_card", movie_details: movie_details, movie: movie %>
+                        <!-- Pour éviter de faire 2 call API -->
+                        <% movie_details = @movie_details[index] %>
+                        <%= render "movies/new_movie_card", movie_details:  movie.get_details, movie: movie %>
                       </div>
-                      <%= render "movies/card_collapse.html.erb", movie_details: movie_details, movie: movie %>
+                    <% end %>
+                    <% @user.bookmarked_movies.first(3).each_with_index do |movie, index| %>
+                      <% movie_details = @movie_details[index] %>
+                      <%= render "movies/card_collapse", movie_details:  movie.get_details, movie: movie  %>
                     <% end %>
                   </div>
                 <% end %>
