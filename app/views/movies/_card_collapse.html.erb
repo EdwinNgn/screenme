@@ -19,16 +19,16 @@
           <ul>
             <%= link_to liking_movie_path(movie_details['imdbID']), method: :post, remote: true do %>
               <% if current_user.likes?(movie) %>
-                <li><i class="fas fa-thumbs-up "><span><%= movie.liked_by_count %></span></i></li>
+                <li><i class="fas fa-thumbs-up "><span>  <%= movie.liked_by_count %></span></i></li>
               <% else %>
-                <li><i class="far fa-thumbs-up "><span><%= movie.liked_by_count %></span></i></li>
+                <li><i class="far fa-thumbs-up "><span>  <%= movie.liked_by_count %></span></i></li>
               <% end %>
             <% end %>
             <%= link_to disliking_movie_path(movie_details['imdbID']), method: :post, remote: true do %>
               <% if current_user.dislikes?(movie) %>
-                <li><i class="fas fa-thumbs-down "><span><%= movie.disliked_by_count %></span></i></li>
+                <li><i class="fas fa-thumbs-down "><span>  <%= movie.disliked_by_count %></span></i></li>
               <% else %>
-                <li><i class="far fa-thumbs-down "><span><%= movie.disliked_by_count %></span></i></li>
+                <li><i class="far fa-thumbs-down "><span>  <%= movie.disliked_by_count %></span></i></li>
               <% end %>
             <% end %>
             <%= link_to saving_movie_path(movie_details['imdbID']), method: :post, remote: true do %>
