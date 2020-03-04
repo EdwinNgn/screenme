@@ -315,18 +315,16 @@
   <span class="closerandommovie" title="Close Overlay">×</span>
   <div id="random-movies" class="overlay-content d-flex flex-column" data-movies="<%= @movie_details.to_json %>">
     <div class="has-animation animation-rtl" data-delay="1000">
-      <div class="container">
         <p id="modalTitle" class="bigger d-flex justify-content-center"></p>
-      </div>
     </div>
-    <div class="has-animation animation-rtl" data-delay="2500">
+    <div class="mt-2 has-animation animation-rtl" data-delay="2500">
       <div class ="d-flex justify-content-center">
         <a id="modalLink" href="/movies/${result.imdbID}" class="link-without-style">
             <img id="modalImage"  src="" alt="">
         </a>
       </div>
     </div>
-    <div class="has-animation animation-ltr mt-5" data-delay="1500">
+    <div class="has-animation animation-ltr mt-2" data-delay="1500">
       <div class="container text-center">
         <p class="text d-flex flex-column justify-content-center">Synopsis: <span id="modalSynopsis"></span></p>
       </div>

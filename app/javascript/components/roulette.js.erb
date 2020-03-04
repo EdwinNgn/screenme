@@ -13,7 +13,8 @@ if (btnOpenModal ) {
     const modal = document.getElementById("myOverlay");
     modal.style.display = "block"
     const movie = movies[Math.floor(Math.random() * movies.length)]
-    document.querySelector('.profile-content').style.display="none"
+      console.log(event);
+    document.querySelector('.profile-page').style.display="none"
     document.getElementById('modalTitle').innerText = movie.Title
     document.getElementById('modalImage').attributes['src'].value = movie.Poster
     document.getElementById('modalSynopsis').innerText = movie.Plot
@@ -36,6 +37,6 @@ if (btnOpenModal ) {
   btnCloseModal.addEventListener("click", (event) => {
     event.preventDefault();
     modal.style.display = "none"
-    document.querySelector('.profile-content').style.display="block"
+    document.querySelector('.profile-page').style.display="block"
   });
 }
