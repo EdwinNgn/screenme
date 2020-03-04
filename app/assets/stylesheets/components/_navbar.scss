@@ -122,3 +122,20 @@
     }
   }
 }
+
+
+.notif {
+  position: relative;
+  text-align:center;
+}
+
+#notif_icons{
+  height:23px;
+  width: 23px;
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  border-radius: 50%;
+  background: red;
+  color: white;
+}
