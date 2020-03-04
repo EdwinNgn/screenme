@@ -12,4 +12,8 @@ class ApplicationController < ActionController::Base
 
   def fetch_new_notifications
   end
+
+  def default_url_options
+    { host: ENV["www.screenme.xyz"] || "localhost:3000" }
+  end
 end

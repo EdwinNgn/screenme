@@ -27,14 +27,17 @@ class ProfilesController < ApplicationController
       @percentage = (( movies_rated / 10.to_f ) * 100).to_i
       @color = "white"
       @movies_left = 10 - movies_rated
+      @next_level = "bronze member"
     elsif movies_rated < 50
       @percentage = (( (movies_rated - 10) / 50.to_f ) * 100).to_i
       @color = "bronze"
       @movies_left = 50 - movies_rated
+      @next_level = "silver member"
     elsif movies_rated < 100
       @percentage = (( (movies_rated - 50) / 100.to_f ) * 100).to_i
       @color = "silver"
       @movies_left = 100 - movies_rated
+      @next_level = "gold member"
     else
       @percentage = 100
       @color = "gold"
