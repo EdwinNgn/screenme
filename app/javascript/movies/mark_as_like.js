@@ -1,4 +1,4 @@
-const movies = document.querySelectorAll('.moviecard, .card-index')
+const movies = document.querySelectorAll('.moviecard, .card-index ')
 
 if (movies) {
   movies.forEach((movie) => {
@@ -44,3 +44,15 @@ if(collapses){
     })
   })
 }
+
+const moviesLike = document.querySelectorAll('.actions-recommendation')
+if (moviesLike) {
+  moviesLike.forEach((movie) => {
+    const thumb = movie.querySelector('.fa-thumbs-up')
+    thumb.addEventListener('click', (event) => {
+      event.currentTarget.classList.toggle("far");
+      event.currentTarget.classList.toggle("fas");
+    })
+  })
+}
+

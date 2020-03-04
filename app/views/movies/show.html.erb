@@ -135,6 +135,10 @@
       </div> <!-- end column2 -->
     </div> <!-- end description -->
 
+
+
+
+
     <div class="movie-liked-like">
       <h2 class="similar-to">Movie like : <strong><%= @movie['Title'] %></strong></h2>
       <div class="wrapper">
@@ -154,7 +158,7 @@
                   <span class="genre"><%= movie['Genre']%> |</span>
                   <span class="year"><%= movie['Year']%> |</span>
                   <span class="duration"><%= movie['Runtime'] %></span>
-                  <p class="movie-plot"><%= movie['Plot'] %></p>
+                  <p class="movie-plot"><%= movie['Plot'].truncate(120, omission: '...') %></p>
                   <p><strong>Director: </strong><%= movie['Director'] %></p>
                   <p><strong>Casting: </strong><%= movie['Actors'] %></p>
                 </header>
@@ -169,7 +173,8 @@
                     mozallowfullscreen="mozallowfullscreen"
                     msallowfullscreen="msallowfullscreen"
                     oallowfullscreen="oallowfullscreen"
-                    webkitallowfullscreen="webkitallowfullscreen">
+                    webkitallowfullscreen="webkitallowfullscreen"
+                    class = "justify-content-center align-items-center">
                   </iframe>
                 </div>
                 <div class="actions-recommendation">

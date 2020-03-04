@@ -48,7 +48,13 @@
             <div class="content">
               <span class="author"><%= movie_details['Genre'] %></span>
               <h1 class="title-new-movie-card"><a href="/movies/<%= movie.tt_id %>"><%= movie_details['Title'] %></a></h1>
-              <p class="text"><%= movie_details['Plot'].truncate(140, omission: '... (Read more)') %></p>
+              <% if current_page?(step_two_path) %>
+               <p class="text" style="height:105px"><%= movie_details['Plot'].truncate(140, omission: '... (Read more)') %></p>
+              <% else %>
+                <p class="text"><%= movie_details['Plot'].truncate(140, omission: '... (Read more)') %></p>
+              <% end %>
+
+              <% unless current_page?(step_two_path) %>
               <div
                 class='moviecard_chevron'
                 data-toggle="collapse"
@@ -59,6 +65,9 @@
                 role="button">
                   <i class="fas fa-chevron-down button" style ="font-size:24px; cursor: pointer"></i>
               </div>
+              <% end %>
+
+
               <!-- <i class="fas fa-chevron-down button" style ="font-size:24px"></i> -->
             </div>
           </div>
