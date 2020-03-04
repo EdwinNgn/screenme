@@ -1,8 +1,15 @@
 $(window).scroll(function() {
   const profile = document.querySelector('.profile')
+  const stat = document.querySelector('.wrapper')
+  const position = stat.getBoundingClientRect();
+  let view = false;
   if (profile) {
-    if ($(window).scrollTop()  > $(window).height() / 2)
-    {
+    if (position.top > window.innerHeight) {
+      view = true ;
+    }else {
+      view = false ;
+    };
+    if (view) {
 
       (function ($) {
         $.fn.countTo = function (options) {
