@@ -1,6 +1,5 @@
 <div id="click-on-friend" data-click="<%= @click_on_friend %>"></div>
 
-<div>
 <div class="profile">
   <div class="profile-page" id="profile-page">
     <% if @user.coverpicture.attachment != nil %>
@@ -54,21 +53,20 @@
               <% else %>
                 <%= link_to "Enhance my collection", step_two_path, class: "btn btn-ghost"   %>
               <% end %>
-            <% elsif @user.first_name.blank? %>
-              <div class="openBtn btn btn-ghost">Let's find a movie for No name and You!</div>
-            <% else %>
-              <div class="openBtn btn btn-ghost">Let's find a movie for <%= @user.first_name.capitalize %> and You!</div>
-              <% unless current_user == @user %>
-                <% if !current_user.follow?(@user) %>
-                  <%= link_to "Follow", friendships_path(:friend_id => @user), :method => :post, class: "btn btn-outline-success btn-follow" %>
-                <% else %>
-                  <%= link_to "Unfollow", friendship_path(:friend_id => @user), :method => :delete, class: "btn btn-outline-danger btn-follow" %>
-                <% end %>
+            <% elsif current_user.follow?(@user) %>
+              <% if @user.first_name.blank? %>
+                <div class="openBtn btn btn-ghost">Let's find a movie for No name and You!</div>
+              <% else %>
+                <div class="openBtn btn btn-ghost">Let's find a movie for <%= @user.first_name.capitalize %> and You!</div>
               <% end %>
-
+              <%= link_to "Unfollow", friendship_path(:friend_id => @user), :method => :delete, class: "btn btn-outline-danger btn-follow" %>
+            <% else %>
+              <%= link_to "Follow", friendships_path(:friend_id => @user), :method => :post, class: "btn btn-outline-success btn-follow" %>
             <% end %>
+
           </div>
 
+          <% if current_user.follow?(@user) || @user == current_user %>
           <div class="d-flex badge justify-content-center align-items-center">
             <div class="progress" data-percentage="<%= @percentage %>">
               <span class="progress-left">
@@ -104,8 +102,6 @@
               </div>
             <% end %>
           </div>
-
-
 
           <div class="recommendation d-flex justify-content-center">
             <div class="row recommendation-row" id="movies">
@@ -301,6 +297,7 @@
               </div>
             </div>
           </div>
+          <% end %>
         </div>
       </div>
     </div>
@@ -340,5 +337,3 @@
   </div>
 </div>
 
-<script>
-</script>
