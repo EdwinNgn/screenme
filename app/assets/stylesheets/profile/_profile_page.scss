@@ -58,16 +58,18 @@
 }
 
 .white {
-  border: 4mm ridge white;
+  border: 2mm ridge white;
 }
 .bronze {
-  border: 4mm ridge rgba(205, 127, 50, 1);
+  border: 2mm ridge rgba(205, 127, 50, 1);
 }
 .silver {
-  border: 4mm ridge rgba(158, 158, 158, 1);
+  border: 2mm ridge rgba(158, 158, 158, 1);
 }
+
+
 .gold {
-  border: 4mm ridge rgba(230, 206, 106, 1);
+  border: 2mm ridge rgba(230, 206, 106, 1);
 }
 
 .img-raised {
@@ -164,6 +166,10 @@
 
 .profile-page .profile .name{
     margin-top: -90px;
+}
+
+.profile-page .profile .name-friend{
+    margin-top: -55px;
 }
 
 img.rounded {

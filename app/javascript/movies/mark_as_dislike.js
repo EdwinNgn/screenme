@@ -21,12 +21,12 @@ if (showMovie) {
     if (thumb.classList.value.split(" ").includes('far')) {
       const likedown = document.querySelector('.like-down');
       let likedown_number = parseInt(likedown.innerText.replace(/\D+/g, '')) - 1;
-      likedown.innerHTML = `<i class="fas fa-thumbs-down"></i>${likedown_number} likes`;
+      likedown.innerHTML = `<i class="fas fa-thumbs-down"></i> <span>${likedown_number} likes</span>`;
     }
     else {
       const likedown = document.querySelector('.like-down');
       let likedown_number = parseInt(likedown.innerText.replace(/\D+/g, '')) + 1;
-      likedown.innerHTML = `<i class="fas fa-thumbs-down"></i>${likedown_number} likes`;
+      likedown.innerHTML = `<i class="fas fa-thumbs-down"></i> <span>${likedown_number} likes</span>`;
     }
   })
 }
@@ -38,6 +38,17 @@ if(collapses){
     const thumb = collapse.querySelector('.fa-thumbs-down')
     thumb.addEventListener('click', (event) => {
       console.log(event);
+      event.currentTarget.classList.toggle("far");
+      event.currentTarget.classList.toggle("fas");
+    })
+  })
+}
+
+const moviesLike = document.querySelectorAll('.actions-recommendation')
+if (moviesLike) {
+  moviesLike.forEach((movie) => {
+    const thumb = movie.querySelector('.fa-thumbs-down')
+    thumb.addEventListener('click', (event) => {
       event.currentTarget.classList.toggle("far");
       event.currentTarget.classList.toggle("fas");
     })
