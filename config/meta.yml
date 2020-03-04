@@ -1,4 +1,4 @@
 meta_product_name: "ScreenMe"
 meta_title: "ScreenMe - Find the best movie for you! "
 meta_description: "ScreenMe helps you find a movie that suits you best! No more time wasted looking for a movie, trust ScreenMe! "
-meta_image: "home-image.jpg" # should exist in `app/assets/images/`
+meta_image: "cover.png" # should exist in `app/assets/images/`
