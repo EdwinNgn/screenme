@@ -411,6 +411,10 @@ a[data-tooltip][data-placement="top"]::after {
 
 .info .movie-plot {
   padding: 5px 2px;
+  overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
   color: $blue_dark;
   border-top: 1px solid $blue_dark;
   border-bottom: 1px solid $blue_dark;
