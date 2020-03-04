@@ -187,7 +187,7 @@
                   <% movie_api = movie.get_details %>
                   <img src=<%= movie_api['Poster'] %>>
                   <input type="radio" name="radio-set" checked="checked" />
-                  <figcaption><span><%= movie_api['Title'] %></span></figcaption>
+                  <figcaption><span><a href="/movies/<%= movie.tt_id %>"><%= movie_api['Title'] %></a></span></figcaption>
                   <% runtime_total += movie_api['Runtime'].delete('min').to_i %>
                 <% end %>
               <% end %>
