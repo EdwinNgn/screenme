@@ -6,7 +6,9 @@ class ProfilesController < ApplicationController
 
     @user = User.find(params[:id])
     if @user == current_user
-      @movies = @user.recommended_movies.to_a
+      @movies = []
+      movie_reco = @user.recommended_movies.to_a
+      movie_reco.each {|movie| @movies << movie unless (@user.rated?(movie) || @user.bookmarks?(movie) || @user.hides?(movie))}
     else
       @movies = @user.recommended_movies.first(3).to_a + (@user.recommended_movies.to_a & current_user.recommended_movies.to_a)
       @movies = @movies.uniq
