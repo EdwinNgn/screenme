@@ -1,5 +1,4 @@
 <div id="click-on-friend" data-click="<%= @click_on_friend %>"></div>
-
 <div class="profile">
   <div class="profile-page" id="profile-page">
     <% if @user.coverpicture.attachment != nil %>
@@ -254,7 +253,7 @@
 
         <!-- STATS -->
             <div class="tab-pane fade show active" id="pills-stats" role="tabpanel" aria-labelledby="pills-stats-tab">
-              <div class="wrapper">
+              <div class="wrapper-stat">
                   <div class="counter col_fourth">
                     <i class="fas fa-star fa-2x"></i>
                     <h2 class="timer count-title count-number" data-to=<%=  @user.likes.count + @user.dislikes.count %> data-speed="1500"></h2>
@@ -279,7 +278,9 @@
                     <p class="count-text ">Movies to watch</p>
                   </div>
               </div>
-
+              <div id="container-piechart" style="height: 50vh;" >
+                  <canvas style="height: 50%;" id="pieChart" data-genres = "<%= @count.to_json %>"></canvas>
+              </div>
             </div>
         <!--  -->
 

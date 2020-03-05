@@ -1,6 +1,6 @@
 $(window).scroll(function() {
   const profile = document.querySelector('.profile')
-  const stat = document.querySelector('.wrapper')
+  const stat = document.querySelector('.wrapper-stat')
   const position = stat.getBoundingClientRect();
   let view = false;
   if (profile) {
