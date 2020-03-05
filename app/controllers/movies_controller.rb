@@ -63,6 +63,6 @@ class MoviesController < ApplicationController
     root_imdb = "https://www.imdb.com"
     imdb_serialized = open(url_imdb).read
     html_imdb = Nokogiri::HTML(imdb_serialized)
-    @link_amazon = root_imdb  + html_imdb.search('.buybox__button').attribute('href').value
+    @link_amazon = root_imdb  + html_imdb.search('.buybox__button').attribute('href').value if !html_imdb.search('.buybox__button').attribute('href').blank?
   end
 end

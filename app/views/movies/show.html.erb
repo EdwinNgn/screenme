@@ -1,5 +1,4 @@
 <div class="movie-card" >
-  <%= link_to "amazon", @link_amazon %>
   <% movie_instance = Movie.find_by(omdb_id: @id_integer) %>
   <% movie_details = Movie.find_by(omdb_id: @id_integer).get_details %>
 
@@ -29,6 +28,9 @@
       <div class="column1">
         <% @movie['Genre'].split(',').each do |genre| %>
           <span class="tag"><%= genre %></span>
+        <% end %>
+        <% if !@link_amazon.blank? %>
+          <%= link_to @link_amazon.include?("primevideo") ? " Watch it on Amazon Prime" : " Find it on Amazon", @link_amazon,class: "mt-5 fas fa-video"%>
         <% end %>
       </div> <!-- end column1 -->
 
