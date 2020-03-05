@@ -64,7 +64,8 @@
 }
 
 .nav-link-navbar {
-  color:white !important
+  color:white !important;
+  cursor: pointer;
 }
 
 
@@ -141,5 +142,17 @@
 }
 
 .read-notif{
-  background-color: #888B8F;
+  background-color: rgba(0,0,0,0.1);
+}
+
+.dropdown-item {
+  border: 1px solid rgba(255, 255, 255, .6);
+  padding-left:5px;
+}
+
+.time-ago {
+  text-align:right;
+  margin-top: -12px;
+  color:grey;
+  margin-bottom: 2px;
 }

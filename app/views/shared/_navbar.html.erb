@@ -29,7 +29,30 @@
                 <a class="dropdown-item unread-notif" href="#"> no notif </a>
             <% else %>
               <% current_user.notifications.reverse.first(5).each do |notification| %>
-                <%= link_to "#{notification.sender.first_name} is following you now", profile_path(notification.sender), class: "dropdown-item #{'read-notif' if notification.read?}" %>
+
+                <%= link_to profile_path(notification.sender), class: "dropdown-item #{'read-notif' if notification.read?}" do %>
+                  <%= cl_image_tag notification.sender.avatar.key, class: "avatar-bordered ", alt: "avatar-bordered" %>
+                  <%= "#{notification.sender.first_name.capitalize} has followed you" %>
+                  <% if notification.read? %>
+                    <i class="fas fa-check"></i>
+                  <% else %>
+                    <i class="fas fa-circle" style="color:red"></i>
+                  <% end %>
+                  <% dif_time = ((Time.now - (notification.created_at.to_time))/60).to_i %>
+                  <% if dif_time == 0 %>
+                    <p class="time-ago" >now</p>
+                  <% elsif dif_time < 60 %>
+                    <p class="time-ago"><%= dif_time %> min ago</p>
+                  <% elsif dif_time <120 %>
+                    <p class="time-ago">1 hour ago</p>
+                  <% elsif dif_time <1440 %>
+                    <p class="time-ago"><%= dif_time/60 %> hours ago</p>
+                  <% elsif dif_time < 2880 %>
+                    <p class="time-ago">1 day ago</p>
+                  <% else %>
+                    <p class="time-ago"><%= dif_time/60/24 %> days ago</p>
+                  <% end %>
+                <% end %>
               <% end %>
             <% end %>
           </div>
