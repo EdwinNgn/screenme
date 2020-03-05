@@ -32,7 +32,7 @@ Recommendable.configure do |config|
   # to improve Redis memory usage.
   #
   # Default: nil
-  config.furthest_neighbors = nil
+  config.furthest_neighbors = 10
 
   # The number of recommendations to store per user. Set this to a lower
   # number to improve Redis memory usage.
