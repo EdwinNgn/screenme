@@ -1,49 +1,56 @@
 
-<div class="collapse collapse-card mt-3 pt-3 pb-3  pr-5 pl-5" id="collapse-movie-<%= movie_details['imdbID'] %>">
+<div class="collapse collapse-card " id="collapse-movie-<%= movie_details['imdbID'] %>" aria-labelledby="collapse-movie-<%= movie_details['imdbID'] %>" data-parent="#movies">
   <div class="collaspe_header d-flex flex-row justify-content-between mb-3">
-    <h2><%= movie_details['Title'] %></h2>
-    <div class="collapse_header_action d-flex">
-      <div class="action_col d-flex flex-column ml-3">
-        <i class="far fa-thumbs-up"></i>
-        <span>like</span>
+    <div class="movie_card" id="bright">
+      <div class="info_section">
+        <div class="movie_header">
+          <img class="locandina" src=<%= movie_details['Poster'] %>/>
+          <h1><a href="/movies/<%= movie.tt_id %>"><%= movie_details['Title'] %></a></h1>
+          <h4><%= movie_details['Year'] %>, <%= movie_details['Director'] %></h4>
+          <span class="minutes"><%= movie_details['Runtime'] %></span>
+          <p class="type"><%= movie_details['Genre'] %></p>
+        </div>
+        <div class="movie_desc">
+          <p class="text">
+            <%= movie_details['Plot'] %>
+          </p>
+        </div>
+        <div class="movie_social">
+          <ul>
+            <%= link_to liking_movie_path(movie_details['imdbID']), method: :post, remote: true do %>
+              <% if current_user.likes?(movie) %>
+                <li><i class="fas fa-thumbs-up "><span>  <%= movie.liked_by_count %></span></i></li>
+              <% else %>
+                <li><i class="far fa-thumbs-up "><span>  <%= movie.liked_by_count %></span></i></li>
+              <% end %>
+            <% end %>
+            <%= link_to disliking_movie_path(movie_details['imdbID']), method: :post, remote: true do %>
+              <% if current_user.dislikes?(movie) %>
+                <li><i class="fas fa-thumbs-down "><span>  <%= movie.disliked_by_count %></span></i></li>
+              <% else %>
+                <li><i class="far fa-thumbs-down "><span>  <%= movie.disliked_by_count %></span></i></li>
+              <% end %>
+            <% end %>
+            <%= link_to saving_movie_path(movie_details['imdbID']), method: :post, remote: true do %>
+              <% if current_user.bookmarks?(movie) %>
+                <li><i class="fas fa-bookmark "></i></li>
+              <% else %>
+                <li><i class="far fa-bookmark "></i></li>
+              <% end %>
+            <% end %>
+            <%= link_to blacklisting_movie_path(movie_details['imdbID']), method: :post, remote: true do %>
+              <% if current_user.hides?(movie) %>
+                <li><i class="fas fa-eye-slash "></i></li>
+              <% else %>
+                <li><i class="far fa-eye-slash "></i></li>
+              <% end %>
+            <% end %>
+          </ul>
+        </div>
       </div>
-      <div class="action_col d-flex flex-column ml-3">
-        <i class="far fa-thumbs-down"></i>
-        <span>dislike</span>
-      </div>
-      <div class="action_col d-flex flex-column ml-3">
-        <i class="far fa-bookmark"></i>
-        <span>Add</span>
-      </div>
-      <div class="action_col d-flex flex-column ml-3">
-        <i class="fas fa-minus-circle"></i>
-        <span>block</span>
-      </div>
-    </div>
-  </div>
-  <div class="d-flex flex-row justify-content-between">
-    <div class="collaspe_left">
-      <div class='collaspe_left__details d-flex justify-content-around'>
-            <span><strong>Date: </strong><%= movie_details['Year'] %></span>
-            <span><strong>Duration: </strong><%= movie_details['Runtime'] %>min</span>
-            <span><strong>Genre: </strong><%= movie_details['Genre'] %></span>
-      </div>
-      <div class='collaspe_left__review mt-2'>
-        <p><%= movie_details['Plot'] %></p>
-      </div>
-      <div>
-        <p><strong>Director: </strong><%= movie_details['Director'] %></p>
-        <p><strong>Casting: </strong><%= movie_details['Actors'] %></p>
-      </div>
-    </div>
-    <div class="collaspe_right">
-
-
-    <%# url = "https://www.googleapis.com/youtube/v3/search?part=snippet&q=#{movie_details["Title"]} trailer&key=AIzaSyA0NRQKW1AJCn_TvKHW90PeCryYn3iRLpY" %>
-    <%# trailer = JSON.parse(open(url).read) %>
-
-
-      <iframe width="560" height="315" src="https://www.youtube.com/embed/7kSuas6mRpk?controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <div class="blur_back bright_back" style="background: url(<%= movie_details['Poster'] %>); background-size: cover; background-position: center;"></div>
     </div>
   </div>
 </div>
+
+

@@ -46,14 +46,30 @@
 }
 
 .profile-page .profile img {
-    max-width: 160px;
+    max-width: 220px;
     width: 0 auto;
-    margin: 0 190px;
+    margin: 0 155px;
     -webkit-transform: translate3d(0,-50%,0);
     -moz-transform: translate3d(0,-50%,0);
     -o-transform: translate3d(0,-50%,0);
     -ms-transform: translate3d(0,-50%,0);
     transform: translate3d(0,-50%,0);
+
+}
+
+.white {
+  border: 2mm ridge white;
+}
+.bronze {
+  border: 2mm ridge rgba(205, 127, 50, 1);
+}
+.silver {
+  border: 2mm ridge rgba(158, 158, 158, 1);
+}
+
+
+.gold {
+  border: 2mm ridge rgba(230, 206, 106, 1);
 }
 
 .img-raised {
@@ -75,7 +91,7 @@
     min-height: 32px;
     color: #3C4858;
     font-weight: 700;
-    font-family: "Roboto Slab","Times New Roman",serif;
+    font-family: 'Encode Sans Expanded',"Times New Roman",serif;
 }
 
 .profile-page .description {
@@ -152,6 +168,10 @@
     margin-top: -90px;
 }
 
+.profile-page .profile .name-friend{
+    margin-top: -55px;
+}
+
 img.rounded {
     border-radius: 6px!important;
 }
@@ -162,6 +182,7 @@ img.rounded {
 
 .profile-content {
   background-color: white;
+  padding-bottom: 30px;
 }
 
 .recommendation-row{
@@ -182,7 +203,7 @@ img.rounded {
 
 #how-it-works {
   width: 150px;
-  font-size: 10px;
+  font-size: 12px;
   margin: -20px 0;
   background-color: $blue_dark;
   color: $white;
@@ -195,3 +216,30 @@ img.rounded {
   left: 25px;
   visibility: hidden;
 }
+
+
+.warning-reco{
+  position: relative;
+  .fa-exclamation-triangle {
+    margin-left: 10px;
+    color:#840032;
+  }
+}
+
+#warning-message{
+  width: 150px;
+  font-size: 12px;
+  margin: -20px 0;
+  background-color: $blue_dark;
+  color: $white;
+  border: solid 1px $gray;
+  border-radius: 5px;
+  box-shadow: 10px 10px 5px 0px rgba(240,235,240,1);
+  padding: 10px;
+  position: absolute;
+  bottom: -30px;
+  left: 25px;
+  visibility: hidden;
+}
+
+

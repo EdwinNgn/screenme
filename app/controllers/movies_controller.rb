@@ -4,7 +4,7 @@ class MoviesController < ApplicationController
 
   def index
     if params[:search].present?
-      url = "https://www.omdbapi.com/?s=#{params[:search]}&apikey=adf1f2d7"
+      url = "https://www.omdbapi.com/?s=#{params[:search]}&type=movie&apikey=adf1f2d7"
       movies_serialized = open(url).read
       @movies = JSON.parse(movies_serialized)["Search"]
     else
@@ -35,9 +35,7 @@ class MoviesController < ApplicationController
     audiences = audiences & similar_user if !((audiences & similar_user).blank?)
     audiences = similar_user if audiences.blank?
 
-    # movies_similar_all = []
     counts = Hash.new 0
-    # create an array with all the movies recommandation
     audiences.each do |audience|
       audience.recommended_movies.each do |recommandation|
         counts[recommandation] += 1
@@ -58,5 +56,13 @@ class MoviesController < ApplicationController
       end
     end
     @recommandations
+
+
+
+    url_imdb = "https://www.imdb.com/title/#{omdb_id}/?ref_=nv_sr_srsg_3"
+    root_imdb = "https://www.imdb.com"
+    imdb_serialized = open(url_imdb).read
+    html_imdb = Nokogiri::HTML(imdb_serialized)
+    @link_amazon = root_imdb  + html_imdb.search('.buybox__button').attribute('href').value if !html_imdb.search('.buybox__button').attribute('href').blank?
   end
 end

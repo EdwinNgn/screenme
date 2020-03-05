@@ -4,7 +4,11 @@ class FriendshipsController < ApplicationController
     @friendship = current_user.friendships.build(:friend_id => params[:friend_id])
     friend = User.find(params[:friend_id])
     if @friendship.save
-      flash[:notice] = "Added friend."
+      notif = Notification.new
+      notif.sender = current_user
+      notif.receiver = friend
+      notif.category = "follow"
+      notif.save
       redirect_to profile_path(friend)
     else
       flash[:notice] = "Unable to add friend."

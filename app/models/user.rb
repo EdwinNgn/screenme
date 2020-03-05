@@ -15,4 +15,13 @@ class User < ApplicationRecord
   def follow?(user)
     self.friends.include?(user)
   end
+
+  def notifications
+    Notification.where(receiver: self)
+  end
+
+  def unread_notifications
+    Notification.where(receiver: self, read: false)
+  end
+
 end

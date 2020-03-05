@@ -8,11 +8,11 @@
 
 
     <!-- <div class="hero"> -->
-    <% url_show =URI.escape("https://www.googleapis.com/youtube/v3/search?part=snippet&q=#{@movie['Title']} trailer&key=AIzaSyA46GODnEbKzyATgm9dG-agMvf9wWo31hw") %>
-    <% trailer_show = JSON.parse(open(url_show).read) %>
-    <% video_id_show = trailer_show['items'][0]['id']['videoId'] %>
+    <%# url_show =URI.escape("https://www.googleapis.com/youtube/v3/search?part=snippet&q=#{@movie['Title']} trailer&key=AIzaSyA46GODnEbKzyATgm9dG-agMvf9wWo31hw") %>
+    <%# trailer_show = JSON.parse(open(url_show).read) %>
+    <%# video_id_show = trailer_show['items'][0]['id']['videoId']%>
     <iframe class="hero" width="100%" height="100%"
-      src="https://www.youtube-nocookie.com/embed/<%= video_id_show %>"
+      src="https://www.youtube-nocookie.com/embed/6ziBFh3V1aM"
       allowfullscreen="allowfullscreen"
       mozallowfullscreen="mozallowfullscreen"
       msallowfullscreen="msallowfullscreen"
@@ -20,18 +20,17 @@
       webkitallowfullscreen="webkitallowfullscreen">
     </iframe>
     <!-- </div> -->
-    <!-- <div class="hero" style = "background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= @movie['Poster'] %>);"> -->
 
     <div class="description">
-
-
-    <!-- </div> end hero -->
 
 
 
       <div class="column1">
         <% @movie['Genre'].split(',').each do |genre| %>
           <span class="tag"><%= genre %></span>
+        <% end %>
+        <% if !@link_amazon.blank? %>
+          <%= link_to @link_amazon.include?("primevideo") ? " Watch it on Amazon Prime" : " Find it on Amazon", @link_amazon,class: "mt-5 fas fa-video"%>
         <% end %>
       </div> <!-- end column1 -->
 
@@ -43,9 +42,16 @@
 
           <div class="title2"><%= @movie['Production']%></div>
 
-
-          <span class="likes"><i class="fas fa-thumbs-up"></i><%= movie_instance.liked_by_count %> likes</span>
-          <span class="likes"><i class="fas fa-thumbs-down"></i><%= movie_instance.disliked_by_count %> likes</span>
+          <div class="d-flex">
+            <div class="likes like-up mx-2">
+              <i class="fas fa-thumbs-up"></i>
+              <span><%= movie_instance.liked_by_count %> likes</span>
+            </div>
+            <div class="likes like-down mx-2">
+              <i class="fas fa-thumbs-down"></i>
+              <span><%= movie_instance.disliked_by_count %> likes</span>
+            </div>
+          </div>
 
         </div> <!-- end details -->
 
@@ -129,15 +135,12 @@
           <p><%= @movie['Actors'] %></p>
 
         </div> <!-- end avatars -->
-
-
-
-
-
-
-
       </div> <!-- end column2 -->
     </div> <!-- end description -->
+
+
+
+
 
     <div class="movie-liked-like">
       <h2 class="similar-to">Movie like : <strong><%= @movie['Title'] %></strong></h2>
@@ -152,11 +155,13 @@
               </div>
               <div class="info">
                 <header>
-                  <h1><%= movie['Title'] %></h1>
+                  <%= link_to show_movie_path(recommandation.tt_id) do %>
+                    <h1><%= movie['Title'] %></h1>
+                  <% end %>
                   <span class="genre"><%= movie['Genre']%> |</span>
                   <span class="year"><%= movie['Year']%> |</span>
                   <span class="duration"><%= movie['Runtime'] %></span>
-                  <p class="movie-plot"><%= movie['Plot'] %></p>
+                  <p class="movie-plot"><%= movie['Plot'].truncate(120, omission: '...') %></p>
                   <p><strong>Director: </strong><%= movie['Director'] %></p>
                   <p><strong>Casting: </strong><%= movie['Actors'] %></p>
                 </header>
@@ -166,17 +171,18 @@
                   <%# trailer = JSON.parse(open(url).read) %>
                   <%# video_id = trailer['items'][0]['id']['videoId'] %>
                   <iframe width="420" height="315"
-                    src="https://www.youtube.com/embed/8iCwtxJejik"
+                    src="https://www.youtube.com/embed/6ziBFh3V1aM"
                     allowfullscreen="allowfullscreen"
                     mozallowfullscreen="mozallowfullscreen"
                     msallowfullscreen="msallowfullscreen"
                     oallowfullscreen="oallowfullscreen"
-                    webkitallowfullscreen="webkitallowfullscreen">
+                    webkitallowfullscreen="webkitallowfullscreen"
+                    class = "justify-content-center align-items-center">
                   </iframe>
                 </div>
                 <div class="actions-recommendation">
                   <%= link_to liking_movie_path(movie_details['imdbID']), method: :post, remote: true do %>
-                    <% if current_user.likes?(Movie.find_by(omdb_id: @id_integer)) %>
+                    <% if !current_user.blank? && current_user.likes?(Movie.find_by(omdb_id: @id_integer)) %>
                       <i class="fas fa-thumbs-up"></i>
                       <span>Like</span>
                     <% else %>
@@ -185,7 +191,7 @@
                     <% end %>
                   <% end %>
                   <%= link_to disliking_movie_path(movie_details['imdbID']), method: :post, remote: true do %>
-                    <% if current_user.dislikes?(Movie.find_by(omdb_id: @id_integer)) %>
+                    <% if !current_user.blank? && current_user.dislikes?(Movie.find_by(omdb_id: @id_integer)) %>
                       <i class="fas fa-thumbs-down"></i>
                       <span>Dislike</span>
                     <% else %>
@@ -194,7 +200,7 @@
                     <% end %>
                   <% end %>
                   <%= link_to saving_movie_path(movie_details['imdbID']), method: :post, remote: true do %>
-                    <% if current_user.bookmarks?(Movie.find_by(omdb_id: @id_integer)) %>
+                    <% if !current_user.blank? && current_user.bookmarks?(Movie.find_by(omdb_id: @id_integer)) %>
                       <i class="fas fa-bookmark"></i>
                       <span>Later</span>
                     <% else %>
@@ -203,7 +209,7 @@
                     <% end %>
                   <% end %>
                   <%= link_to blacklisting_movie_path(movie_details['imdbID']), method: :post, remote: true do %>
-                    <% if current_user.hides?(Movie.find_by(omdb_id: @id_integer)) %>
+                    <% if !current_user.blank? && current_user.hides?(Movie.find_by(omdb_id: @id_integer)) %>
                       <i class="fas fa-eye-slash"></i>
                       <span>Never</span>
                     <% else %>

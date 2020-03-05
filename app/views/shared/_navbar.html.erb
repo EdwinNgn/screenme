@@ -19,11 +19,23 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <% if user_signed_in? %>
-        <li class="nav-item">
-          <%= link_to "", root_path, class: "mt-0 nav-link nav-link-navbar fas fa-bell action-btn #{'white-item-navbar' if params[:action] == "home"}" %>
+        <li class="nav-item notif dropdown">
+          <i id="navbarDropdown" class="dropdown mt-0 nav-link nav-link-navbar fas fa-bell action-btn <%= 'white-item-navbar' if params[:action] == "home" %>" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+          <% if !current_user.unread_notifications.blank? %>
+            <span id="notif_icons"><%= current_user.unread_notifications.size %></span>
+          <% end %>
+          <div class="p-0 dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+            <% if current_user.notifications.blank? %>
+                <a class="dropdown-item unread-notif" href="#"> no notif </a>
+            <% else %>
+              <% current_user.notifications.reverse.first(5).each do |notification| %>
+                <%= link_to "#{notification.sender.first_name} is following you now", profile_path(notification.sender), class: "dropdown-item #{'read-notif' if notification.read?}" %>
+              <% end %>
+            <% end %>
+          </div>
         </li>
         <li class="nav-item">
-          <%= link_to "", root_path, class: "mt-0 nav-link nav-link-navbar fas fa-users action-btn #{'white-item-navbar' if params[:action] == "home"}" %>
+          <%= link_to "", profile_path(id: current_user.id, friend: true), class: "mt-0 nav-link nav-link-navbar fas fa-users action-btn #{'white-item-navbar' if params[:action] == "home"}" %>
         </li>
         <li class="nav-item">
           <%= link_to "", destroy_user_session_path, method: :delete, class: "mt-0 nav-link nav-link-navbar fas fa-sign-out-alt action-btn #{'white-item-navbar' if params[:action] == "home"}" %>

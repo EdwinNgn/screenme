@@ -6,8 +6,7 @@
   height: 100vh;
 }
 
-
-.openBtn {
+#search-button {
   background: #09243D;
   border: none;
   padding: 0px 15px;
@@ -15,9 +14,7 @@
   cursor: pointer;
 }
 
-.openBtn:hover {
-  background: #09243D;
-}
+
 
 .overlay {
   height: 100%;
@@ -29,6 +26,7 @@
   background-color: rgba(0,0,0, 0.75);
   justify-content:center;
 }
+
 
 .overlay-content {
   display: inline-block;
