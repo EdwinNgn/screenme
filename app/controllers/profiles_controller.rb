@@ -1,4 +1,5 @@
 class ProfilesController < ApplicationController
+  GENRES = %w(Sci-Fi Comedy Action Drama Family Adventure Thriller)
   def show
 
     @click_on_friend = params[:friend]
@@ -44,5 +45,12 @@ class ProfilesController < ApplicationController
       @movies_left = "You're a gold member"
     end
 
+    @count = Hash.new 0
+    movies_genres = @user.likes.map { |movie| movie.get_details['Genre']}
+    movies_genres.each do |movie_genres|
+      movie_genres.split(',').each do |genre|
+        @count[genre.strip] += 1 if GENRES.include?(genre.strip)
+      end
+    end
   end
 end
