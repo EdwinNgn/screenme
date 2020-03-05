@@ -1,4 +1,5 @@
 <div class="movie-card" >
+  <%= link_to "amazon", @link_amazon %>
   <% movie_instance = Movie.find_by(omdb_id: @id_integer) %>
   <% movie_details = Movie.find_by(omdb_id: @id_integer).get_details %>
 
