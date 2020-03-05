@@ -5,14 +5,14 @@
       <div class="info_section">
         <div class="movie_header">
           <img class="locandina" src=<%= movie_details['Poster'] %>/>
-          <h1><a href="/movies/<%= movie.tt_id %>"><%= movie_details['Title'] %></a></h1>
+          <h1><a href="/movies/<%= movie.tt_id %>"><%= movie_details['Title'].truncate(25, omission: '...') %></a></h1>
           <h4><%= movie_details['Year'] %>, <%= movie_details['Director'] %></h4>
           <span class="minutes"><%= movie_details['Runtime'] %></span>
           <p class="type"><%= movie_details['Genre'] %></p>
         </div>
         <div class="movie_desc">
           <p class="text">
-            <%= movie_details['Plot'] %>
+            <%= movie_details['Plot'].truncate(200, omission: '...') %>
           </p>
         </div>
         <div class="movie_social">
