@@ -21,13 +21,19 @@ if (list) {
   input.focus();
 
   const insertMovies = (data) => {
-    data.Search.slice(0,5).forEach((result) => {
-      const movie = `
-      <a href="/movies/${result.imdbID}" class="link-without-style autocomplete-modal">
-          <img src="${result.Poster}" alt="" />
-      </a>`;
-      list.insertAdjacentHTML('beforeend', movie);
-    });
+
+    if (data.Search) {
+
+      data.Search.slice(0,5).forEach((result) => {
+        const movie = `
+        <a href="/movies/${result.imdbID}" class="link-without-style autocomplete-modal">
+            <img src="${result.Poster}" alt="" />
+        </a>`;
+        list.insertAdjacentHTML('beforeend', movie);
+      });
+
+    }
+
   };
   const fetchMovies = (query) => {
     fetch(`https://www.omdbapi.com/?s=${query}&apikey=adf1f2d7`)

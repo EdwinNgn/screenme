@@ -25,4 +25,6 @@
 
   resources :friendships
 
+  get "notifications", to: "notifications#readall"
+
 end
