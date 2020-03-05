@@ -243,3 +243,10 @@ img.rounded {
 }
 
 
+.btn-ghost {
+  color:rgb(20, 20, 20);
+  border:2px solid rgb(20, 20, 20);
+  &:hover {
+    color:black;
+  }
+}
