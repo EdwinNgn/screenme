@@ -95,7 +95,7 @@
               <i class="far fa-question-circle"></i>
               <p id="how-it-works">ScreenMe is running thanks to sophisticated statistical methods as <strong>Machine Learning</strong> and <strong>Artificial Intelligence</strong> to offer you personalized results !</p>
             </div>
-            <% if @movies == Movie.top(10) %>
+            <% if @user.recommended_movies.empty? %>
               <div class="warning-reco">
                 <i class="fas fa-exclamation-triangle"></i>
                 <p id="warning-message">Unfortunately we are not able yet to give you personnalize recommandation. Here are the tops rated from our communities.Don't hesitate to give us more on your tastes ;)</p>
