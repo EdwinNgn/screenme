@@ -29,6 +29,9 @@
         <% @movie['Genre'].split(',').each do |genre| %>
           <span class="tag"><%= genre %></span>
         <% end %>
+        <% if !@link_amazon.blank? %>
+          <%= link_to @link_amazon.include?("primevideo") ? " Watch it on Amazon Prime" : " Find it on Amazon", @link_amazon,class: "mt-5 fas fa-video"%>
+        <% end %>
       </div> <!-- end column1 -->
 
       <div class="column2">
@@ -179,7 +182,7 @@
                 </div>
                 <div class="actions-recommendation">
                   <%= link_to liking_movie_path(movie_details['imdbID']), method: :post, remote: true do %>
-                    <% if current_user.likes?(Movie.find_by(omdb_id: @id_integer)) %>
+                    <% if !current_user.blank? && current_user.likes?(Movie.find_by(omdb_id: @id_integer)) %>
                       <i class="fas fa-thumbs-up"></i>
                       <span>Like</span>
                     <% else %>
@@ -188,7 +191,7 @@
                     <% end %>
                   <% end %>
                   <%= link_to disliking_movie_path(movie_details['imdbID']), method: :post, remote: true do %>
-                    <% if current_user.dislikes?(Movie.find_by(omdb_id: @id_integer)) %>
+                    <% if !current_user.blank? && current_user.dislikes?(Movie.find_by(omdb_id: @id_integer)) %>
                       <i class="fas fa-thumbs-down"></i>
                       <span>Dislike</span>
                     <% else %>
@@ -197,7 +200,7 @@
                     <% end %>
                   <% end %>
                   <%= link_to saving_movie_path(movie_details['imdbID']), method: :post, remote: true do %>
-                    <% if current_user.bookmarks?(Movie.find_by(omdb_id: @id_integer)) %>
+                    <% if !current_user.blank? && current_user.bookmarks?(Movie.find_by(omdb_id: @id_integer)) %>
                       <i class="fas fa-bookmark"></i>
                       <span>Later</span>
                     <% else %>
@@ -206,7 +209,7 @@
                     <% end %>
                   <% end %>
                   <%= link_to blacklisting_movie_path(movie_details['imdbID']), method: :post, remote: true do %>
-                    <% if current_user.hides?(Movie.find_by(omdb_id: @id_integer)) %>
+                    <% if !current_user.blank? && current_user.hides?(Movie.find_by(omdb_id: @id_integer)) %>
                       <i class="fas fa-eye-slash"></i>
                       <span>Never</span>
                     <% else %>
