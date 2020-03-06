@@ -157,7 +157,9 @@
       <h2 class="similar-to">Movie like : <strong><%= @movie['Title'] %></strong></h2>
       <div class="wrapper">
         <ul class="stage">
-          <% @recommandations.each do |recommandation|  %>
+          <%# @recommandations.each do |recommandation|  %>
+          <% recommendations = [Movie.find_by(omdb_id: 758752), Movie.find_by(omdb_id: 3152624), Movie.find_by(omdb_id: 1155056) ] %>
+          <% recommendations.each do |recommandation| %>
           <% movie = recommandation.get_details %>
             <li class="scene">
             <div class="movie">
