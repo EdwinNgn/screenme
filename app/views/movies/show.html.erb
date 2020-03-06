@@ -30,7 +30,18 @@
           <span class="tag"><%= genre %></span>
         <% end %>
         <% if !@link_amazon.blank? %>
-          <%= link_to @link_amazon.include?("primevideo") ? " Watch it on Amazon Prime" : " Find it on Amazon", @link_amazon,class: "mt-5 fas fa-video"%>
+          <% if @link_amazon.include?("primevideo") %>
+            <%= link_to @link_amazon, class: "amazon d-flex" do %>
+              <p>Watch it on</p>
+              <img class="logo-amazon" src="https://upload.wikimedia.org/wikipedia/commons/f/f1/Prime_Video.png" alt="">
+            <% end %>
+          <% else %>
+            <%= link_to @link_amazon, class: "amazon d-flex" do %>
+              <p>Buy it on</p>
+              <img class="logo-amazon ml-2" src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="">
+            <% end %>
+          <%#= link_to @link_amazon.include?("primevideo") ? " Watch it on Amazon Prime" : " Find it on Amazon", @link_amazon,class: "mt-5 fas fa-video"%>
+          <% end %>
         <% end %>
       </div> <!-- end column1 -->
 
