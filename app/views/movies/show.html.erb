@@ -8,16 +8,18 @@
 
 
     <!-- <div class="hero"> -->
-    <% if movie_instance == Movie.find(758752) %>
-      <% url = "https://www.youtube.com/watch?v=h6w7Dh-QxzY" %>
+    <% if movie_instance == Movie.find_by(omdb_id: 758752) %>
+      <% video_id_show = "h6w7Dh-QxzY" %>
+    <% elsif movie_instance == Movie.find_by(omdb_id: 1570728) %>
+      <% video_id_show = "5o_Kxx36cvg" %>
     <% else %>
-      <% url_show =URI.escape("https://www.googleapis.com/youtube/v3/search?part=snippet&q=#{@movie['Title']} trailer&key=AIzaSyA0NRQKW1AJCn_TvKHW90PeCryYn3iRLpY") %>
-      <% trailer_show = JSON.parse(open(url_show).read) %>
-      <% video_id_show = trailer_show['items'][0]['id']['videoId']%>
-      <% url = "https://www.youtube-nocookie.com/embed/<%= video_id_show %>" %>
+      <% video_id_show = "kLl4b_doNtk" %>
+      <%# url_show =URI.escape("https://www.googleapis.com/youtube/v3/search?part=snippet&q=#{@movie['Title']} trailer&key=AIzaSyA0NRQKW1AJCn_TvKHW90PeCryYn3iRLpY") %>
+      <%# trailer_show = JSON.parse(open(url_show).read) %>
+      <%# video_id_show = trailer_show['items'][0]['id']['videoId']%>
     <% end %>
     <iframe class="hero" width="100%" height="100%"
-      src="<%= url %>"
+      src="https://www.youtube-nocookie.com/embed/<%= video_id_show %>"
       allowfullscreen="allowfullscreen"
       mozallowfullscreen="mozallowfullscreen"
       msallowfullscreen="msallowfullscreen"
@@ -184,10 +186,16 @@
                   <p><strong>Casting: </strong><%= movie['Actors'] %></p>
                 </header>
                 <div class="movie-trailer">
-
-                  <% url =URI.escape("https://www.googleapis.com/youtube/v3/search?part=snippet&q=#{movie['Title']} trailer&key=AIzaSyA0NRQKW1AJCn_TvKHW90PeCryYn3iRLpY") %>
-                  <% trailer = JSON.parse(open(url).read) %>
-                  <% video_id = trailer['items'][0]['id']['videoId'] %>
+                  <% if recommandation == Movie.find_by(omdb_id: 758752) %>
+                    <% video_id = "h6w7Dh-QxzY" %>
+                  <% elsif recommandation == Movie.find_by(omdb_id: 1570728) %>
+                    <% video_id = "5o_Kxx36cvg" %>
+                  <% else %>
+                    <% video_id = "kLl4b_doNtk" %>
+                    <%# url =URI.escape("https://www.googleapis.com/youtube/v3/search?part=snippet&q=#{@movie['Title']} trailer&key=AIzaSyA0NRQKW1AJCn_TvKHW90PeCryYn3iRLpY") %>
+                    <%# trailer = JSON.parse(open(url).read) %>
+                    <%# video_id = trailer['items'][0]['id']['videoId']%>
+                  <% end %>
                   <iframe width="420" height="315"
                     src="https://www.youtube.com/embed/<%= video_id %>"
                     allowfullscreen="allowfullscreen"
